@@ -17,10 +17,8 @@ const restaurantSchema = new Schema({
             require: true
         }
     },
-    location: {
-        address: String,
-        city: String
-    },
+    address: String,
+    city: String,
     average_cost_for_two: Number
 });
 

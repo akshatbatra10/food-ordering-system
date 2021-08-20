@@ -1,6 +1,5 @@
 const express = require("express");
 const app = express();
-const help = "NO";
 
 app.get("/", (req, res) => {
   res.send("Working!!");
