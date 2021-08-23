@@ -12,7 +12,7 @@ const restaurantSchema = new Schema({
             enum: ['Point'],
             require: true
         },
-        coordinate: {
+        coordinates: {
             type: [Number],
             require: true
         }
