@@ -16,7 +16,7 @@
     <div class="address">
       <div class="address-search">
         <div class="_3Um38 _2oQ4_">
-          <input type="text" class="_381fS _1oTLG _3BIgv" value="" name="location" id="location" autocomplete="off" tabindex="1" placeholder="Enter your delivery location" maxlength="60">
+          <input type="text" class="_381fS _1oTLG _3BIgv" value="" name="location" id="autocomplete" autocomplete="off" tabindex="1" placeholder="Enter your delivery location" maxlength="60">
           <div class="_2EeI1 _26LFr"></div>
           <label class="_1Cvlf _2tL9P" for="location"></label>
         </div>
@@ -30,5 +30,32 @@
       </a>
     </div>
   </div>
+  <script>
+    let autocomplete;
+     
+    function initAutocomplete() {
+     autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'), {
+      types: ['establishment'],
+      componentRestrictions: {
+       'country': ["AU"]
+      },
+      fields: ['place_id', 'geometry', 'name']
+     });
+      
+     autocomplete.addListener('place_changed', onPlaceChange);
+    };
+    function onPlaceChange() {
+      let place = autocomplete.getPlace();
+
+      if(!place.geometry) {
+        document.getElementById('autocomplete').placeholder = 'Enter a location'
+      } else {
+        document.getElementById('details').innerHTML = place.name;
+      }
+    }
+  </script>
+  <script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAba2w5oORXZehWxezJ49jk1ZC0yPJU6Gs&libraries=places&callback=initAutocomplete" async defer>
+  </script>
 </body>
 </html>
