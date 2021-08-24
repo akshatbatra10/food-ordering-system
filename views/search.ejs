@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.3/leaflet.js"
+    ></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.3/leaflet.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://maps.locationiq.com/v2/libs/leaflet-geocoder/1.9.6/leaflet-geocoder-locationiq.min.css?v=0.1.7"
+    />
+    <script src="https://maps.locationiq.com/v2/libs/leaflet-geocoder/1.9.6/leaflet-geocoder-locationiq.min.js?v=0.1.7"></script>
+    <style type="text/css">
+      body {
+        margin: 0;
+      }
+      #map {
+        width: 0;
+        height: 0;
+        background-color: transparent;
+        display: hidden;
+      }
+      #search-box {
+        padding-left: 20px;
+        padding-top: 20px;
+        width: 800px;
+        height: 100px;
+      }
+      #result {
+        padding-left: 20px;
+        padding-top: 20px;
+        width: 800px;
+        height: 100px;
+      }
+      .leaflet-locationiq-results {
+        padding-top: 45px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- For the invisible map -->
+    <div id="map"></div>
+    <!-- For the search box -->
+    <div id="search-box"></div>
+    <!-- To display the result -->
+    <div id="result"></div>
+    <script type="text/javascript">
+      // Initialize an empty map without layers (invisible map)
+      var map = L.map("map", {
+        center: [40.7259, -73.9805], // Map loads with this location as center
+        zoom: 12,
+        scrollWheelZoom: true,
+        zoomControl: false,
+        attributionControl: false,
+      });
+
+      //Geocoder options
+      var geocoderControlOptions = {
+        bounds: false, //To not send viewbox
+        markers: false, //To not add markers when we geocoder
+        attribution: null, //No need of attribution since we are not using maps
+        expanded: true, //The geocoder search box will be initialized in expanded mode
+        panToPoint: false, //Since no maps, no need to pan the map to the geocoded-selected location
+        params: {
+          //Set dedupe parameter to remove duplicate results from Autocomplete
+          dedupe: 1,
+        },
+      };
+
+      //Initialize the geocoder
+      var geocoderControl = new L.control.geocoder(
+        "pk.ac7f1895338e6b0b06892b14e6f747de",
+        geocoderControlOptions
+      )
+        .addTo(map)
+        .on("select", function (e) {
+          displayLatLon(
+            e.feature.feature.display_name,
+            e.latlng.lat,
+            e.latlng.lng
+          );
+        });
+
+      //Get the "search-box" div
+      var searchBoxControl = document.getElementById("search-box");
+      //Get the geocoder container from the leaflet map
+      var geocoderContainer = geocoderControl.getContainer();
+      //Append the geocoder container to the "search-box" div
+      searchBoxControl.appendChild(geocoderContainer);
+
+      //Displays the geocoding response in the "result" div
+      function displayLatLon(display_name, lat, lng) {
+        var resultString =
+          "You have selected " +
+          display_name +
+          "<br/>Lat: " +
+          lat +
+          "<br/>Lon: " +
+          lng;
+        document.getElementById("result").innerHTML = resultString;
+      }
+    </script>
+  </body>
+</html>

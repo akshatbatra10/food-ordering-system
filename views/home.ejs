@@ -1,61 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FoodMania</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-    <link rel="stylesheet" href="/stylesheets/home.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
-</head>
-<body>
-  <div class="container-fluid">
-    <%- include('./partials/homeNav.ejs') %>
-    <h5>View poopular restaurants or Order online on FoodMania</h5>
-    <div class="address">
-      <div class="address-search">
-        <div class="_3Um38 _2oQ4_">
-          <input type="text" class="_381fS _1oTLG _3BIgv" value="" name="location" id="autocomplete" autocomplete="off" tabindex="1" placeholder="Enter your delivery location" maxlength="60">
-          <div class="_2EeI1 _26LFr"></div>
-          <label class="_1Cvlf _2tL9P" for="location"></label>
-        </div>
-        <div class="_1fiQt">
-          <img class="_25lQg" src="https://img.icons8.com/fluency-systems-filled/48/000000/define-location.png"/>
-          <span class="LukWG">Locate Me</span>
-        </div>
-      </div>
-      <a class="_3iFC5">
-        <span>FIND FOOD</span>
-      </a>
-    </div>
-  </div>
-  <script>
-    let autocomplete;
-     
-    function initAutocomplete() {
-     autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'), {
-      types: ['establishment'],
-      componentRestrictions: {
-       'country': ["AU"]
-      },
-      fields: ['place_id', 'geometry', 'name']
-     });
-      
-     autocomplete.addListener('place_changed', onPlaceChange);
-    };
-    function onPlaceChange() {
-      let place = autocomplete.getPlace();
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/stylesheets/home.css" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
 
-      if(!place.geometry) {
-        document.getElementById('autocomplete').placeholder = 'Enter a location'
-      } else {
-        document.getElementById('details').innerHTML = place.name;
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.3/leaflet.js"
+    ></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.3/leaflet.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://maps.locationiq.com/v2/libs/leaflet-geocoder/1.9.6/leaflet-geocoder-locationiq.min.css?v=0.1.7"
+    />
+    <script src="https://maps.locationiq.com/v2/libs/leaflet-geocoder/1.9.6/leaflet-geocoder-locationiq.min.js?v=0.1.7"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.74.0/dist/L.Control.Locate.min.css"
+    />
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.74.0/dist/L.Control.Locate.min.js"
+      charset="utf-8"
+    ></script>
+
+    <style type="text/css">
+      body {
+        margin: 0;
       }
-    }
-  </script>
-  <script async
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAba2w5oORXZehWxezJ49jk1ZC0yPJU6Gs&libraries=places&callback=initAutocomplete" async defer>
-  </script>
-</body>
+      #map {
+        width: 0;
+        height: 0;
+        background-color: transparent;
+        display: hidden;
+      }
+      #search-box {
+        padding-left: 20px;
+        padding-top: 20px;
+        width: 800px;
+        height: 70px;
+      }
+      #result {
+        padding-left: 20px;
+        padding-top: 20px;
+        width: 800px;
+        height: 100px;
+      }
+      .leaflet-locationiq-results {
+        padding-top: 45px;
+        top: 45px !important;
+      }
+      .leaflet-locationiq-expanded {
+        width: 80%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <%- include('./partials/homeNav.ejs') %>
+      <h5>View poopular restaurants or Order online on FoodMania</h5>
+      <!-- For the invisible map -->
+      <div id="map"></div>
+      <!-- For the search box -->
+      <div id="search-box"></div>
+      <div id="locate">
+        <img
+          class="locate-img"
+          src="https://img.icons8.com/fluency-systems-filled/48/000000/define-location.png"
+        />
+        <span class="LukWG">Locate Me</span>
+      </div>
+      <!-- To display the result -->
+      <div id="result"></div>
+      <script type="text/javascript">
+        // Initialize an empty map without layers (invisible map)
+        var map = L.map("map", {
+          center: [28.7041, 77.1025], // Map loads with this location as center
+          zoom: 12,
+          scrollWheelZoom: true,
+          zoomControl: false,
+          attributionControl: false,
+        });
+        //Geocoder options
+        var geocoderControlOptions = {
+          bounds: false, //To not send viewbox
+          markers: false, //To not add markers when we geocoder
+          attribution: null, //No need of attribution since we are not using maps
+          expanded: true, //The geocoder search box will be initialized in expanded mode
+          panToPoint: false, //Since no maps, no need to pan the map to the geocoded-selected location
+          params: {
+            //Set dedupe parameter to remove duplicate results from Autocomplete
+            dedupe: 1,
+            countrycodes: "IN,US",
+          },
+        };
+
+        //Initialize the geocoder
+        var geocoderControl = new L.control.geocoder(
+          "pk.ac7f1895338e6b0b06892b14e6f747de",
+          geocoderControlOptions
+        )
+          .addTo(map)
+          .on("select", function (e) {
+            displayLatLon(
+              e.feature.feature.display_name,
+              e.latlng.lat,
+              e.latlng.lng
+            );
+          });
+
+        //Get the "search-box" div
+        var searchBoxControl = document.getElementById("search-box");
+        //Get the geocoder container from the leaflet map
+        var geocoderContainer = geocoderControl.getContainer();
+        //Append the geocoder container to the "search-box" div
+        searchBoxControl.appendChild(geocoderContainer);
+
+        //Displays the geocoding response in the "result" div
+        function displayLatLon(display_name, lat, lng) {
+          var resultString =
+            "You have selected " +
+            display_name +
+            "<br/>Lat: " +
+            lat +
+            "<br/>Lon: " +
+            lng;
+          document.getElementById("result").innerHTML = resultString;
+        }
+      </script>
+    </div>
+  </body>
 </html>
