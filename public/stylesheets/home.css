@@ -3,6 +3,7 @@
 }
 #locate {
   margin-left: 52%;
+  cursor: pointer;
 }
 .locate-img {
   height: 1.2rem;

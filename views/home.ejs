@@ -100,6 +100,35 @@
       <!-- To display the result -->
       <div id="result"></div>
       <script type="text/javascript">
+        // console.log(Geolocation.getCurrentPosition());
+        var options = {
+          enableHighAccuracy: true,
+          timeout: 5000,
+          maximumAge: 0,
+        };
+
+        function success(pos) {
+          var crd = pos.coords;
+
+          console.log("Your current position is:");
+          console.log(`Latitude : ${crd.latitude}`);
+          console.log(`Longitude: ${crd.longitude}`);
+          console.log(`More or less ${crd.accuracy} meters.`);
+        }
+
+        function error(err) {
+          console.warn(`ERROR(${err.code}): ${err.message}`);
+        }
+
+        function locate() {
+          navigator.geolocation.getCurrentPosition(success, error, options);
+        }
+
+        document
+          .getElementById("locate")
+          .addEventListener("click", function () {
+            locate();
+          });
         // Initialize an empty map without layers (invisible map)
         var map = L.map("map", {
           center: [28.7041, 77.1025], // Map loads with this location as center
@@ -122,6 +151,7 @@
           },
         };
 
+        var locateControl = L.control.locate().addTo(map);
         //Initialize the geocoder
         var geocoderControl = new L.control.geocoder(
           "pk.ac7f1895338e6b0b06892b14e6f747de",
@@ -135,6 +165,11 @@
               e.latlng.lng
             );
           });
+
+        // console.log(L.control.locate().addTo(map));
+        // var locationControl = document.getElementById("locate");
+        // var locationContainer = locateControl.getContainer();
+        // locationControl.appendChild(locationContainer);
 
         //Get the "search-box" div
         var searchBoxControl = document.getElementById("search-box");

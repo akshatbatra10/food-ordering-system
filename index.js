@@ -11,13 +11,7 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", (req, res) => {
-  res.render("home.ejs");
-});
-app.get("/search", (req, res) => {
-  res.render("searchbox.ejs");
-});
-app.get("/searchb", (req, res) => {
-  res.render("search.ejs");
+  res.render("home");
 });
 
 const PORT = process.env.PORT || 3000;
