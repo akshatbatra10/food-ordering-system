@@ -1,8 +1,9 @@
-.navbar {
-  width: 60%;
+.container-fluid {
+  width: 80% !important;
+  margin-left: 0 !important;
 }
 #locate {
-  margin-left: 52%;
+  margin-left: 66%;
   cursor: pointer;
 }
 .locate-img {
