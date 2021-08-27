@@ -4,19 +4,19 @@ if (process.env.NODE_ENV !== "production") {
 const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
+const bcrypt = require("bcrypt");
 
 const Restaurants = require("./models/restaurants");
+const Users = require("./models/users");
 
+const dbUrl = process.env.DB_CONNECTION_URL;
 const app = express();
 
-mongoose.connect(
-  "mongodb+srv://AkshatBatra:g0t0@he11@cluster0.gia1c.mongodb.net/restaurantData?retryWrites=true&w=majority",
-  {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useUnifiedTopology: true,
-  }
-);
+mongoose.connect(dbUrl, {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useUnifiedTopology: true,
+});
 
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
@@ -41,6 +41,31 @@ app.get("/restaurants", async (req, res) => {
   } catch (e) {
     console.log(e);
   }
+});
+
+app.post("/users/register", async (req, res) => {
+  try {
+    const salt = await bcrypt.genSalt();
+    const hiddenPassword = await bcrypt.hash(req.body.password, salt);
+    const user = new Users({
+      email: req.body.email,
+      password: hiddenPassword,
+    });
+    await user.save();
+    res.send("success");
+  } catch (e) {
+    console.log(e);
+  }
+});
+
+app.post("/users/login", async (req, res) => {
+  const user = await Users.findOne({ email: req.body.email });
+  if (!user) return res.status(400).send("Email not found");
+
+  const validPass = await bcrypt.compare(req.body.password, user.password);
+  if (!validPass) return res.status(400).send("Incorrect password");
+
+  res.status(200).send("Logged In");
 });
 
 const PORT = process.env.PORT || 3000;
