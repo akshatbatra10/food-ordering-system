@@ -95,12 +95,16 @@
           class="locate-img"
           src="https://img.icons8.com/fluency-systems-filled/48/000000/define-location.png"
         />
-        <span class="LukWG">Locate Me</span>
+        <span>Locate Me</span>
       </div>
       <!-- To display the result -->
       <div id="result"></div>
+      <button id="find">Find Food</button>
       <script type="text/javascript">
         // console.log(Geolocation.getCurrentPosition());
+
+        let locationCoordinates;
+
         var options = {
           enableHighAccuracy: true,
           timeout: 5000,
@@ -109,6 +113,11 @@
 
         function success(pos) {
           var crd = pos.coords;
+
+          locationCoordinates = {
+            lat: crd.latitude,
+            long: crd.longitude
+          }
 
           console.log("Your current position is:");
           console.log(`Latitude : ${crd.latitude}`);
@@ -129,6 +138,13 @@
           .addEventListener("click", function () {
             locate();
           });
+
+        document
+          .getElementById("find")
+          .addEventListener("click", function() {
+            window.location = `http://localhost:3000/restaurants?lat=${locationCoordinates.lat}&long=${locationCoordinates.long}`;
+            console.log(locationCoordinates);
+          })
         // Initialize an empty map without layers (invisible map)
         var map = L.map("map", {
           center: [28.7041, 77.1025], // Map loads with this location as center
@@ -159,6 +175,10 @@
         )
           .addTo(map)
           .on("select", function (e) {
+            locationCoordinates = {
+              lat: e.latlng.lat,
+              long: e.latlng.lng
+            }
             displayLatLon(
               e.feature.feature.display_name,
               e.latlng.lat,

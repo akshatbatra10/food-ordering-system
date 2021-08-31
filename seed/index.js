@@ -21,7 +21,7 @@ db.once("open", function () {
 const seedDB = async () => {
   await Restaurants.deleteMany({});
   try {
-    restaurantData[0].restaurants.map(async (data) => {
+    restaurantData.map(restaurant => restaurant.restaurants.map(async (data) => {
       const rest = new Restaurants({
         name: data.restaurant.name,
         has_online_delivery: data.restaurant.has_online_delivery,
@@ -39,7 +39,7 @@ const seedDB = async () => {
         average_cost_for_two: data.restaurant.average_cost_for_two,
       });
       await rest.save();
-    });
+    }));
   } catch (e) {
     console.log(e.error);
   }

@@ -5,6 +5,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const Restaurants = require("./models/restaurants");
 const Users = require("./models/users");
@@ -35,9 +36,13 @@ app.get("/", (req, res) => {
 });
 
 app.get("/restaurants", async (req, res) => {
+  // const { lat, long } = req.body
+  // console.log(lat, long);
   try {
-    const restaurants = await Restaurants.find({});
-    res.render("restaurants/index", { restaurants });
+    // const data = await fetch(`https://us1.locationiq.com/v1/reverse.php?key=pk.ac7f1895338e6b0b06892b14e6f747de&lat=${coordinates.lat}&lon=${coordinates.long}&format=json`);
+    // const restaurants = await Restaurants.find({ city: data.address.city });
+    // res.render("restaurants/index", { restaurants });
+    res.send("hi");
   } catch (e) {
     console.log(e);
   }
@@ -65,7 +70,8 @@ app.post("/users/login", async (req, res) => {
   const validPass = await bcrypt.compare(req.body.password, user.password);
   if (!validPass) return res.status(400).send("Incorrect password");
 
-  res.status(200).send("Logged In");
+  const token = jwt.sign({ _id: user._id }, process.env.ACCESS_TOKEN);
+  res.header("auth-token", token).send(token);
 });
 
 const PORT = process.env.PORT || 3000;
