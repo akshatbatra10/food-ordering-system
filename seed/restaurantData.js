@@ -594,7 +594,7 @@ module.exports = [
             "location": {
               "latitude": "28.4602710000",
               "address": "1st Floor, Global Foyer Mall, Sector 43, Golf Course Road, Gurgaon",
-              "city": "Gurgaon",
+              "city": "New Delhi",
               "country_id": 1,
               "locality_verbose": "Global Foyer Mall, Golf Course Road, Gurgaon",
               "city_id": 1,
@@ -677,7 +677,7 @@ module.exports = [
             "location": {
               "latitude": "28.4962285000",
               "address": "Cyber Hub, DLF Cyber City, Gurgaon",
-              "city": "Gurgaon",
+              "city": "New Delhi",
               "country_id": 1,
               "locality_verbose": "Cyber Hub, DLF Cyber City, Gurgaon",
               "city_id": 1,
@@ -762,7 +762,7 @@ module.exports = [
             "location": {
               "latitude": "28.4334574000",
               "address": "315, 3rd Floor, Suncity Business Tower, Golf Course Road, Gurgaon",
-              "city": "Gurgaon",
+              "city": "New Delhi",
               "country_id": 1,
               "locality_verbose": "Suncity Business Tower, Golf Course Road, Gurgaon",
               "city_id": 1,
@@ -846,7 +846,7 @@ module.exports = [
             "location": {
               "latitude": "28.4952079000",
               "address": "7-8, Ground Floor, Cyber Hub, DLF Cyber City, Gurgaon",
-              "city": "Gurgaon",
+              "city": "New Delhi",
               "country_id": 1,
               "locality_verbose": "Cyber Hub, DLF Cyber City, Gurgaon",
               "city_id": 1,
@@ -889,7 +889,7 @@ module.exports = [
             "location": {
               "latitude": "28.4679344000",
               "address": "4th Floor, SCO 53, Main Market, Sector 29, Gurgaon",
-              "city": "Gurgaon",
+              "city": "New Delhi",
               "country_id": 1,
               "locality_verbose": "Sector 29, Gurgaon",
               "city_id": 1,
