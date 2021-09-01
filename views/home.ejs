@@ -101,9 +101,8 @@
       <div id="result"></div>
       <button id="find">Find Food</button>
       <script type="text/javascript">
-        // console.log(Geolocation.getCurrentPosition());
-
         let locationCoordinates;
+        locate();
 
         var options = {
           enableHighAccuracy: true,
@@ -137,13 +136,16 @@
           .getElementById("locate")
           .addEventListener("click", function () {
             locate();
+            // fetch(`https://us1.locationiq.com/v1/reverse.php?key=pk.ac7f1895338e6b0b06892b14e6f747de&lat=${locationCoordinates.lat}&lon=${locationCoordinates.long}&format=json`)
+            //   .then((res) => res.json())
+            //   .then((res) => data[0].innerText = res.display_name);
           });
 
         document
           .getElementById("find")
           .addEventListener("click", function() {
-            window.location = `http://localhost:3000/restaurants?lat=${locationCoordinates.lat}&long=${locationCoordinates.long}`;
-            console.log(locationCoordinates);
+            window.location.href = `/restaurants?lat=${locationCoordinates.lat}&long=${locationCoordinates.long}`;
+            // console.log(locationCoordinates);
           })
         // Initialize an empty map without layers (invisible map)
         var map = L.map("map", {
@@ -175,6 +177,7 @@
         )
           .addTo(map)
           .on("select", function (e) {
+            console.log(geocoderContainer);
             locationCoordinates = {
               lat: e.latlng.lat,
               long: e.latlng.lng
@@ -186,17 +189,14 @@
             );
           });
 
-        // console.log(L.control.locate().addTo(map));
-        // var locationControl = document.getElementById("locate");
-        // var locationContainer = locateControl.getContainer();
-        // locationControl.appendChild(locationContainer);
-
         //Get the "search-box" div
         var searchBoxControl = document.getElementById("search-box");
         //Get the geocoder container from the leaflet map
         var geocoderContainer = geocoderControl.getContainer();
         //Append the geocoder container to the "search-box" div
         searchBoxControl.appendChild(geocoderContainer);
+        // const data = document.getElementsByClassName('leaflet-locationiq-results');
+        // console.log(data);
 
         //Displays the geocoding response in the "result" div
         function displayLatLon(display_name, lat, lng) {

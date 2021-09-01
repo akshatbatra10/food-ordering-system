@@ -10,7 +10,6 @@ const jwt = require("jsonwebtoken");
 
 const Restaurants = require("./models/restaurants");
 const Users = require("./models/users");
-const restaurants = require("./models/restaurants");
 
 const dbUrl = process.env.DB_CONNECTION_URL;
 const app = express();
@@ -39,7 +38,6 @@ app.get("/", (req, res) => {
 
 app.get("/restaurants", async (req, res) => {
   const { lat, long } = req.query;
-  console.log(lat, long);
   try {
     await fetch(`https://us1.locationiq.com/v1/reverse.php?key=pk.ac7f1895338e6b0b06892b14e6f747de&lat=${lat}&lon=${long}&format=json`,
     {
@@ -48,15 +46,20 @@ app.get("/restaurants", async (req, res) => {
       .then((resp) => resp.json())
       .then((resp) => Restaurants.find({ city: resp.address.city }))
       .then((restaurants) => res.render("restaurants/index", { restaurants }));
-      // .then((dataRes) => Restaurants.find({ city: dataRes.address.city }))
-      // .then((restaurants) => res.send(restaurants));
-    // const restaurants = await Restaurants.find({ city: data.address.city });
-    // res.render("restaurants/index", { restaurants });
-    // res.send(restaurants);
   } catch (e) {
     console.log(e);
   }
 });
+
+app.get("/restaurants/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const restaurant = await Restaurants.findOne({ _id : id });
+    res.render("restaurants/show", { restaurant });
+  } catch (error) {
+    console.log(error);
+  }  
+})
 
 app.post("/users/register", async (req, res) => {
   try {
