@@ -36,14 +36,16 @@ app.get("/", (req, res) => {
   res.render("home");
 });
 
-app.get("/restaurants", authenticateUser, async (req, res) => {
+app.get("/restaurants", async (req, res) => {
   const { lat, long } = req.query;
   console.log(req.user);
   try {
-    await fetch(`https://us1.locationiq.com/v1/reverse.php?key=pk.ac7f1895338e6b0b06892b14e6f747de&lat=${lat}&lon=${long}&format=json`,
-    {
-      method: 'GET'
-    })
+    await fetch(
+      `https://us1.locationiq.com/v1/reverse.php?key=pk.ac7f1895338e6b0b06892b14e6f747de&lat=${lat}&lon=${long}&format=json`,
+      {
+        method: "GET",
+      }
+    )
       .then((resp) => resp.json())
       .then((resp) => Restaurants.find({ city: resp.address.city }))
       .then((restaurants) => res.render("restaurants/index", { restaurants }));
@@ -55,12 +57,12 @@ app.get("/restaurants", authenticateUser, async (req, res) => {
 app.get("/restaurants/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const restaurant = await Restaurants.findOne({ _id : id });
+    const restaurant = await Restaurants.findOne({ _id: id });
     res.render("restaurants/show", { restaurant });
   } catch (error) {
     console.log(error);
-  }  
-})
+  }
+});
 
 app.post("/users/register", async (req, res) => {
   try {
@@ -87,19 +89,6 @@ app.post("/users/login", async (req, res) => {
   const token = jwt.sign({ _id: user._id }, process.env.ACCESS_TOKEN);
   res.json({ token: token });
 });
-
-function authenticateUser(req, res, next) {
-  const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(" ")[1];
-  if(token == null) return res.status(401).send("Invalid");
-
-  jwt.verify(token, process.env.ACCESS_TOKEN, (err, user) => {
-    if(err) return res.status(403).send(err);
-
-    req.user = user;
-    next();
-  })
-}
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

@@ -1,29 +1,98 @@
-let map = L.map('map', {
-    center: [40.7259, -73.9805], // Map loads with this location as center
-    zoom: 12,
-    scrollWheelZoom: true,
-    zoomControl: false,
-    attributionControl: false,
-});
-
-//Geocoder options
-var geocoderControlOptions = {
-    bounds: false,          //To not send viewbox
-    markers: false,         //To not add markers when we geocoder
-    attribution: null,      //No need of attribution since we are not using maps
-    expanded: true,         //The geocoder search box will be initialized in expanded mode
-    panToPoint: false       //Since no maps, no need to pan the map to the geocoded-selected location
-}
-
-//Initialize the geocoder
-var geocoderControl = new L.control.geocoder('pk.ac7f1895338e6b0b06892b14e6f747de', geocoderControlOptions).addTo(map).on('select', function (e) {
-    displayLatLon(e.feature.feature.display_name, e.latlng.lat, e.latlng.lng);
-});
+let locationCoordinates;
+locate();
 
 var options = {
-    bounds: true,
-    position: 'topright',
-    expanded: true
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0,
+};
+
+function success(pos) {
+  var crd = pos.coords;
+
+  locationCoordinates = {
+    lat: crd.latitude,
+    long: crd.longitude,
   };
-  
-L.control.geocoder('<your-api-key>', options).addTo(map);
+
+  console.log("Your current position is:");
+  console.log(`Latitude : ${crd.latitude}`);
+  console.log(`Longitude: ${crd.longitude}`);
+  console.log(`More or less ${crd.accuracy} meters.`);
+}
+
+function error(err) {
+  console.warn(`ERROR(${err.code}): ${err.message}`);
+}
+
+function locate() {
+  navigator.geolocation.getCurrentPosition(success, error, options);
+}
+
+document.getElementById("locate").addEventListener("click", function () {
+  locate();
+  // fetch(`https://us1.locationiq.com/v1/reverse.php?key=pk.ac7f1895338e6b0b06892b14e6f747de&lat=${locationCoordinates.lat}&lon=${locationCoordinates.long}&format=json`)
+  //   .then((res) => res.json())
+  //   .then((res) => data[0].innerText = res.display_name);
+});
+
+document.getElementById("find").addEventListener("click", function () {
+  window.location.href = `/restaurants?lat=${locationCoordinates.lat}&long=${locationCoordinates.long}`;
+});
+// Initialize an empty map without layers (invisible map)
+var map = L.map("map", {
+  center: [28.7041, 77.1025], // Map loads with this location as center
+  zoom: 12,
+  scrollWheelZoom: true,
+  zoomControl: false,
+  attributionControl: false,
+});
+//Geocoder options
+var geocoderControlOptions = {
+  bounds: false, //To not send viewbox
+  markers: false, //To not add markers when we geocoder
+  attribution: null, //No need of attribution since we are not using maps
+  expanded: true, //The geocoder search box will be initialized in expanded mode
+  panToPoint: false, //Since no maps, no need to pan the map to the geocoded-selected location
+  params: {
+    //Set dedupe parameter to remove duplicate results from Autocomplete
+    dedupe: 1,
+    countrycodes: "IN,US",
+  },
+};
+
+var locateControl = L.control.locate().addTo(map);
+//Initialize the geocoder
+var geocoderControl = new L.control.geocoder(
+  "pk.ac7f1895338e6b0b06892b14e6f747de",
+  geocoderControlOptions
+)
+  .addTo(map)
+  .on("select", function (e) {
+    console.log(geocoderContainer);
+    locationCoordinates = {
+      lat: e.latlng.lat,
+      long: e.latlng.lng,
+    };
+    displayLatLon(e.feature.feature.display_name, e.latlng.lat, e.latlng.lng);
+  });
+
+//Get the "search-box" div
+var searchBoxControl = document.getElementById("search-box");
+//Get the geocoder container from the leaflet map
+var geocoderContainer = geocoderControl.getContainer();
+//Append the geocoder container to the "search-box" div
+searchBoxControl.appendChild(geocoderContainer);
+// const data = document.getElementsByClassName('leaflet-locationiq-results');
+
+//Displays the geocoding response in the "result" div
+function displayLatLon(display_name, lat, lng) {
+  var resultString =
+    "You have selected " +
+    display_name +
+    "<br/>Lat: " +
+    lat +
+    "<br/>Lon: " +
+    lng;
+  document.getElementById("result").innerHTML = resultString;
+}
