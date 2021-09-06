@@ -10,8 +10,11 @@ const jwt = require("jsonwebtoken");
 
 const Restaurants = require("./models/restaurants");
 const Users = require("./models/users");
+// const registry = require("./registry.json");
 
 const dbUrl = process.env.DB_CONNECTION_URL;
+const userURL =
+  process.env.NODE_ENV !== "production" ? "http://localhost:3000/users" : "";
 const app = express();
 
 mongoose.connect(dbUrl, {
@@ -38,7 +41,6 @@ app.get("/", (req, res) => {
 
 app.get("/restaurants", async (req, res) => {
   const { lat, long } = req.query;
-  console.log(req.user);
   try {
     await fetch(
       `https://us1.locationiq.com/v1/reverse.php?key=pk.ac7f1895338e6b0b06892b14e6f747de&lat=${lat}&lon=${long}&format=json`,
@@ -64,20 +66,34 @@ app.get("/restaurants/:id", async (req, res) => {
   }
 });
 
-app.post("/users/register", async (req, res) => {
+app.all("/users/:type", async (req, res) => {
   try {
-    const salt = await bcrypt.genSalt();
-    const hiddenPassword = await bcrypt.hash(req.body.password, salt);
-    const user = new Users({
-      email: req.body.email,
-      password: hiddenPassword,
-    });
-    await user.save();
-    res.send("success");
-  } catch (e) {
-    console.log(e);
+    await fetch(`${userURL}/${req.params.type}`, {
+      method: req.method,
+      headers: req.headers,
+      data: req.body,
+    })
+      .then((response) => response.text())
+      .then((response) => res.send(response));
+  } catch (err) {
+    console.log(err);
   }
 });
+
+// app.post("/users/register", async (req, res) => {
+//   try {
+//     const salt = await bcrypt.genSalt();
+//     const hiddenPassword = await bcrypt.hash(req.body.password, salt);
+//     const user = new Users({
+//       email: req.body.email,
+//       password: hiddenPassword,
+//     });
+//     await user.save();
+//     res.send("success");
+//   } catch (e) {
+//     console.log(e);
+//   }
+// });
 
 app.post("/users/login", async (req, res) => {
   const user = await Users.findOne({ email: req.body.email });
