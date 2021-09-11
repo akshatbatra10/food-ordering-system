@@ -1,3 +1,6 @@
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
 const express = require("express");
 const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
@@ -6,12 +9,10 @@ const Users = require("../models/users");
 const app = express();
 
 app.use(express.json());
-const dbUrl =
-  "mongodb+srv://AkshatBatra:g0t0@he11@cluster0.gia1c.mongodb.net/restaurantData?retryWrites=true&w=majority";
+const dbUrl = process.env.DB_CONNECTION_URL;
 
 mongoose.connect(dbUrl, {
   useNewUrlParser: true,
-  // useCreateIndex: true,
   useUnifiedTopology: true,
 });
 
@@ -22,22 +23,24 @@ db.once("open", function () {
 });
 
 app.post("/users/register", async (req, res) => {
-  try {
-    const salt = await bcrypt.genSalt();
-    const hiddenPassword = await bcrypt.hash(req.body.password, salt);
-    const user = new Users({
-      name: req.body.name,
-      email: req.body.email,
-      password: hiddenPassword,
-    });
-    await user.save();
-    res.send("success");
-  } catch (e) {
-    console.log(e);
-  }
+  console.log(req);
+  // try {
+  //   const salt = await bcrypt.genSalt();
+  //   const hiddenPassword = await bcrypt.hash(req.body.password, salt);
+  //   const user = new Users({
+  //     name: req.body.name,
+  //     email: req.body.email,
+  //     password: hiddenPassword,
+  //   });
+  //   await user.save();
+  //   res.send("success");
+  // } catch (e) {
+  //   console.log(e);
+  // }
+  res.send("work");
 });
 
-PORT = 3001;
+const PORT = 3001;
 app.listen(PORT, () => {
   console.log(PORT);
 });

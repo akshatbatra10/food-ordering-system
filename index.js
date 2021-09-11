@@ -5,16 +5,13 @@ const express = require("express");
 const mongoose = require("mongoose");
 const fetch = require("node-fetch");
 const path = require("path");
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
 
+// const registry = require("./utils/registry.json");
 const Restaurants = require("./models/restaurants");
-const Users = require("./models/users");
-// const registry = require("./registry.json");
+const userRoutes = require("./routes/user.js");
+// const Users = require("./models/users");
 
 const dbUrl = process.env.DB_CONNECTION_URL;
-const userURL =
-  process.env.NODE_ENV !== "production" ? "http://localhost:3000/users" : "";
 const app = express();
 
 mongoose.connect(dbUrl, {
@@ -38,6 +35,8 @@ app.use(express.static(path.join(__dirname, "public")));
 app.get("/", (req, res) => {
   res.render("home");
 });
+
+app.use("/users", userRoutes);
 
 app.get("/restaurants", async (req, res) => {
   const { lat, long } = req.query;
@@ -64,46 +63,6 @@ app.get("/restaurants/:id", async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-});
-
-app.all("/users/:type", async (req, res) => {
-  try {
-    await fetch(`${userURL}/${req.params.type}`, {
-      method: req.method,
-      headers: req.headers,
-      data: req.body,
-    })
-      .then((response) => response.text())
-      .then((response) => res.send(response));
-  } catch (err) {
-    console.log(err);
-  }
-});
-
-// app.post("/users/register", async (req, res) => {
-//   try {
-//     const salt = await bcrypt.genSalt();
-//     const hiddenPassword = await bcrypt.hash(req.body.password, salt);
-//     const user = new Users({
-//       email: req.body.email,
-//       password: hiddenPassword,
-//     });
-//     await user.save();
-//     res.send("success");
-//   } catch (e) {
-//     console.log(e);
-//   }
-// });
-
-app.post("/users/login", async (req, res) => {
-  const user = await Users.findOne({ email: req.body.email });
-  if (!user) return res.status(400).send("Email not found");
-
-  const validPass = await bcrypt.compare(req.body.password, user.password);
-  if (!validPass) return res.status(400).send("Incorrect password");
-
-  const token = jwt.sign({ _id: user._id }, process.env.ACCESS_TOKEN);
-  res.json({ token: token });
 });
 
 const PORT = process.env.PORT || 3000;
