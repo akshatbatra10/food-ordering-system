@@ -30,22 +30,6 @@ router.post("/register", async (req, res) => {
   }
 });
 
-router.post("/newuser", async (req, res) => {
-  try {
-    const salt = await bcrypt.genSalt();
-    const hiddenPassword = await bcrypt.hash(req.body.password, salt);
-    const user = new Users({
-      name: req.body.name,
-      email: req.body.email,
-      password: hiddenPassword,
-    });
-    await user.save();
-    res.send("success");
-  } catch (e) {
-    console.log(e);
-  }
-});
-
 router.post("/login", async (req, res) => {
   const user = await Users.findOne({ email: req.body.email });
   if (!user) return res.status(400).send("Email not found");
@@ -57,16 +41,16 @@ router.post("/login", async (req, res) => {
   res.json({ token: token });
 });
 
-router.all("/:apiname/:type", async (req, res) => {
+router.all("/:type", async (req, res) => {
   try {
     await axios({
       method: req.method,
-      url: registry.services[req.params.apiname] + req.params.type,
+      url: registry.services["users"].url + req.params.type,
       headers: req.headers,
       data: req.body,
     })
-      .then((response) => response.text())
-      .then((response) => console.log(response));
+      .then((response) => response.data)
+      .then((response) => res.send(response));
   } catch (error) {
     console.log(error);
   }
