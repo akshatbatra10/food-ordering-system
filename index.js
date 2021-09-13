@@ -6,10 +6,8 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const path = require("path");
 
-// const registry = require("./utils/registry.json");
 const Restaurants = require("./models/restaurants");
 const userRoutes = require("./routes/user.js");
-// const Users = require("./models/users");
 
 const dbUrl = process.env.DB_CONNECTION_URL;
 const PORT = process.env.PORT || 3000;

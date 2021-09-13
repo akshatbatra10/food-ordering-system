@@ -4,10 +4,13 @@ if (process.env.NODE_ENV !== "production") {
 const express = require("express");
 const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
+const jwt = require("jsonwebtoken");
 const cors = require("cors");
-const dbUrl = process.env.DB_CONNECTION_URL;
 
 const Users = require("./models/users.js");
+
+const dbUrl = process.env.DB_CONNECTION_URL;
+const PORT = process.env.PORT || 3001;
 
 const app = express();
 
@@ -42,7 +45,17 @@ app.post("/users/newuser", async (req, res) => {
   }
 });
 
-const PORT = 3001;
+app.post("/users/login", async (req, res) => {
+  const user = await Users.findOne({ email: req.body.email });
+  if (!user) return res.status(400).send("Email not found");
+
+  const validPass = await bcrypt.compare(req.body.password, user.password);
+  if (!validPass) return res.status(400).send("Incorrect password");
+
+  const token = jwt.sign({ _id: user._id }, process.env.ACCESS_TOKEN);
+  res.json({ token: token });
+});
+
 app.listen(PORT, () => {
   console.log(PORT);
 });
