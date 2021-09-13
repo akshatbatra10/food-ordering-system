@@ -3,7 +3,7 @@ if (process.env.NODE_ENV !== "production") {
 }
 const express = require("express");
 const mongoose = require("mongoose");
-const fetch = require("node-fetch");
+const cors = require("cors");
 const path = require("path");
 
 // const registry = require("./utils/registry.json");
@@ -12,6 +12,8 @@ const userRoutes = require("./routes/user.js");
 // const Users = require("./models/users");
 
 const dbUrl = process.env.DB_CONNECTION_URL;
+const PORT = process.env.PORT || 3000;
+
 const app = express();
 
 mongoose.connect(dbUrl, {
@@ -29,6 +31,7 @@ db.once("open", function () {
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
+app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -65,7 +68,6 @@ app.get("/restaurants/:id", async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server started on port - ${PORT}`);
 });

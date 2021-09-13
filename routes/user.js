@@ -5,7 +5,7 @@ const fs = require("fs");
 const router = express.Router();
 const { default: axios } = require("axios");
 
-const Users = require("../models/users");
+// const Users = require("../userGateway/models/user");
 const registry = require("./registry.json");
 
 router.post("/register", async (req, res) => {
@@ -30,16 +30,16 @@ router.post("/register", async (req, res) => {
   }
 });
 
-router.post("/login", async (req, res) => {
-  const user = await Users.findOne({ email: req.body.email });
-  if (!user) return res.status(400).send("Email not found");
+// router.post("/login", async (req, res) => {
+//   const user = await Users.findOne({ email: req.body.email });
+//   if (!user) return res.status(400).send("Email not found");
 
-  const validPass = await bcrypt.compare(req.body.password, user.password);
-  if (!validPass) return res.status(400).send("Incorrect password");
+//   const validPass = await bcrypt.compare(req.body.password, user.password);
+//   if (!validPass) return res.status(400).send("Incorrect password");
 
-  const token = jwt.sign({ _id: user._id }, process.env.ACCESS_TOKEN);
-  res.json({ token: token });
-});
+//   const token = jwt.sign({ _id: user._id }, process.env.ACCESS_TOKEN);
+//   res.json({ token: token });
+// });
 
 router.all("/:type", async (req, res) => {
   try {

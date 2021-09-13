@@ -4,16 +4,19 @@ if (process.env.NODE_ENV !== "production") {
 const express = require("express");
 const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
+const cors = require("cors");
 const dbUrl = process.env.DB_CONNECTION_URL;
 
-const Users = require("../models/users");
+const Users = require("./models/users.js");
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 
 mongoose.connect(dbUrl, {
   useNewUrlParser: true,
+  useCreateIndex: true,
   useUnifiedTopology: true,
 });
 
@@ -24,7 +27,6 @@ db.once("open", function () {
 });
 
 app.post("/users/newuser", async (req, res) => {
-  console.log(req.body);
   try {
     const salt = await bcrypt.genSalt();
     const hiddenPassword = await bcrypt.hash(req.body.password, salt);
