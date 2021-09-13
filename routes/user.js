@@ -3,9 +3,10 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const fs = require("fs");
 const router = express.Router();
-
-const registry = require("./registry.json");
 const { default: axios } = require("axios");
+
+const Users = require("../models/users");
+const registry = require("./registry.json");
 
 router.post("/register", async (req, res) => {
   try {
@@ -29,20 +30,21 @@ router.post("/register", async (req, res) => {
   }
 });
 
-// app.post("/users/register", async (req, res) => {
-//   try {
-//     const salt = await bcrypt.genSalt();
-//     const hiddenPassword = await bcrypt.hash(req.body.password, salt);
-//     const user = new Users({
-//       email: req.body.email,
-//       password: hiddenPassword,
-//     });
-//     await user.save();
-//     res.send("success");
-//   } catch (e) {
-//     console.log(e);
-//   }
-// });
+router.post("/newuser", async (req, res) => {
+  try {
+    const salt = await bcrypt.genSalt();
+    const hiddenPassword = await bcrypt.hash(req.body.password, salt);
+    const user = new Users({
+      name: req.body.name,
+      email: req.body.email,
+      password: hiddenPassword,
+    });
+    await user.save();
+    res.send("success");
+  } catch (e) {
+    console.log(e);
+  }
+});
 
 router.post("/login", async (req, res) => {
   const user = await Users.findOne({ email: req.body.email });
