@@ -67,5 +67,5 @@ app.get("/restaurants/:id", async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server started on port - ${PORT}`);
+  console.log(`Main API gateway server started on port - ${PORT}`);
 });

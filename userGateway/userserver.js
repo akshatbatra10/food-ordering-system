@@ -57,5 +57,5 @@ app.post("/users/login", async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(PORT);
+  console.log("User microservice server started on port - " + PORT);
 });
