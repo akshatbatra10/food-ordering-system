@@ -3,7 +3,6 @@ const fs = require("fs");
 const router = express.Router();
 const { default: axios } = require("axios");
 
-// const Users = require("../userGateway/models/user");
 const registry = require("./registry.json");
 
 router.post("/register", async (req, res) => {

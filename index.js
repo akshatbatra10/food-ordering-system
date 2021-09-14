@@ -6,8 +6,8 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const path = require("path");
 
-const Restaurants = require("./models/restaurants");
-const userRoutes = require("./routes/user.js");
+const restaurantRoutes = require("./routes/restaurants");
+const userRoutes = require("./routes/user");
 
 const dbUrl = process.env.DB_CONNECTION_URL;
 const PORT = process.env.PORT || 3000;
@@ -37,34 +37,8 @@ app.get("/", (req, res) => {
   res.render("home");
 });
 
+app.use("/restaurants", restaurantRoutes);
 app.use("/users", userRoutes);
-
-app.get("/restaurants", async (req, res) => {
-  const { lat, long } = req.query;
-  try {
-    await fetch(
-      `https://us1.locationiq.com/v1/reverse.php?key=pk.ac7f1895338e6b0b06892b14e6f747de&lat=${lat}&lon=${long}&format=json`,
-      {
-        method: "GET",
-      }
-    )
-      .then((resp) => resp.json())
-      .then((resp) => Restaurants.find({ city: resp.address.city }))
-      .then((restaurants) => res.render("restaurants/index", { restaurants }));
-  } catch (e) {
-    console.log(e);
-  }
-});
-
-app.get("/restaurants/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
-    const restaurant = await Restaurants.findOne({ _id: id });
-    res.render("restaurants/show", { restaurant });
-  } catch (error) {
-    console.log(error);
-  }
-});
 
 app.listen(PORT, () => {
   console.log(`Main API gateway server started on port - ${PORT}`);
