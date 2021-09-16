@@ -1,5 +1,4 @@
 let locationCoordinates;
-locate();
 
 var options = {
   enableHighAccuracy: true,
@@ -31,13 +30,15 @@ function locate() {
 
 document.getElementById("locate").addEventListener("click", function () {
   locate();
-  // fetch(`https://us1.locationiq.com/v1/reverse.php?key=pk.ac7f1895338e6b0b06892b14e6f747de&lat=${locationCoordinates.lat}&lon=${locationCoordinates.long}&format=json`)
-  //   .then((res) => res.json())
-  //   .then((res) => data[0].innerText = res.display_name);
 });
 
 document.getElementById("find").addEventListener("click", function () {
   window.location.href = `/restaurants?lat=${locationCoordinates.lat}&long=${locationCoordinates.long}`;
+  const location = {
+    lat: locationCoordinates.lat,
+    long: locationCoordinates.long,
+  };
+  window.localStorage.setItem("coordinates", location);
 });
 // Initialize an empty map without layers (invisible map)
 var map = L.map("map", {

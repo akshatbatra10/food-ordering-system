@@ -3,6 +3,7 @@ if (process.env.NODE_ENV !== "production") {
 }
 const express = require("express");
 const mongoose = require("mongoose");
+const axios = require("axios");
 const cors = require("cors");
 
 const routes = require("./routes/user");
@@ -30,5 +31,16 @@ db.once("open", function () {
 app.use("/", routes);
 
 app.listen(PORT, () => {
-  console.log("User microservice server started on port - " + PORT);
+  axios({
+    method: "POST",
+    url: "http://localhost:3000/register",
+    headers: { "Content-Type": "application/json" },
+    data: {
+      apiName: "users",
+      protocol: "http",
+      host: "localhost",
+      port: PORT,
+    },
+  }).then((response) => console.log(response.data));
+  console.log("User microservice | PORT - " + PORT);
 });

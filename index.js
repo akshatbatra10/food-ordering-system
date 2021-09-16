@@ -7,8 +7,6 @@ const cors = require("cors");
 const path = require("path");
 
 const routes = require("./routes/routes");
-// const restaurantRoutes = require("./routes/restaurants");
-// const userRoutes = require("./routes/user");
 
 const dbUrl = process.env.DB_CONNECTION_URL;
 const PORT = process.env.PORT || 3000;
@@ -39,8 +37,6 @@ app.use(express.static(path.join(__dirname, "public")));
 // });
 
 app.use("/", routes);
-// app.use("/restaurants", restaurantRoutes);
-// app.use("/users", userRoutes);
 
 app.listen(PORT, () => {
   console.log(`Main API gateway server started on port - ${PORT}`);

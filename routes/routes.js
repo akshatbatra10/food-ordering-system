@@ -44,6 +44,42 @@ router.post("/register", async (req, res) => {
   }
 });
 
+router.post("/unregister", (req, res) => {
+  const registryInfo = req.body;
+  if (apiAlreadyExists(registryInfo)) {
+    const services = registry.services;
+    delete services[registryInfo.apiName];
+    registry.services = services;
+    fs.writeFile(
+      "./routes/registry.json",
+      JSON.stringify(registry),
+      (error) => {
+        if (error)
+          res.send(
+            "Could not unregister '" + registryInfo.apiName + "'\n" + error
+          );
+        else {
+          res.send("Successfully unregistered '" + registryInfo.apiName + "'");
+        }
+      }
+    );
+  } else {
+    registryInfo.url =
+      registryInfo.protocol +
+      "://" +
+      registryInfo.host +
+      ":" +
+      registryInfo.port;
+    res.send(
+      "Configuration does not exists for '" +
+        registryInfo.apiName +
+        "' at '" +
+        registryInfo.url +
+        "'"
+    );
+  }
+});
+
 router.all("/:apiname/*", async (req, res) => {
   try {
     let requestPath = req.originalUrl;
