@@ -61,12 +61,8 @@ router.all("/:apiname/*", async (req, res) => {
   }
 });
 
-const apiAlreadyExists = (registryInfo) => {
-  let exist = false;
-  registry.services[registryInfo.apiName].forEach((instance) => {
-    if (instance.url === registryInfo.url) exist = true;
-  });
-  return exist;
+const apiAlreadyExists = () => {
+  return registry.services[registerInfo.apiName] != undefined;
 };
 
 module.exports = router;

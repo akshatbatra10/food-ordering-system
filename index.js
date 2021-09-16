@@ -7,7 +7,7 @@ const cors = require("cors");
 const path = require("path");
 
 const routes = require("./routes/routes");
-const restaurantRoutes = require("./routes/restaurants");
+// const restaurantRoutes = require("./routes/restaurants");
 // const userRoutes = require("./routes/user");
 
 const dbUrl = process.env.DB_CONNECTION_URL;
