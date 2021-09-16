@@ -6,8 +6,9 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const path = require("path");
 
+const routes = require("./routes/routes");
 const restaurantRoutes = require("./routes/restaurants");
-const userRoutes = require("./routes/user");
+// const userRoutes = require("./routes/user");
 
 const dbUrl = process.env.DB_CONNECTION_URL;
 const PORT = process.env.PORT || 3000;
@@ -33,12 +34,13 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.get("/", (req, res) => {
-  res.render("home");
-});
+// app.get("/", (req, res) => {
+//   res.render("home");
+// });
 
-app.use("/restaurants", restaurantRoutes);
-app.use("/users", userRoutes);
+app.use("/", routes);
+// app.use("/restaurants", restaurantRoutes);
+// app.use("/users", userRoutes);
 
 app.listen(PORT, () => {
   console.log(`Main API gateway server started on port - ${PORT}`);

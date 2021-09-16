@@ -1,7 +1,7 @@
 const express = require("express");
 const axios = require("axios");
 
-const Restaurants = require("../models/restaurants");
+const Restaurants = require("../restaurantmicroservice/models/restaurants");
 
 const router = express.Router();
 
