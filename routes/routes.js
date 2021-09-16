@@ -45,9 +45,9 @@ router.post("/register", async (req, res) => {
 });
 
 router.all("/:apiname/*", async (req, res) => {
-  let requestPath = req.originalUrl;
-  requestPath = requestPath.split("/" + req.params.apiname).pop();
   try {
+    let requestPath = req.originalUrl;
+    requestPath = requestPath.split("/" + req.params.apiname).pop();
     await axios({
       method: req.method,
       url: registry.services[req.params.apiname].url + requestPath,
@@ -61,8 +61,8 @@ router.all("/:apiname/*", async (req, res) => {
   }
 });
 
-const apiAlreadyExists = () => {
-  return registry.services[registerInfo.apiName] != undefined;
+const apiAlreadyExists = (registryInfo) => {
+  return registry.services[registryInfo.apiName] != undefined;
 };
 
 module.exports = router;
