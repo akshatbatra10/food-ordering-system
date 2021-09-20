@@ -2,7 +2,6 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FoodMania</title>
     <link
@@ -43,24 +42,45 @@
       charset="utf-8"
     ></script>
   </head>
-  <body>
-    <div class="container-fluid">
-      <h5>View poopular restaurants or Order online on FoodMania</h5>
-      <!-- For the invisible map -->
-      <div id="map"></div>
-      <!-- For the search box -->
-      <div id="search-box"></div>
-      <div id="locate">
-        <img
-          class="locate-img"
-          src="https://img.icons8.com/fluency-systems-filled/48/000000/define-location.png"
-        />
-        <span>Locate Me</span>
-      </div>
-      <!-- To display the result -->
-      <div id="result"></div>
-      <button id="find">Find Food</button>
-      <script src="javascript/home.js"></script>
+
+  <body class="d-flex text-center text-white bg-dark">
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+      <header class="mb-auto">
+        <div class="d-flex space-between">
+          <h3 class="float-md-left mb-0 nav-header">FoodMania</h3>
+          <nav class="nav nav-masthead float-md-right">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link" href="/login">Login</a>
+            <a class="nav-link" href="/register">Sign Up</a>
+            <a class="nav-link" href="/logout">Logout</a>
+          </nav>
+        </div>
+      </header>
+      <main>
+        <p class="lead">
+          View popular restaurants or Order online on FoodMania!
+        </p>
+        <div id="map"></div>
+        <div>
+          <!-- For the search box -->
+          <div id="search-box"></div>
+          <div id="locate">
+            <img
+              class="locate-img"
+              src="https://img.icons8.com/external-prettycons-lineal-color-prettycons/49/ffffff/external-location-pin-essentials-prettycons-lineal-color-prettycons.png"
+            />
+            <span>Locate Me</span>
+          </div>
+        </div>
+        <!-- To display the result -->
+        <div id="result"></div>
+        <button type="button" class="btn btn-light" id="find">Find Food</button>
+      </main>
+
+      <footer class="mt-auto text-white-50">
+        <p>&copy; 2021 FoodMania</p>
+      </footer>
     </div>
+    <script src="javascript/home.js"></script>
   </body>
 </html>

@@ -3,7 +3,8 @@
   margin-left: 0 !important;
 }
 #locate {
-  margin-left: 66%;
+  text-align: end;
+  margin-right: 5%;
   cursor: pointer;
 }
 .locate-img {
@@ -21,8 +22,11 @@ body {
 #search-box {
   padding-left: 20px;
   padding-top: 20px;
-  width: 100%;
+  width: 120%;
   height: 70px;
+  color: black;
+  text-align: initial;
+  text-shadow: none;
 }
 .leaflet-locationiq-expanded {
   width: 80% !important;
@@ -76,8 +80,7 @@ body {
   border-bottom-color: white;
 }
 
-.btn-secondary,
-.btn-secondary:hover {
-  color: #333;
-  text-shadow: none;
+.btn-light:hover {
+  background-color: #e6e6e6;
+  color: #000;
 }

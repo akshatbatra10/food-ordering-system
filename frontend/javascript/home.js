@@ -41,7 +41,7 @@ async function changePlaceholder(lat, long) {
   );
   const res = response.json();
   res.then((data) => {
-    document.getElementsByClassName("leaflet-locationiq-input")[0].placeholder =
+    document.getElementsByClassName("leaflet-locationiq-input")[0].value =
       data.display_name;
   });
 }
