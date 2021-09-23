@@ -44,56 +44,204 @@
   </head>
 
   <body class="d-flex text-center text-white bg-dark">
-    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-      <header class="mb-auto">
-        <div class="d-flex space-between">
-          <h3 class="float-md-left mb-0 nav-header">FoodMania</h3>
-          <nav class="nav nav-masthead float-md-right">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-            <a class="nav-link" href="/login">Login/Register</a>
-            <a class="nav-link" href="/logout">Logout</a>
-            <a class="nav-link btn btn-danger" href="/newrestaurant">
-              Register Restaurant
-            </a>
-          </nav>
-        </div>
-      </header>
-      <main>
-        <h2
-          style="
-            color: #ffffff !important;
-            letter-spacing: 1px !important;
-            line-height: 54px !important;
-            text-align: center !important;
-            font-weight: 600 !important;
-            text-transform: uppercase !important;
-          "
+    <div class="row w-100">
+      <div class="col-lg-12 col-sm-12 col md-12 p-0">
+        <div
+          class="main cover-container w-100 p-3 pb-0 d-flex mx-auto flex-column"
         >
-          Find restaurants near you
-        </h2>
-        <p class="lead">
-          View popular restaurants or Order online on FoodMania!
-        </p>
-        <div id="map"></div>
-        <div>
-          <!-- For the search box -->
-          <div id="search-box"></div>
-          <div id="locate">
-            <img
-              class="locate-img"
-              src="https://img.icons8.com/external-prettycons-lineal-color-prettycons/49/ffffff/external-location-pin-essentials-prettycons-lineal-color-prettycons.png"
-            />
-            <span>Locate Me</span>
-          </div>
+          <header class="mb-auto">
+            <div class="d-flex space-between">
+              <h3 class="float-md-left mb-0 nav-header">FoodMania</h3>
+              <nav class="nav nav-masthead float-md-right">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                <a class="nav-link" href="/login-register">Login/Register</a>
+                <a class="nav-link" href="/logout">Logout</a>
+                <a class="nav-link btn btn-danger" href="/newrestaurant">
+                  Register Restaurant
+                </a>
+              </nav>
+            </div>
+          </header>
+          <main>
+            <h2
+              style="
+                color: #ffffff !important;
+                letter-spacing: 1px !important;
+                line-height: 54px !important;
+                text-align: center !important;
+                font-weight: 600 !important;
+                text-transform: uppercase !important;
+              "
+            >
+              Find restaurants near you
+            </h2>
+            <p class="lead">
+              View popular restaurants or Order online on FoodMania!
+            </p>
+            <div id="map"></div>
+            <div>
+              <!-- For the search box -->
+              <div id="search-box"></div>
+              <div id="locate">
+                <img
+                  class="locate-img"
+                  src="https://img.icons8.com/external-prettycons-lineal-color-prettycons/49/ffffff/external-location-pin-essentials-prettycons-lineal-color-prettycons.png"
+                />
+                <span>Locate Me</span>
+              </div>
+            </div>
+            <!-- To display the result -->
+            <div id="result"></div>
+            <button type="button" class="btn btn-danger mx-auto" id="find">
+              Find Food
+            </button>
+          </main>
         </div>
-        <!-- To display the result -->
-        <div id="result"></div>
-        <button type="button" class="btn btn-light" id="find">Find Food</button>
-      </main>
+        <div class="page-section cs-page-sec-879199 nopadding cs-nomargin">
+          <!-- Container Start -->
 
-      <footer class="mt-auto text-white-50">
-        <p>&copy; 2021 FoodMania</p>
-      </footer>
+          <div class="container">
+            <div class="row">
+              <div
+                class="
+                  section-fullwidth
+                  col-lg-12 col-md-12 col-sm-12 col-xs-12
+                "
+              >
+                <div class="row">
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="center">
+                      <div
+                        style="
+                          padding-left: 10px;
+                          padding-right: 10px;
+                          margin-top: 10px;
+                          margin-bottom: 10px;
+                        "
+                        class="cs-spreator fancy"
+                      >
+                        <div class="cs-seprater" style="text-align: center">
+                          <span
+                            ><img
+                              src="http://foodbakery.chimpgroup.com/foodstop/wp-content/themes/foodbakery/assets/frontend/images/divider.png"
+                              alt="divider"
+                            />
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="element-title">
+                      <h1
+                        style="
+                          color: #3d4d67 !important;
+                          font-size: 28px !important;
+                          letter-spacing: 1px !important;
+                          line-height: 34px !important;
+                          text-align: Center;
+                          font-style: normal;
+                        "
+                      >
+                        How It Works
+                      </h1>
+                      <p style="text-align: center">Easy 3 Step Orders</p>
+                    </div>
+                  </div>
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="cs-icon-boxes-list classic-view top-center">
+                      <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                          <div class="icon-boxes classic top-center">
+                            <div class="img-holder">
+                              <figure>
+                                <a href="#"
+                                  ><img
+                                    src="http://foodbakery.chimpgroup.com/foodstop/wp-content/uploads/icon-1.png"
+                                    alt="Choose a Restaurant"
+                                /></a>
+                              </figure>
+                            </div>
+                            <div class="text-holder">
+                              <h3 style="color: #3d4d67 !important">
+                                <a href="#" style="color: #3d4d67 !important"
+                                  >Choose a Restaurant</a
+                                >
+                              </h3>
+                              <span
+                                >We make it simple to find the food you crave.
+                                Enter your address and let us do the rest.</span
+                              >
+                              <hr />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                          <div class="icon-boxes classic top-center">
+                            <div class="img-holder">
+                              <figure>
+                                <a href="#"
+                                  ><img
+                                    src="http://foodbakery.chimpgroup.com/foodstop/wp-content/uploads/icon-2.png"
+                                    alt="Choose a Tasty Dish"
+                                /></a>
+                              </figure>
+                            </div>
+                            <div class="text-holder">
+                              <h3 style="color: #3d4d67 !important">
+                                <a href="#" style="color: #3d4d67 !important"
+                                  >Choose a Tasty Dish</a
+                                >
+                              </h3>
+                              <span
+                                >When you order Eat Street, we'll hook you up
+                                with exclusive coupons, specials and
+                                rewards.</span
+                              >
+                              <hr />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                          <div class="icon-boxes classic top-center">
+                            <div class="img-holder">
+                              <figure>
+                                <a href="#"
+                                  ><img
+                                    src="http://foodbakery.chimpgroup.com/foodstop/wp-content/uploads/icon-3.png"
+                                    alt="Pick up or Delivery"
+                                /></a>
+                              </figure>
+                            </div>
+                            <div class="text-holder">
+                              <h3 style="color: #3d4d67 !important">
+                                <a href="#" style="color: #3d4d67 !important"
+                                  >Pick up or Delivery</a
+                                >
+                              </h3>
+                              <span
+                                >We make food ordering fast, reliable, smooth,
+                                simple and free - no matter if you order online
+                                or cash.</span
+                              >
+                              <hr />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- end section row -->
+              </div>
+            </div>
+          </div>
+          <!-- End Container Start -->
+        </div>
+        <footer class="mt-auto text-white-50">
+          <p>&copy; 2021 FoodMania</p>
+        </footer>
+      </div>
     </div>
     <script src="javascript/home.js"></script>
   </body>

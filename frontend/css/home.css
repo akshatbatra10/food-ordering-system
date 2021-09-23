@@ -10,14 +10,17 @@
 .locate-img {
   height: 1.2rem;
 }
-body {
-  margin: 0;
-}
 main {
   height: 100vh;
   display: flex;
   flex-direction: column;
   margin-top: 18vh;
+}
+.main {
+  height: 100vh;
+  background-image: url("https://p.w3layouts.com/demos/21-03-2016/cookery/web/images/2.jpg");
+  background-size: cover;
+  background-position: center;
 }
 #map {
   width: 0;
@@ -81,16 +84,186 @@ body {
   color: white;
   border-bottom-color: white;
 }
-.btn-light:hover {
-  background-color: #e6e6e6;
-  color: #000;
-}
 .btn-danger {
   color: #fff;
   padding: 0.2rem 0.5rem 0 0.5rem;
+}
+#find {
+  width: 20%;
+  padding: 0.5rem;
+  font-size: 1.1rem;
 }
 .btn-danger:hover {
   color: #fff;
   background-color: #bb2d3b;
   border-color: #b02a37;
+}
+.page-section {
+  background-image: none;
+  background-color: #fff;
+}
+.cs-page-sec-879199 {
+  margin-top: 0px;
+  padding-top: 70px;
+  padding-bottom: 40px;
+  margin-bottom: 0px;
+  background: #f2f6fb;
+  color: black;
+}
+.clearfix:before,
+.clearfix:after,
+.dl-horizontal dd:before,
+.dl-horizontal dd:after,
+.container:before,
+.container:after,
+.container-fluid:before,
+.container-fluid:after,
+.row:before,
+.row:after,
+.form-horizontal .form-group:before,
+.form-horizontal .form-group:after,
+.btn-toolbar:before,
+.btn-toolbar:after,
+.btn-group-vertical > .btn-group:before,
+.btn-group-vertical > .btn-group:after,
+.nav:before,
+.nav:after,
+.navbar:before,
+.navbar:after,
+.navbar-header:before,
+.navbar-header:after,
+.navbar-collapse:before,
+.navbar-collapse:after,
+.pager:before,
+.pager:after,
+.panel-body:before,
+.panel-body:after,
+.modal-header:before,
+.modal-header:after,
+.modal-footer:before,
+.modal-footer:after {
+  content: " ";
+  display: table;
+}
+.cs-spreator.fancy .cs-seprater {
+  background: none;
+  height: auto;
+  margin: 0;
+}
+.element-title {
+  margin-bottom: 15px;
+  position: relative;
+  z-index: 1;
+}
+.cs-icon-boxes-list.classic-view {
+  margin: 0 -41px;
+}
+.cs-icon-boxes-list {
+  overflow: hidden;
+}
+.cs-icon-boxes-list [class*="col-"] {
+  position: relative;
+  counter-increment: mega-step;
+}
+.icon-boxes.classic {
+  background: #fff;
+  padding: 20px 0px 75px;
+  border-radius: 20px;
+  position: relative;
+  height: 24rem;
+  width: 16rem;
+  margin: 4px 40px 30px;
+  -webkit-box-shadow: 0 0 10px rgb(0 0 0 / 20%);
+  box-shadow: 0 0 10px rgb(0 0 0 / 20%);
+}
+.icon-boxes.top-center {
+  text-align: center;
+}
+.icon-boxes.classic .img-holder {
+  float: none;
+}
+.icon-boxes.top-center .img-holder,
+.icon-boxes.top-right .img-holder,
+.icon-boxes.top-left .img-holder {
+  margin: 0 0 20px;
+  width: 100%;
+}
+.icon-boxes.classic:before {
+  background-color: #e7ecee;
+  border-radius: 100%;
+  font-size: 16px;
+  color: #aaa;
+  content: counter(mega-step);
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  height: 35px;
+  line-height: 35px;
+  width: 35px;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  transform: translateX(-50%);
+  text-align: center;
+}
+figure {
+  margin: 0;
+  position: relative;
+}
+.icon-boxes.classic .text-holder:before {
+  background: #f2f6fb;
+  content: "";
+  position: absolute;
+  left: -12px;
+  bottom: 78px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  -webkit-box-shadow: -2px 0 0 rgb(0 0 0 / 10%) inset;
+  box-shadow: -2px 0 0 rgb(0 0 0 / 10%) inset;
+}
+.icon-boxes.classic .text-holder h3 a {
+  text-decoration: none;
+  text-shadow: none;
+  font-size: 1.5rem;
+}
+.icon-boxes.classic .text-holder span {
+  text-decoration: none;
+  text-shadow: none;
+  color: #a1a3aa;
+  font-size: 14px;
+  line-height: 22px;
+}
+.icon-boxes.classic .text-holder:after {
+  left: auto;
+  right: -12px;
+  background: #f2f6fb;
+  content: "";
+  position: absolute;
+  bottom: 78px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  -webkit-box-shadow: 2px 0 0 rgb(0 0 0 / 10%) inset;
+  box-shadow: 2px 0 0 rgb(0 0 0 / 10%) inset;
+}
+hr {
+  margin-top: 3.4rem;
+  display: block;
+  position: relative;
+  width: 15rem;
+  left: 4%;
+}
+.icon-boxes.classic:after {
+  font-size: 36px;
+  color: #ccc;
+  position: absolute;
+  right: -59px;
+  top: 50%;
+  content: "\1F852";
+  font-family: "icomoon";
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
