@@ -155,6 +155,9 @@ body {
   position: relative;
   z-index: 1;
 }
+.element-title p {
+  text-shadow: none;
+}
 .cs-icon-boxes-list.classic-view {
   margin: 0 -41px;
 }
@@ -171,7 +174,7 @@ body {
   border-radius: 20px;
   position: relative;
   height: 24rem;
-  width: 16rem;
+  width: 20rem;
   margin: 4px 40px 30px;
   -webkit-box-shadow: 0 0 10px rgb(0 0 0 / 20%);
   box-shadow: 0 0 10px rgb(0 0 0 / 20%);
@@ -248,17 +251,19 @@ figure {
   box-shadow: 2px 0 0 rgb(0 0 0 / 10%) inset;
 }
 hr {
-  margin-top: 3.4rem;
   display: block;
   position: relative;
-  width: 15rem;
+  width: 18.5rem;
   left: 4%;
+  border: none;
+  border-bottom: 1px dashed currentColor;
+  background-color: white;
 }
 .icon-boxes.classic:after {
   font-size: 36px;
   color: #ccc;
   position: absolute;
-  right: -59px;
+  right: -28%;
   top: 50%;
   content: "\1F852";
   font-family: "icomoon";
