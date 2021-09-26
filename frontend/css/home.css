@@ -57,7 +57,7 @@ main {
 body {
   margin: 0;
   height: 100vh;
-  background-image: url("https://p.w3layouts.com/demos/21-03-2016/cookery/web/images/2.jpg");
+  background-image: url("https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80");
   background-size: cover;
   background-position: center;
   text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
@@ -154,9 +154,10 @@ body {
   margin-bottom: 15px;
   position: relative;
   z-index: 1;
+  text-shadow: none;
 }
 .element-title p {
-  text-shadow: none;
+  color: #333;
 }
 .cs-icon-boxes-list.classic-view {
   margin: 0 -41px;
@@ -173,7 +174,7 @@ body {
   padding: 20px 0px 75px;
   border-radius: 20px;
   position: relative;
-  height: 24rem;
+  height: 22rem;
   width: 20rem;
   margin: 4px 40px 30px;
   -webkit-box-shadow: 0 0 10px rgb(0 0 0 / 20%);
@@ -271,4 +272,95 @@ hr {
   -ms-transform: translateY(-50%);
   -moz-transform: translateY(-50%);
   transform: translateY(-50%);
+}
+.cs-page-sec-201018 {
+  margin-top: 0px;
+  padding-top: 100px;
+  padding-bottom: 40px;
+  margin-bottom: 0px;
+  background: url(http://foodbakery.chimpgroup.com/foodstop/wp-content/uploads/banner-img.jpg)
+    no-repeat center / cover;
+}
+.element-title.align-left {
+  text-align: left;
+}
+.location-holder.fancy {
+  border: none;
+  background: none;
+}
+.location-holder {
+  background-color: #fff;
+  padding: 22px 13px 0;
+  border: 1px solid #ced3d9;
+  text-align: left;
+}
+.location-holder.fancy [class*="col-"]:nth-child(even) .location-list {
+  background: #f7f7f7;
+}
+.location-holder.fancy ul.location-list {
+  border-left: 1px solid #e7e7e7;
+  margin: 0 -20px 24px;
+  padding: 15px 0 15px 40px;
+}
+.location-holder.fancy [class*="col-"]:nth-child(odd) .location-list {
+  background: #fff;
+}
+
+.location-holder.fancy [class*="col-"]:first-child .location-list {
+  border-left: 0;
+}
+.location-holder.fancy ul.location-list {
+  border-left: 1px solid #e7e7e7;
+  margin: 0 -20px 24px;
+  padding: 15px 0 15px 40px;
+}
+.location-holder ul.location-list {
+  padding: 0;
+  margin: 0 0 24px;
+}
+.location-holder ul.location-list li {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 7px;
+  display: block;
+  color: #333333;
+  text-align: left;
+  text-shadow: none;
+}
+li {
+  line-height: 28px;
+  list-style: disc inside none;
+}
+.location-holder.fancy .more-btn-holder {
+  padding-top: 30px;
+}
+.location-holder .more-btn-holder {
+  padding-top: 8px;
+  text-align: center;
+}
+.location-holder a.more-btn {
+  display: inline-block;
+  padding: 9px 25px;
+  margin: 0 0 34px 0;
+  outline: none;
+  text-decoration: none;
+  color: #fff;
+  background-color: #c33332;
+  border-radius: 40px;
+  font-size: 13px;
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+  outline: none;
+  -moz-transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+a:hover {
+  color: #333 !important;
 }
