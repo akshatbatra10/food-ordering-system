@@ -6,6 +6,7 @@
   text-align: end;
   margin-right: 5%;
   cursor: pointer;
+  font-weight: 600;
 }
 .locate-img {
   height: 1.2rem;
@@ -18,9 +19,6 @@ main {
 }
 .main {
   height: 100vh;
-  background-image: url("https://p.w3layouts.com/demos/21-03-2016/cookery/web/images/2.jpg");
-  background-size: cover;
-  background-position: center;
 }
 #map {
   width: 0;
@@ -79,6 +77,9 @@ body {
   margin-left: 1rem;
   border-bottom: 0.25rem solid transparent;
 }
+.lead {
+  font-weight: 500;
+}
 .nav-link:hover {
   color: rgba(255, 255, 255, 0.5);
   border-bottom-color: rgba(255, 255, 255, 0.5);
@@ -95,6 +96,7 @@ body {
   width: 20%;
   padding: 0.5rem;
   font-size: 1.1rem;
+  margin-top: 7rem;
 }
 .btn-danger:hover {
   color: #fff;
@@ -104,6 +106,9 @@ body {
 .page-section {
   background-image: none;
   background-color: #fff;
+}
+.page-section a:hover {
+  color: #333 !important;
 }
 .cs-page-sec-879199 {
   margin-top: 0px;
@@ -332,7 +337,6 @@ hr {
 }
 li {
   line-height: 28px;
-  list-style: disc inside none;
 }
 .location-holder.fancy .more-btn-holder {
   padding-top: 30px;
@@ -363,9 +367,6 @@ a {
   -moz-transition: all 0.3s ease-in-out;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
-}
-a:hover {
-  color: #333 !important;
 }
 #footer {
   background: #282c35;

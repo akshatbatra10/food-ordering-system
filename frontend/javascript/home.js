@@ -51,12 +51,12 @@ document.getElementById("locate").addEventListener("click", async function () {
 });
 
 document.getElementById("find").addEventListener("click", function () {
-  window.location.href = `/restaurants?lat=${locationCoordinates.lat}&long=${locationCoordinates.long}`;
   const location = {
     lat: locationCoordinates.lat,
     long: locationCoordinates.long,
   };
-  window.localStorage.setItem("coordinates", location);
+  window.localStorage.setItem("coordinates", JSON.stringify(location));
+  window.location.href = "/restaurants.html";
 });
 // Initialize an empty map without layers (invisible map)
 var map = L.map("map", {
@@ -88,7 +88,6 @@ var geocoderControl = new L.control.geocoder(
 )
   .addTo(map)
   .on("select", function (e) {
-    console.log(geocoderContainer);
     locationCoordinates = {
       lat: e.latlng.lat,
       long: e.latlng.lng,
