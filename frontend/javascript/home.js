@@ -1,5 +1,12 @@
 let locationCoordinates;
 
+navigator.geolocation.getCurrentPosition((position) => {
+  locationCoordinates = {
+    lat: position.coords.latitude,
+    long: position.coords.longitude,
+  };
+});
+
 var options = {
   enableHighAccuracy: true,
   timeout: 5000,
@@ -55,7 +62,6 @@ document.getElementById("find").addEventListener("click", function () {
     lat: locationCoordinates.lat,
     long: locationCoordinates.long,
   };
-  window.localStorage.removeItem("coordinates");
   window.localStorage.setItem("coordinates", JSON.stringify(location));
   window.location.href = "/restaurants.html";
 });
