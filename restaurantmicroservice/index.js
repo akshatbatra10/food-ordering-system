@@ -4,6 +4,7 @@ if (process.env.NODE_ENV !== "production") {
 const express = require("express");
 const mongoose = require("mongoose");
 const axios = require("axios");
+// const path = require("path");
 
 const dbUrl = process.env.DB_CONNECTION_URL;
 const PORT = process.env.PORT || 3004;
@@ -25,6 +26,8 @@ db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", function () {
   console.log("Database connected");
 });
+
+// app.use(express.static(path.join(__dirname, "frontend")));
 
 app.use("/", routes);
 
