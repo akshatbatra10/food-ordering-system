@@ -55,6 +55,7 @@ document.getElementById("find").addEventListener("click", function () {
     lat: locationCoordinates.lat,
     long: locationCoordinates.long,
   };
+  window.localStorage.removeItem("coordinates");
   window.localStorage.setItem("coordinates", JSON.stringify(location));
   window.location.href = "/restaurants.html";
 });
