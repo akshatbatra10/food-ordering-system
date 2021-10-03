@@ -2,23 +2,29 @@ const coordinates = window.localStorage.getItem("coordinates");
 const lat = JSON.parse(coordinates).lat;
 const long = JSON.parse(coordinates).long;
 const restaurantCard = document.querySelector("#restaurantCard");
+const showMore = document.querySelector("#status");
+const limit = 18;
 
+let page = 1;
 let restaurants;
 
 const fetchRestaurants = async () => {
   try {
     const response = await fetch(
-      `http://localhost:3000/restaurants/?lat=${lat}&long=${long}&${Date.now()}`
+      `http://localhost:3000/restaurants/?lat=${lat}&long=${long}&page=${page}&limit=${limit}&${Date.now()}`
     );
-    restaurants = await response.json();
+    restaurantsData = await response.json();
+    restaurants = restaurantsData.results;
     console.log(restaurants);
+    if (restaurantsData.next === undefined) {
+      showMore.classList.add("none");
+    }
   } catch (e) {
     console.log(e);
   }
 };
 
-window.addEventListener("load", async function () {
-  await fetchRestaurants();
+const addHTML = () => {
   const html = restaurants
     .map((restaurant) => {
       return `<div class="col-lg-4 col-md-6 col-sm-12">
@@ -43,5 +49,16 @@ window.addEventListener("load", async function () {
     </div>`;
     })
     .join("");
-  restaurantCard.insertAdjacentHTML("afterbegin", html);
+  restaurantCard.insertAdjacentHTML("beforeend", html);
+};
+
+window.addEventListener("load", async function () {
+  await fetchRestaurants();
+  addHTML();
+});
+
+showMore.addEventListener("click", async function () {
+  page = page + 1;
+  await fetchRestaurants();
+  addHTML();
 });

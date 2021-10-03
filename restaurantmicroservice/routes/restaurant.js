@@ -7,6 +7,12 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
   const { lat, long } = req.query;
+  const page = parseInt(req.query.page);
+  const limit = parseInt(req.query.limit);
+  const startIndex = (page - 1) * limit;
+  const endIndex = page * limit;
+  const results = {};
+
   try {
     const response = await axios.get(
       `https://us1.locationiq.com/v1/reverse.php?key=pk.ac7f1895338e6b0b06892b14e6f747de&lat=${lat}&lon=${long}&format=json`
@@ -17,10 +23,27 @@ router.get("/", async (req, res) => {
     } else {
       location = response.data.address.city;
     }
-    const restaurants = await Restaurants.find({
-      city: location,
-    });
-    res.send(restaurants);
+    const size = await Restaurants.find({ city: location })
+      .countDocuments()
+      .exec();
+
+    if (endIndex < size) {
+      results.next = {
+        page: page + 1,
+        limit: limit,
+      };
+    }
+    if (startIndex > 0) {
+      results.previous = {
+        page: page - 1,
+        limit: limit,
+      };
+    }
+    results.results = await Restaurants.find({ city: location })
+      .limit(limit)
+      .skip(startIndex)
+      .exec();
+    res.send(results);
   } catch (e) {
     console.log(e);
   }
@@ -36,40 +59,40 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// function pagination(model) {
-//   return async (req, res, next) => {
-//     const { page, limit } = req.query;
-//     const startIndex = (page - 1) * limit;
-//     const endIndex = page * limit;
-//     const results = {};
+function pagination(model) {
+  return async (req, res, next) => {
+    const { page, limit } = req.query;
+    const startIndex = (page - 1) * limit;
+    const endIndex = page * limit;
+    const results = {};
 
-//     const size = await model.countDocuments().exec();
+    const size = await model.countDocuments().exec();
 
-//     if (endIndex < size) {
-//       results.next = {
-//         page: page + 1,
-//         limit: limit,
-//       };
-//     }
-//     if (startIndex > 0) {
-//       results.previous = {
-//         page: page - 1,
-//         limit: limit,
-//       };
-//     }
+    if (endIndex < size) {
+      results.next = {
+        page: page + 1,
+        limit: limit,
+      };
+    }
+    if (startIndex > 0) {
+      results.previous = {
+        page: page - 1,
+        limit: limit,
+      };
+    }
 
-//     try {
-//       results.results = await model
-//         .find({})
-//         .limit(limit)
-//         .skip(startIndex)
-//         .exec();
-//       res.paginatedResults = results;
-//       next();
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// }
+    try {
+      results.results = await model
+        .find({})
+        .limit(limit)
+        .skip(startIndex)
+        .exec();
+      res.paginatedResults = results;
+      next();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
 
 module.exports = router;
