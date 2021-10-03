@@ -22,7 +22,7 @@ window.addEventListener("load", async function () {
   const html = restaurants
     .map((restaurant) => {
       return `<div class="col-lg-4 col-md-6 col-sm-12">
-      <div class="__area text-center">
+      <div class="__area">
         <a href="#" class="__card">
           <button class="__favorit"><i class="far fa-heart"></i></button>
           <img src="${restaurant.image}" class="img-fluid __img" />
@@ -31,7 +31,7 @@ window.addEventListener("load", async function () {
             <p>${restaurant.address}</p>
             <div class="__type">
               Average cost for two -
-              <span>${restaurant.average_cost_for_two}</span>
+              <span><i class="fas fa-rupee-sign"></i> ${restaurant.average_cost_for_two}</span>
             </div>
             <div class="__detail">
               <i class="far fa-star"></i> <span>5.0</span>
