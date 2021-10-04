@@ -1,7 +1,8 @@
 .__area {
   font-family: "Cairo", sans-serif;
   color: #7c7671;
-  margin-top: 100px;
+  margin-top: 2.2rem;
+  margin-bottom: 2.2rem;
 }
 
 .__card {
@@ -19,6 +20,9 @@
 .__img {
   border-radius: 10px;
   max-width: 350px;
+  width: 25rem;
+  height: 13rem !important;
+  object-fit: cover;
 }
 
 .__favorit {
@@ -48,6 +52,10 @@
   position: relative;
   z-index: 2;
   background-color: #fff;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  height: 10rem;
 }
 .__card_detail h4 {
   color: #474340;
@@ -72,10 +80,11 @@
   line-height: 100%;
 }
 .__detail {
-  margin-top: 5px;
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: space-between;
 }
 .__detail i {
-  font-size: 21px;
   display: inline-block;
   vertical-align: middle;
 }
@@ -90,4 +99,17 @@
 }
 .none {
   display: none;
+}
+.rating {
+  padding: 0.2rem 0.4rem;
+  background-color: rgb(36, 150, 63);
+  border-radius: 0.5rem;
+  color: white;
+}
+.timing {
+  padding: 0.2rem 0.4rem;
+}
+#status {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }

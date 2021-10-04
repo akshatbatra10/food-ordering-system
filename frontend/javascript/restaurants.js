@@ -40,8 +40,12 @@ const addHTML = () => {
               <span><i class="fas fa-rupee-sign"></i> ${restaurant.average_cost_for_two}</span>
             </div>
             <div class="__detail">
-              <i class="far fa-star"></i> <span>5.0</span>
-              <i class="far fa-clock"></i> <span>30 m</span>
+              <div class="rating">
+                <i class="fas fa-star"></i> <span>5.0</span>
+              </div>
+              <div class="timing">
+                <i class="far fa-clock"></i> <span>30 m</span>
+              </div>
             </div>
           </div>
         </a>
