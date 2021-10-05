@@ -22,9 +22,7 @@ function generateRefreshToken(user) {
       expiresIn: "7d",
     }
   );
-  let storedRefreshToken = refreshTokens.find(
-    (token) => token._id === user._id
-  );
+  let storedRefreshToken = refreshTokens.find((token) => token._id == user._id);
   if (storedRefreshToken === undefined) {
     refreshTokens.push({
       _id: user._id,
@@ -32,7 +30,7 @@ function generateRefreshToken(user) {
     });
   } else {
     refreshTokens[
-      refreshTokens.findIndex((token) => token._id === user._id)
+      refreshTokens.findIndex((token) => token._id == user._id)
     ].token = refreshToken;
   }
   return refreshToken;
@@ -44,7 +42,7 @@ router.post("/token", verifyRefreshToken, (req, res) => {
     expiresIn: "30s",
   });
   const refreshToken = generateRefreshToken(user);
-  return res.json({ message: "success", date: { accessToken, refreshToken } });
+  return res.json({ message: "success", data: { accessToken, refreshToken } });
 });
 
 router.post("/registeruser", async (req, res) => {
@@ -75,9 +73,10 @@ router.post("/login", async (req, res) => {
   res.status(200).json({ token: token, refreshToken: refreshToken });
 });
 
-router.delete("/logout", (req, res) => {
-  refreshTokens = refreshTokens.filter((token) => token !== req.body.token);
-  res.sendStatus(204);
+router.post("/logout", verifyAccessToken, (req, res) => {
+  const user = req.userData;
+  refreshTokens = refreshTokens.filter((token) => token._id != user._id);
+  return res.send({ message: "logout success" });
 });
 
 router.get("/dashboard", verifyAccessToken, (req, res) => {
@@ -98,19 +97,17 @@ function verifyAccessToken(req, res, next) {
 function verifyRefreshToken(req, res, next) {
   const token = req.body.token;
   if (token === null)
-    return res.status(401).json({ message: "Not authorized" });
+    return res.status(401).json({ status: false, message: "Not authorized" });
   try {
-    const token = req.headers.authorization.split(" ")[1];
     const decoded = jwt.verify(token, process.env.REFRESH_ACCESS_TOKEN);
     req.userData = decoded;
-    console.log(decoded);
-    let storedRefreshToken = refreshTokens.find(
-      (token) => token._id === decoded._id
-    );
-    if (storedRefreshToken === undefined)
-      return res
-        .status(401)
-        .json({ message: "Not authorized, token not stored" });
+    let storedRefreshToken = refreshTokens.find((x) => x._id == decoded._id);
+    if (storedRefreshToken === undefined) {
+      return res.send({ message: "Not authorized, token not stored 1" });
+    }
+    if (storedRefreshToken.token != token) {
+      return res.send({ message: "Not authorized, token not stored" });
+    }
     next();
   } catch (error) {
     res.status(401).json({ message: "Not authorized", data: error });
