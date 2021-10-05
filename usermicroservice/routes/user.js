@@ -10,19 +10,41 @@ let refreshTokens = [];
 
 function generateAccessToken(user) {
   return jwt.sign({ _id: user._id }, process.env.ACCESS_TOKEN, {
-    expiresIn: "15s",
+    expiresIn: "30s",
   });
 }
 
-router.post("/token", (req, res) => {
-  const refreshToken = req.body.token;
-  if (refreshToken === null) return res.sendStatus(401);
-  if (!refreshTokens.includes(refreshToken)) return res.sendStatus(403);
-  jwt.verify(refreshToken, process.env.REFRESH_ACCESS_TOKEN, (err, user) => {
-    if (err) return res.sendStatus(403);
-    const accessToken = generateAccessToken(user);
-    res.json({ accessToken: accessToken });
+function generateRefreshToken(user) {
+  const refreshToken = jwt.sign(
+    { _id: user._id },
+    process.env.REFRESH_ACCESS_TOKEN,
+    {
+      expiresIn: "7d",
+    }
+  );
+  let storedRefreshToken = refreshTokens.find(
+    (token) => token._id === user._id
+  );
+  if (storedRefreshToken === undefined) {
+    refreshTokens.push({
+      _id: user._id,
+      token: refreshToken,
+    });
+  } else {
+    refreshTokens[
+      refreshTokens.findIndex((token) => token._id === user._id)
+    ].token = refreshToken;
+  }
+  return refreshToken;
+}
+
+router.post("/token", verifyRefreshToken, (req, res) => {
+  const user = req.userData;
+  const accessToken = jwt.sign({ _id: user._id }, process.env.ACCESS_TOKEN, {
+    expiresIn: "30s",
   });
+  const refreshToken = generateRefreshToken(user);
+  return res.json({ message: "success", date: { accessToken, refreshToken } });
 });
 
 router.post("/registeruser", async (req, res) => {
@@ -49,11 +71,7 @@ router.post("/login", async (req, res) => {
   if (!validPass) return res.status(400).send("Incorrect password");
 
   const token = generateAccessToken(user);
-  const refreshToken = jwt.sign(
-    { _id: user._id },
-    process.env.REFRESH_ACCESS_TOKEN
-  );
-  refreshTokens.push(refreshToken);
+  const refreshToken = generateRefreshToken(user);
   res.status(200).json({ token: token, refreshToken: refreshToken });
 });
 
@@ -61,5 +79,42 @@ router.delete("/logout", (req, res) => {
   refreshTokens = refreshTokens.filter((token) => token !== req.body.token);
   res.sendStatus(204);
 });
+
+router.get("/dashboard", verifyAccessToken, (req, res) => {
+  res.send("hello from dashboard");
+});
+
+function verifyAccessToken(req, res, next) {
+  try {
+    const token = req.headers.authorization.split(" ")[1];
+    const decoded = jwt.verify(token, process.env.ACCESS_TOKEN);
+    req.userData = decoded;
+    next();
+  } catch (error) {
+    return res.send({ message: "Not authorized", data: error });
+  }
+}
+
+function verifyRefreshToken(req, res, next) {
+  const token = req.body.token;
+  if (token === null)
+    return res.status(401).json({ message: "Not authorized" });
+  try {
+    const token = req.headers.authorization.split(" ")[1];
+    const decoded = jwt.verify(token, process.env.REFRESH_ACCESS_TOKEN);
+    req.userData = decoded;
+    console.log(decoded);
+    let storedRefreshToken = refreshTokens.find(
+      (token) => token._id === decoded._id
+    );
+    if (storedRefreshToken === undefined)
+      return res
+        .status(401)
+        .json({ message: "Not authorized, token not stored" });
+    next();
+  } catch (error) {
+    res.status(401).json({ message: "Not authorized", data: error });
+  }
+}
 
 module.exports = router;
