@@ -3,8 +3,10 @@ const lat = JSON.parse(coordinates).lat;
 const long = JSON.parse(coordinates).long;
 const restaurantCard = document.querySelector("#restaurantCard");
 const showMore = document.querySelector("#status");
-const loader = document.querySelector('#loading');
-const limit = 18;
+const showMoreButton = document.querySelector(".btn-danger");
+const loading = document.querySelector('#loading');
+const loader = document.querySelector('.loader')
+const limit = 15;
 
 let page = 1;
 let restaurants;
@@ -19,6 +21,8 @@ const fetchRestaurants = async () => {
     console.log(restaurants);
     if (restaurantsData.next === undefined) {
       showMore.classList.add("none");
+    } else {
+      showMore.classList.remove('none');
     }
   } catch (e) {
     console.log(e);
@@ -58,13 +62,15 @@ const addHTML = () => {
 };
 
 window.addEventListener("load", async function () {
-  await fetchRestaurants();
   loader.classList.add('none');
+  await fetchRestaurants();
+  loading.classList.add('none');
   addHTML();
 });
 
-showMore.addEventListener("click", async function () {
+showMoreButton.addEventListener("click", async function () {
   loader.classList.remove('none');
+  showMore.classList.add('none');
   page = page + 1;
   await fetchRestaurants();
   loader.classList.add('none');
