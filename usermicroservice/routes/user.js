@@ -5,7 +5,7 @@ const userMiddleware = require("../middlewares/auth.middleware");
 
 const router = express.Router();
 
-router.get("/dashboard", verifyAccessToken, (req, res) => {
+router.get("/dashboard", userMiddleware.verifyAccessToken, (req, res) => {
   res.send("hello from dashboard");
 });
 

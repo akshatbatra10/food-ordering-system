@@ -39,20 +39,23 @@ async function Token(req, res) {
   const accessToken = jwt.sign({ _id: user._id }, process.env.ACCESS_TOKEN, {
     expiresIn: "30s",
   });
-  const refreshToken = generateRefreshToken(user);
+  const refreshToken = await generateRefreshToken(user);
+  console.log(refreshToken);
   return res.json({
     message: "success",
     data: { accessToken, refreshToken },
   });
 }
 
-function Logout(req, res) {
+async function Logout(req, res) {
   const user = req.userData;
-  refreshTokens = refreshTokens.filter((token) => token._id != user._id);
+  const token = req.token;
+  await redisClient.del(user._id.toString());
+  await redisClient.set("BL" + user._id.toString(), token);
   return res.send({ message: "logout success" });
 }
 
-async function generateRefreshToken(user) {
+function generateRefreshToken(user) {
   const refreshToken = jwt.sign(
     { _id: user._id },
     process.env.REFRESH_ACCESS_TOKEN,
@@ -63,7 +66,7 @@ async function generateRefreshToken(user) {
   redisClient.get(user._id.toString(), (err, data) => {
     if (err) throw err;
 
-    await redisClient.set(
+    redisClient.set(
       user._id.toString(),
       JSON.stringify({ token: refreshToken })
     );

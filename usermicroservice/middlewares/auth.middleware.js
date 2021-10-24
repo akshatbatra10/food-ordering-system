@@ -6,7 +6,12 @@ function verifyAccessToken(req, res, next) {
     const token = req.headers.authorization.split(" ")[1];
     const decoded = jwt.verify(token, process.env.ACCESS_TOKEN);
     req.userData = decoded;
+    req.token = token;
+    redisClient.get('BL_' + decoded._id.toString(), (err, data) => {
+    if(err) throw err;
+    if(data === token) return res.status(401).json({status: false, message: "blacklisted token."});
     next();
+  })
   } catch (error) {
     return res.send({ message: "Not authorized", data: error });
   }
