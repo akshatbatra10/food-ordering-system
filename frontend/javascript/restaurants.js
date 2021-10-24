@@ -3,6 +3,7 @@ const lat = JSON.parse(coordinates).lat;
 const long = JSON.parse(coordinates).long;
 const restaurantCard = document.querySelector("#restaurantCard");
 const showMore = document.querySelector("#status");
+const loader = document.querySelector('#loading');
 const limit = 18;
 
 let page = 1;
@@ -58,11 +59,14 @@ const addHTML = () => {
 
 window.addEventListener("load", async function () {
   await fetchRestaurants();
+  loader.classList.add('none');
   addHTML();
 });
 
 showMore.addEventListener("click", async function () {
+  loader.classList.remove('none');
   page = page + 1;
   await fetchRestaurants();
+  loader.classList.add('none');
   addHTML();
 });
