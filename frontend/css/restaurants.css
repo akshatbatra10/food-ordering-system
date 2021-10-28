@@ -73,7 +73,6 @@
 .form-input:focus {
   box-shadow: none !important;
   border-color: #242424 !important;
-  /* border: none; */
 }
 .__card_detail {
   box-shadow: 0 4px 15px rgba(175, 77, 0, 0.13);
