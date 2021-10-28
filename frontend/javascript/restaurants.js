@@ -35,7 +35,7 @@ const addHTML = () => {
     .map((restaurant) => {
       return `<div class="col-lg-4 col-md-6 col-sm-12">
       <div class="__area">
-        <a href="#" class="__card">
+        <a href="restaurants/${restaurant._id}" class="__card">
           <button class="__favorit"><i class="far fa-heart"></i></button>
           <img src="${restaurant.image}" class="img-fluid __img" />
           <div class="__card_detail text-left">
@@ -62,10 +62,21 @@ const addHTML = () => {
   restaurantCard.insertAdjacentHTML("beforeend", html);
 };
 
+function handleClick(id) {
+  window.location = `restaurants/${id}`;
+}
+
 const addList = (filteredRestaurants) => {
+  const text = "noob";
   const html = filteredRestaurants
     .map((restaurant) => {
-      return `<li class="list">${restaurant.name}</li>`;
+      return `<div class="list" onclick="handleClick('${restaurant._id}')">
+      <img src="${restaurant.image}" />
+        <div style="margin-left: 0.8rem;" class="details">
+          <h6 class="restaurant-name">${restaurant.name}</h6>
+          <p class="restaurant-address">${restaurant.address}</p>
+        </div>
+      </div>`;
     })
     .join("");
   search_list.insertAdjacentHTML("beforeend", html);
@@ -113,15 +124,6 @@ search.addEventListener("keyup", async function (e) {
     });
     const mySet = new Set(tempArray);
     filteredRestaurants = Array.from(mySet);
-    console.log(filteredRestaurants);
-    if (filteredRestaurants.length <= 5) {
-      addList(filteredRestaurants);
-    } else {
-      const reducedFilteredRestaurants = filteredRestaurants.filter(
-        (restaurant, idx) => idx < 5
-      );
-      console.log(reducedFilteredRestaurants);
-      addList(filteredRestaurants);
-    }
+    addList(filteredRestaurants);
   }
 });
