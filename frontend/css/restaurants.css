@@ -43,6 +43,38 @@
   color: #fff;
   text-decoration: none;
 }
+.height {
+  height: 10vh;
+}
+.form {
+  position: relative;
+}
+.form .fa-search {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: #9ca3af;
+}
+.form span {
+  position: absolute;
+  right: 17px;
+  top: 13px;
+  padding: 2px;
+  border-left: 1px solid #d1d5db;
+}
+.left-pan {
+  padding-left: 7px;
+}
+.form-input {
+  height: 55px;
+  text-indent: 33px;
+  border-radius: 10px;
+}
+.form-input:focus {
+  box-shadow: none !important;
+  border-color: #242424 !important;
+  /* border: none; */
+}
 .__card_detail {
   box-shadow: 0 4px 15px rgba(175, 77, 0, 0.13);
   padding: 13px;
@@ -115,13 +147,15 @@
   padding-top: 2rem;
   padding-bottom: 2rem;
 }
-body { background: whitesmoke; }
+body {
+  background: whitesmoke;
+}
 /* CSS for animated bouncing loader. */
 .loader {
   display: flex;
   height: 4rem;
   justify-content: center;
-	align-items: center;
+  align-items: center;
 }
 
 /* Loader circles */
@@ -309,7 +343,8 @@ h1 {
   5% {
     transform: rotate(-27deg);
   }
-  30%, 50% {
+  30%,
+  50% {
     transform: rotate(0deg);
   }
   55% {
