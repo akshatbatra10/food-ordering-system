@@ -62,8 +62,8 @@
   padding: 2px;
   border-left: 1px solid #d1d5db;
 }
-.left-pan {
-  padding-left: 7px;
+.form-control {
+  margin-top: 1.2rem;
 }
 .form-input {
   height: 55px;

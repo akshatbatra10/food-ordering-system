@@ -49,8 +49,10 @@
     <div id="header" class="none">
       <div class="container">
         <div
-          class="row height d-flex justify-content-center align-items-center"
+          class="row height d-flex align-items-baseline"
+          style="justify-content: space-between"
         >
+          <h3 class="col-md-3">FoodMania</h3>
           <div class="col-md-6">
             <div class="form">
               <i class="fa fa-search"></i>
@@ -60,9 +62,13 @@
                 class="form-control form-input"
                 placeholder="Search for restaurants"
               />
-              <div id="search-list"></div>
+              <div id="search-list" class="none"></div>
             </div>
           </div>
+          <nav class="col-md-3 d-flex">
+            <a class="nav-link" href="./signIn-signUp.html">Login/Register</a>
+            <a class="nav-link" href="/logout">Logout</a>
+          </nav>
         </div>
         <div class="row" id="restaurantCard"></div>
       </div>

@@ -30,12 +30,13 @@ const fetchRestaurants = async (url) => {
   }
 };
 
+
 const addHTML = () => {
   const html = restaurants
     .map((restaurant) => {
       return `<div class="col-lg-4 col-md-6 col-sm-12">
       <div class="__area">
-        <a href="restaurants/${restaurant._id}" class="__card">
+        <div class="__card" onclick="handleClick('${restaurant._id}')">
           <button class="__favorit"><i class="far fa-heart"></i></button>
           <img src="${restaurant.image}" class="img-fluid __img" />
           <div class="__card_detail text-left">
@@ -54,7 +55,7 @@ const addHTML = () => {
               </div>
             </div>
           </div>
-        </a>
+        </div>
       </div>
     </div>`;
     })
@@ -63,11 +64,12 @@ const addHTML = () => {
 };
 
 function handleClick(id) {
-  window.location = `restaurants/${id}`;
+  window.localStorage.setItem("restaurantID", id);
+  window.location = "restaurant.html";
 }
 
 const addList = (filteredRestaurants) => {
-  const text = "noob";
+  search_list.classList.remove("none");
   const html = filteredRestaurants
     .map((restaurant) => {
       return `<div class="list" onclick="handleClick('${restaurant._id}')">
@@ -90,6 +92,10 @@ window.addEventListener("load", async function () {
   header.classList.remove("none");
   addHTML();
 });
+
+// window.onbeforeunload = function() {
+//   window.localStorage.clear();
+// }
 
 showMoreButton.addEventListener("click", async function () {
   loader.classList.remove("none");
@@ -116,6 +122,7 @@ search.addEventListener("keyup", async function (e) {
   let filteredRestaurants = [];
   const search_value = e.target.value.toLowerCase();
   if (search_value.length > 2) {
+    search_list.classList.remove("none");
     const tempArray = restaurants.filter((restaurant) => {
       if (restaurant.name.toLowerCase().indexOf(search_value) !== -1) {
         return true;
@@ -125,5 +132,7 @@ search.addEventListener("keyup", async function (e) {
     const mySet = new Set(tempArray);
     filteredRestaurants = Array.from(mySet);
     addList(filteredRestaurants);
+  } else {
+    search_list.classList.add("none");
   }
 });
