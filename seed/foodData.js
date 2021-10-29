@@ -1,4 +1,4 @@
-[
+module.exports = [
   {
     name: "HomeSe Just Veg",
     rating: 4.3,

@@ -2,12 +2,10 @@ const mongoose = require("mongoose");
 const Restaurants = require("./models/restaurants");
 
 mongoose.connect(
-  "mongodb+srv://AkshatBatra:g0t0@he11@cluster0.gia1c.mongodb.net/restaurantData?retryWrites=true&w=majority",
+  "mongodb+srv://AkshatFOOD:gabbarsingh@cluster0.gia1c.mongodb.net/restaurantData?retryWrites=true&w=majority",
   {
     useNewUrlParser: true,
-    useCreateIndex: true,
     useUnifiedTopology: true,
-    connectTimeoutMS: 3000,
   }
 );
 

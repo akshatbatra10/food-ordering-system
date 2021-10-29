@@ -1,20 +1,15 @@
 const mongoose = require("mongoose");
 const Restaurants = require("./models/restaurants");
-// const restaurantData = require("./restaurantData");
 const file1 = require("./file1");
 const file2 = require("./file2");
 const file3 = require("./file3");
 const file4 = require("./file4");
 
-// const citiesArray = ['New Delhi', 'Mumbai', 'Pune', 'Agra', 'Banglore', 'Ahmedabad', 'Chennai', 'Surat', 'Hyderabad', 'Kolkata', 'Jaipur']
-
 mongoose.connect(
-  "mongodb+srv://AkshatBatra:g0t0@he11@cluster0.gia1c.mongodb.net/restaurantData?retryWrites=true&w=majority",
+  "mongodb+srv://AkshatFOOD:gabbarsingh@cluster0.gia1c.mongodb.net/restaurantData?retryWrites=true&w=majority",
   {
     useNewUrlParser: true,
-    useCreateIndex: true,
     useUnifiedTopology: true,
-    connectTimeoutMS: 3000,
   }
 );
 
@@ -41,6 +36,10 @@ const seedDB = async () => {
               data.restaurant.location.latitude,
             ],
           },
+          aggregate_rating: data.restaurant.user_rating.aggregate_rating,
+          rating_text: data.restaurant.user_rating.rating_text,
+          rating_color: data.restaurant.user_rating.rating_color,
+          votes: data.restaurant.user_rating.votes,
           address: data.restaurant.location.address,
           city: data.restaurant.location.city,
           average_cost_for_two: data.restaurant.average_cost_for_two,
