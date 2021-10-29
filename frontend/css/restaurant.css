@@ -1,0 +1,23 @@
+.height {
+  height: 10vh;
+}
+.restaurant {
+  background-color: black;
+}
+.restaurantData {
+  padding: 1.5rem;
+}
+.active {
+  color: rgb(255, 255, 0);
+}
+.rating {
+  margin-bottom: 1rem;
+}
+.timing {
+  font-size: 0.9rem;
+}
+#display {
+  display: flex;
+  justify-content: space-around;
+  color: white;
+}
