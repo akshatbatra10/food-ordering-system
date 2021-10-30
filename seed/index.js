@@ -26,6 +26,7 @@ const seedDB = async () => {
       restaurant.restaurants.map(async (data) => {
         const rest = new Restaurants({
           name: data.restaurant.name,
+          res_id: data.restaurant.R.res_id,
           has_online_delivery: data.restaurant.has_online_delivery,
           image: data.restaurant.featured_image,
           cuisines: data.restaurant.cuisines.split(", "),

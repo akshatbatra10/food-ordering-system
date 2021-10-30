@@ -13,7 +13,8 @@
   "dependencies": {
     "axios": "^0.21.4",
     "express": "^4.17.1",
-    "mongoose": "^5.13.7"
+    "mongoose": "^6.0.12",
+    "zomato": "^1.1.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.12"

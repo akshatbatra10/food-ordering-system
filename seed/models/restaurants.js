@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const restaurantSchema = new Schema({
   name: String,
+  res_id: Number,
   has_online_delivery: Number,
   image: String,
   cuisines: [String],

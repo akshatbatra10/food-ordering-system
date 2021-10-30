@@ -53,6 +53,15 @@ router.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const restaurant = await Restaurants.findOne({ _id: id });
+    client.getRestaurant({
+      res_id:"18649486"
+    }, function(err, result){
+      if(!err){
+        console.log(result);
+      }else {
+        console.log(err);
+      }
+    });
     res.send(restaurant);
   } catch (error) {
     console.log(error);

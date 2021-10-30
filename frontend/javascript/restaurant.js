@@ -2,6 +2,7 @@ const id = window.localStorage.getItem("restaurantID");
 const displayData = document.querySelector("#display");
 const nav = document.querySelector("#navbar");
 const cuisines = document.querySelector('.cuisines');
+const avgPrice = document.querySelector('.price');
 
 let restaurant;
 
@@ -43,4 +44,5 @@ window.addEventListener("load", async function () {
   await fetchData();
   addHTML();
   addCuisines();
+  avgPrice.innerText = restaurant.average_cost_for_two;
 });
