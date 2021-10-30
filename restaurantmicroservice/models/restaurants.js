@@ -24,6 +24,7 @@ const restaurantSchema = new Schema({
   votes: Number,
   address: String,
   city: String,
+  phone_numbers: Number,
   average_cost_for_two: Number,
 });
 

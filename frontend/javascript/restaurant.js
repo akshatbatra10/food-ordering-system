@@ -1,8 +1,8 @@
 const id = window.localStorage.getItem("restaurantID");
 const displayData = document.querySelector("#display");
 const nav = document.querySelector("#navbar");
-const cuisines = document.querySelector('.cuisines');
-const avgPrice = document.querySelector('.price');
+const cuisines = document.querySelector(".cuisines");
+const avgPrice = document.querySelector(".price");
 
 let restaurant;
 
@@ -33,12 +33,13 @@ const addHTML = () => {
 };
 
 const addCuisines = () => {
-  const html = restaurant.cuisines.map((cuisine) => {
-    return `<span class="cuisine">${cuisine}</span>`;
-  })
-  .join("");
+  const html = restaurant.cuisines
+    .map((cuisine) => {
+      return `<span class="cuisine">${cuisine}</span>`;
+    })
+    .join("");
   cuisines.insertAdjacentHTML("beforeend", html);
-}
+};
 
 window.addEventListener("load", async function () {
   await fetchData();
