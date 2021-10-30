@@ -25,8 +25,6 @@ db.once("open", function () {
   console.log("Database connected");
 });
 
-// app.set("views", path.join(__dirname, "views"));
-
 app.use(cors());
 // app.use(helmet());
 app.use(express.json());

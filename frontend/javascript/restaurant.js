@@ -1,6 +1,7 @@
 const id = window.localStorage.getItem("restaurantID");
-console.log(id);
 const displayData = document.querySelector("#display");
+const nav = document.querySelector("#navbar");
+const cuisines = document.querySelector('.cuisines');
 
 let restaurant;
 
@@ -22,7 +23,7 @@ const addHTML = () => {
     <p>${restaurant.address}</p>
     <div class="rating">
       <i class="far fa-star active"></i><i class="far fa-star active"></i><i class="far fa-star active"></i><i class="far fa-star"></i><i class="far fa-star"></i>
-      <span>(250) reviews</span>
+      <span>(${restaurant.votes}) reviews</span>
     </div>
     <span class="timing">Timing: 11AM - 12AM</span>
   </div>
@@ -30,7 +31,16 @@ const addHTML = () => {
   displayData.insertAdjacentHTML("beforeend", html);
 };
 
+const addCuisines = () => {
+  const html = restaurant.cuisines.map((cuisine) => {
+    return `<span class="cuisine">${cuisine}</span>`;
+  })
+  .join("");
+  cuisines.insertAdjacentHTML("beforeend", html);
+}
+
 window.addEventListener("load", async function () {
   await fetchData();
   addHTML();
+  addCuisines();
 });

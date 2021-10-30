@@ -6,6 +6,7 @@
 }
 .restaurantData {
   padding: 1.5rem;
+  margin-bottom: 2rem;
 }
 .active {
   color: rgb(255, 255, 0);
@@ -16,8 +17,40 @@
 .timing {
   font-size: 0.9rem;
 }
+.nav-item-link {
+  display: flex !important;
+  align-items: center;
+  color: #fff !important;
+  margin-right: 1rem !important;
+  border: 1px solid white;
+  margin-top: 0.2rem;
+  border-radius: 2rem;
+  max-height: 80%;
+}
+#navbar {
+  height: 3rem;
+  margin-top: -1.5rem;
+  border-radius: 0.5rem;
+  background: rgb(174, 14, 95);
+  background: linear-gradient(
+    90deg,
+    rgba(174, 14, 95, 1) 0%,
+    rgba(251, 78, 78, 1) 100%
+  );
+}
 #display {
   display: flex;
   justify-content: space-around;
   color: white;
+}
+.cuisine {
+  border: 1px solid rgb(207, 207, 207);
+    box-shadow: rgb(54 54 54 / 6%) 0px 1px 2px;
+    border-radius: 2rem;
+    padding: 0.5rem;
+    display: inline-flex;
+    margin: 0px 1rem 1rem 0px;
+    color: rgb(17, 145, 153);
+    font-size: 1rem;
+    line-height: 1.2;
 }
