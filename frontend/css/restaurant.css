@@ -45,23 +45,30 @@
 }
 .details {
   display: flex;
-    flex-direction: column;
-    height: 20rem;
-    justify-content: space-evenly;
+  flex-direction: column;
+  height: 20rem;
+  justify-content: space-evenly;
+  margin-right: 1rem;
 }
 h4 {
   font-weight: 400 !important;
 }
 .cuisine {
   border: 1px solid rgb(207, 207, 207);
-    box-shadow: rgb(54 54 54 / 6%) 0px 1px 2px;
-    border-radius: 2rem;
-    padding: 0.5rem;
-    display: inline-flex;
-    margin: 0px 1rem 1rem 0px;
-    color: rgb(17, 145, 153);
-    font-size: 1rem;
-    line-height: 1.2;
+  box-shadow: rgb(54 54 54 / 6%) 0px 1px 2px;
+  border-radius: 2rem;
+  padding: 0.5rem;
+  display: inline-flex;
+  margin: 0px 1rem 1rem 0px;
+  color: rgb(17, 145, 153);
+  font-size: 1rem;
+  line-height: 1.2;
+}
+.number {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  margin: 0.5rem 0px 0px;
+  color: rgb(255, 126, 139);
 }
 .dish {
   color: rgb(79, 79, 79);

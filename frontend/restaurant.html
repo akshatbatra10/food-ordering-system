@@ -25,6 +25,12 @@
       src="https://kit.fontawesome.com/64d58efce2.js"
       crossorigin="anonymous"
     ></script>
+
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.js"></script>
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.css"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div class="container">
@@ -67,7 +73,7 @@
         </div></a
       >
     </div>
-    <div class="about container">
+    <div class="about container d-flex">
       <div class="details">
         <div class="cuisines">
           <h4>Cuisines</h4>
@@ -81,17 +87,36 @@
         </div>
         <div class="avg_cost">
           <h4>Average Cost</h4>
-          <p style="font-size: 1.1rem;
-            line-height: 1.5;
-            margin: 0px;
-            color: rgb(79, 79, 79);">Average cost for two <i class="fas fa-rupee-sign"></i><span class="price"></span> (approx.)</p>
-          <p style="font-size: 0.9rem;
-            line-height: 1.5;
-            margin: 0px;
-            color: rgb(156, 156, 156);">Exclusive of applicable taxes and charges, if any</p>
+          <p
+            style="
+              font-size: 1.1rem;
+              line-height: 1.5;
+              margin: 0px;
+              color: rgb(79, 79, 79);
+            "
+          >
+            Average cost for two <i class="fas fa-rupee-sign"></i
+            ><span class="price"></span> (approx.)
+          </p>
+          <p
+            style="
+              font-size: 0.9rem;
+              line-height: 1.5;
+              margin: 0px;
+              color: rgb(156, 156, 156);
+            "
+          >
+            Exclusive of applicable taxes and charges, if any
+          </p>
         </div>
       </div>
-      <div class="map"></div>
+      <div class="right-panel">
+        <div class="call">
+          <h4>Call</h4>
+          <p class="number"></p>
+        </div>
+        <div id="map" style="width: 330px; height: 240px"></div>
+      </div>
     </div>
     <script src="javascript/restaurant.js"></script>
   </body>

@@ -1,8 +1,16 @@
 const express = require("express");
 const axios = require("axios");
-const client = require("../zomatoClient");
+const mbxClient = require("@mapbox/mapbox-sdk");
+const mbxStatic = require("@mapbox/mapbox-sdk/services/static");
 
+const client = require("../zomatoClient");
 const Restaurants = require("../models/restaurants");
+
+const baseClient = mbxClient({
+  accessToken:
+    "pk.eyJ1IjoiYWtzaGF0LWJhdHJhIiwiYSI6ImNrazB1cWJxajBsNDkycHRnaXVmbTVyNmkifQ.wPpiFWa1zLQYQUnhr-uCGQ",
+});
+const staticService = mbxStatic(baseClient);
 
 const router = express.Router();
 
@@ -63,6 +71,7 @@ router.get("/:id", async (req, res) => {
           14
         );
         restaurant.phone_numbers = number;
+        restaurant.w = 67;
       });
     res.send(restaurant);
   } catch (error) {

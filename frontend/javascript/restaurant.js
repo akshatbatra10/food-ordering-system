@@ -3,6 +3,8 @@ const displayData = document.querySelector("#display");
 const nav = document.querySelector("#navbar");
 const cuisines = document.querySelector(".cuisines");
 const avgPrice = document.querySelector(".price");
+const number = document.querySelector(".number");
+const map = document.querySelector("#static-map");
 
 let restaurant;
 
@@ -41,9 +43,32 @@ const addCuisines = () => {
   cuisines.insertAdjacentHTML("beforeend", html);
 };
 
+const addRestaurantMap = () => {
+  mapboxgl.accessToken =
+    "pk.eyJ1IjoiYWtzaGF0LWJhdHJhIiwiYSI6ImNrazB1cWJxajBsNDkycHRnaXVmbTVyNmkifQ.wPpiFWa1zLQYQUnhr-uCGQ";
+  const map = new mapboxgl.Map({
+    container: "map", // container ID
+    style: "mapbox://styles/mapbox/streets-v11", // style URL
+    center: [
+      restaurant.geometry.coordinates[0],
+      restaurant.geometry.coordinates[1],
+    ], // starting position [lng, lat]
+    zoom: 12, // starting zoom
+  });
+  const marker = new mapboxgl.Marker()
+    .setLngLat([
+      restaurant.geometry.coordinates[0],
+      restaurant.geometry.coordinates[1],
+    ])
+    .addTo(map);
+};
+
 window.addEventListener("load", async function () {
   await fetchData();
   addHTML();
+  addRestaurantMap();
   addCuisines();
   avgPrice.innerText = restaurant.average_cost_for_two;
+  number.innerText = `+91-${restaurant.phone_numbers}`;
+  // map.src = `https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/${restaurant.geometry.coordinates[0]},${restaurant.geometry.coordinates[1]},14/340x230?access_token=pk.eyJ1IjoiYWtzaGF0LWJhdHJhIiwiYSI6ImNrazB1cWJxajBsNDkycHRnaXVmbTVyNmkifQ.wPpiFWa1zLQYQUnhr-uCGQ`;
 });
