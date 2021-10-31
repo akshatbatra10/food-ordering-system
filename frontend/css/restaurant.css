@@ -27,6 +27,19 @@
   border-radius: 2rem;
   max-height: 80%;
 }
+.direction-link {
+  display: flex !important;
+  align-items: center;
+  color: black !important;
+  margin-right: 1rem !important;
+  width: 38%;
+  margin-top: -2rem;
+  border: 1px solid rgb(156, 156, 156);
+  border-radius: 2rem;
+}
+.direction {
+  color: #ed8598;
+}
 #navbar {
   height: 3rem;
   margin-top: -1.5rem;
@@ -38,6 +51,10 @@
     rgba(251, 78, 78, 1) 100%
   );
 }
+.about {
+  justify-content: space-between;
+  height: 30rem;
+}
 #display {
   display: flex;
   justify-content: space-around;
@@ -46,12 +63,22 @@
 .details {
   display: flex;
   flex-direction: column;
-  height: 20rem;
+  height: 25rem;
   justify-content: space-evenly;
   margin-right: 1rem;
 }
 h4 {
   font-weight: 400 !important;
+}
+.right-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+@media screen and (min-width: 1250px) {
+  .right-panel {
+    margin-right: 5rem;
+  }
 }
 .cuisine {
   border: 1px solid rgb(207, 207, 207);
