@@ -62,16 +62,21 @@ router.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
     let number = 9811112323;
+    // let timing = "10AM - 11PM";
     const restaurant = await Restaurants.findOne({ _id: id });
     await client
       .getRestaurant({ res_id: restaurant.res_id })
       .then((response) => {
+        // timing = response.timings.substring(
+        //   0,
+        //   response.timings.indexOf("(") - 1
+        // );
         number = response.phone_numbers.substring(
           response.phone_numbers.indexOf(" ") + 1,
           14
         );
+        restaurant.timing = response.timings;
         restaurant.phone_numbers = number;
-        restaurant.w = 67;
       });
     res.send(restaurant);
   } catch (error) {

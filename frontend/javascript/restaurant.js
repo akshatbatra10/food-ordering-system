@@ -8,6 +8,7 @@ const map = document.querySelector("#static-map");
 const directionLink = document.querySelectorAll(".link");
 const loader = document.querySelector("#loading");
 const afterLoad = document.querySelector(".afterloading");
+const timing = document.querySelector(".timing");
 
 let restaurant;
 
@@ -31,7 +32,6 @@ const addHTML = () => {
       <i class="far fa-star active"></i><i class="far fa-star active"></i><i class="far fa-star active"></i><i class="far fa-star"></i><i class="far fa-star"></i>
       <span>(${restaurant.votes}) reviews</span>
     </div>
-    <span class="timing">Timing: 11AM - 12AM</span>
   </div>
   <img style="height: 13rem; border-radius: 2rem; padding: 1rem" src="${restaurant.image}" />`;
   displayData.insertAdjacentHTML("beforeend", html);
@@ -76,6 +76,7 @@ window.addEventListener("load", async function () {
   }
   avgPrice.innerText = restaurant.average_cost_for_two;
   number.innerText = `+91-${restaurant.phone_numbers}`;
+  timing.innerText = restaurant.timing;
   loader.classList.add("none");
   afterLoad.classList.remove("none");
 });

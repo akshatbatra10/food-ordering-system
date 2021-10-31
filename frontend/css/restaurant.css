@@ -39,7 +39,8 @@
   margin-bottom: 1rem;
 }
 .timing {
-  font-size: 0.9rem;
+  font-size: 1.1rem;
+  color: rgb(79, 79, 79);
 }
 .nav-item-link {
   display: flex !important;
@@ -90,7 +91,6 @@
 .details {
   display: flex;
   flex-direction: column;
-  height: 25rem;
   justify-content: space-evenly;
   margin-right: 1rem;
 }
