@@ -5,6 +5,9 @@ const cuisines = document.querySelector(".cuisines");
 const avgPrice = document.querySelector(".price");
 const number = document.querySelector(".number");
 const map = document.querySelector("#static-map");
+const directionLink = document.querySelectorAll(".link");
+const loader = document.querySelector("#loading");
+const afterLoad = document.querySelector(".afterloading");
 
 let restaurant;
 
@@ -68,7 +71,11 @@ window.addEventListener("load", async function () {
   addHTML();
   addRestaurantMap();
   addCuisines();
+  for (let link of directionLink) {
+    link.href = `https://www.google.com/maps/dir/?api=1&destination=${restaurant.geometry.coordinates[1]},${restaurant.geometry.coordinates[0]}`;
+  }
   avgPrice.innerText = restaurant.average_cost_for_two;
   number.innerText = `+91-${restaurant.phone_numbers}`;
-  // map.src = `https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/${restaurant.geometry.coordinates[0]},${restaurant.geometry.coordinates[1]},14/340x230?access_token=pk.eyJ1IjoiYWtzaGF0LWJhdHJhIiwiYSI6ImNrazB1cWJxajBsNDkycHRnaXVmbTVyNmkifQ.wPpiFWa1zLQYQUnhr-uCGQ`;
+  loader.classList.add("none");
+  afterLoad.classList.remove("none");
 });

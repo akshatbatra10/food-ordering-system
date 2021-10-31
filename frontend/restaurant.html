@@ -33,99 +33,104 @@
     />
   </head>
   <body>
-    <div class="container">
-      <div
-        class="row height d-flex align-items-center"
-        style="justify-content: space-between"
-      >
-        <h3 class="col-md-3">FoodMania</h3>
-        <div class="col-md-6"></div>
-        <nav class="col-md-3 d-flex">
-          <a class="nav-link" href="./signIn-signUp.html">Login/Register</a>
-          <a class="nav-link" href="/logout">Logout</a>
-        </nav>
-      </div>
-    </div>
-    <div class="restaurant">
+    <div id="loading"></div>
+    <div class="afterloading none">
       <div class="container">
-        <div id="display"></div>
-      </div>
-    </div>
-    <div id="navbar" class="container d-flex">
-      <a href="#" target="_blank" class="nav-link nav-item-link"
-        ><div>
-          <i class="far fa-star"></i>
-          <span>Add Review</span>
-        </div></a
-      >
-      <a
-        id="link"
-        href="https://www.google.com/maps/dir/?api=1&amp;destination=28.6327700469,77.2788127139"
-        class="nav-link nav-item-link"
-        ><div>
-          <i class="fas fa-directions"></i>
-          <span>Direction</span>
-        </div></a
-      >
-      <a href="#" class="nav-link nav-item-link"
-        ><div>
-          <i class="far fa-bookmark"></i>
-          <span>Bookmark</span>
-        </div></a
-      >
-    </div>
-    <div class="about container d-flex">
-      <div class="details">
-        <div class="cuisines">
-          <h4>Cuisines</h4>
-        </div>
-        <div class="dishes">
-          <h4>Popular Dishes</h4>
-          <span class="dish">Tandoori Platter,</span>
-          <span class="dish">Paneer Tikka,</span>
-          <span class="dish">Veg Grilled Sandwich,</span>
-          <span class="dish">Veg Regular Hot & Spicy</span>
-        </div>
-        <div class="avg_cost">
-          <h4>Average Cost</h4>
-          <p
-            style="
-              font-size: 1.1rem;
-              line-height: 1.5;
-              margin: 0px;
-              color: rgb(79, 79, 79);
-            "
-          >
-            Average cost for two <i class="fas fa-rupee-sign"></i
-            ><span class="price"></span> (approx.)
-          </p>
-          <p
-            style="
-              font-size: 0.9rem;
-              line-height: 1.5;
-              margin: 0px;
-              color: rgb(156, 156, 156);
-            "
-          >
-            Exclusive of applicable taxes and charges, if any
-          </p>
+        <div
+          class="row height d-flex align-items-center"
+          style="justify-content: space-between"
+        >
+          <h3 class="col-md-3">FoodMania</h3>
+          <div class="col-md-6"></div>
+          <nav class="col-md-3 d-flex">
+            <a class="nav-link" href="./signIn-signUp.html">Login/Register</a>
+            <a class="nav-link" href="/logout">Logout</a>
+          </nav>
         </div>
       </div>
-      <div class="right-panel">
-        <div class="call">
-          <h4>Call</h4>
-          <p class="number"></p>
+      <div class="restaurant">
+        <div class="container">
+          <div id="display"></div>
         </div>
-        <div id="map" style="width: 330px; height: 240px"></div>
-        <a
-          id="link"
-          href="https://www.google.com/maps/dir/?api=1&amp;destination=28.6327700469,77.2788127139"
-          class="nav-link direction-link"
+      </div>
+      <div id="navbar" class="container d-flex">
+        <a href="#" class="nav-link nav-item-link"
           ><div>
-            <i class="fas fa-directions direction"></i>
+            <i class="far fa-star"></i>
+            <span>Add Review</span>
+          </div></a
+        >
+        <a
+          href=""
+          class="nav-link nav-item-link link"
+          target="_blank"
+          rel="noopener noreferrer"
+          ><div>
+            <i class="fas fa-directions"></i>
             <span>Direction</span>
           </div></a
         >
+        <a href="#" class="nav-link nav-item-link"
+          ><div>
+            <i class="far fa-bookmark"></i>
+            <span>Bookmark</span>
+          </div></a
+        >
+      </div>
+      <div class="about container d-flex">
+        <div class="details">
+          <div class="cuisines">
+            <h4>Cuisines</h4>
+          </div>
+          <div class="dishes">
+            <h4>Popular Dishes</h4>
+            <span class="dish">Tandoori Platter,</span>
+            <span class="dish">Paneer Tikka,</span>
+            <span class="dish">Veg Grilled Sandwich,</span>
+            <span class="dish">Veg Regular Hot & Spicy</span>
+          </div>
+          <div class="avg_cost">
+            <h4>Average Cost</h4>
+            <p
+              style="
+                font-size: 1.1rem;
+                line-height: 1.5;
+                margin: 0px;
+                color: rgb(79, 79, 79);
+              "
+            >
+              Average cost for two <i class="fas fa-rupee-sign"></i
+              ><span class="price"></span> (approx.)
+            </p>
+            <p
+              style="
+                font-size: 0.9rem;
+                line-height: 1.5;
+                margin: 0px;
+                color: rgb(156, 156, 156);
+              "
+            >
+              Exclusive of applicable taxes and charges, if any
+            </p>
+          </div>
+        </div>
+        <div class="right-panel">
+          <div class="call">
+            <h4>Call</h4>
+            <p class="number"></p>
+          </div>
+          <div id="map" style="width: 330px; height: 240px"></div>
+          <a
+            href=""
+            class="nav-link direction-link link"
+            target="_blank"
+            rel="noopener noreferrer"
+            ><div>
+              <i class="fas fa-directions direction"></i>
+              <span>Direction</span>
+            </div></a
+          >
+        </div>
       </div>
     </div>
     <script src="javascript/restaurant.js"></script>
