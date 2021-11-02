@@ -96,6 +96,19 @@
 h4 {
   font-weight: 400 !important;
 }
+h5 {
+  font-weight: 400 !important;
+}
+.food_details {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.food_img > img {
+  height: 8rem;
+  width: 12rem;
+  border-radius: 1rem;
+}
 .right-panel {
   display: flex;
   flex-direction: column;

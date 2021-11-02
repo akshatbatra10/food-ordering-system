@@ -43,24 +43,63 @@ const addFoodHTML = () => {
   );
   const recommendedHTML = recommendedArray
     .map((item) => {
-      return `<div>
-      <span>${item.name}</span>
+      return `<div class="food d-flex">
+      <div class="food_img">
+        <img src=${item.image} />
+        <div class=${item.veg ? "veg" : "non_veg"}>${item.veg}</div>
+      </div>
+      <div class="food_details">
+        <div class="food_name">
+          <h5>${item.name}</h5>
+          <span class=${
+            !item.bestSeller ? "none" : "best_seller"
+          }>Best Seller</span>
+          <p>Rs. ${item.price}</p>
+        </div>
+        <div class="food_button">
+          <button>Add</button>
+        </div>
+      </div>
     </div>`;
     })
     .join("");
   recommended.insertAdjacentHTML("beforeend", recommendedHTML);
   const pizzaHTML = pizzaArray
     .map((item) => {
-      return `<div>
-      <span>${item.name}</span>
+      return `<div class="food d-flex">
+      <div class="food_img">
+        <img src=${item.image} />
+        <div class=${item.veg ? "veg" : "non_veg"}>${item.veg}</div>
+      </div>
+      <div class="food_details">
+        <div class="food_name">
+          <h5>${item.name}</h5>
+          <p>Rs. ${item.price}</p>
+        </div>
+        <div class="food_button">
+          <button>Add</button>
+        </div>
+      </div>
     </div>`;
     })
     .join("");
   pizza.insertAdjacentHTML("beforeend", pizzaHTML);
   const burgerHTML = burgersArray
     .map((item) => {
-      return `<div>
-      <span>${item.name}</span>
+      return `<div class="food d-flex">
+      <div class="food_img">
+        <img src=${item.image} />
+        <div class=${item.veg ? "veg" : "non_veg"}>${item.veg}</div>
+      </div>
+      <div class="food_details">
+        <div class="food_name">
+          <h5>${item.name}</h5>
+          <p>Rs. ${item.price}</p>
+        </div>
+        <div class="food_button">
+          <button>Add</button>
+        </div>
+      </div>
     </div>`;
     })
     .join("");
