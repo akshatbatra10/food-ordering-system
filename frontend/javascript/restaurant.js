@@ -10,12 +10,12 @@ const loader = document.querySelector("#loading");
 const afterLoad = document.querySelector(".afterloading");
 const timing = document.querySelector(".timing");
 const menu = document.querySelector(".menu");
+const recommended = document.querySelector("#recommended");
+const pizza = document.querySelector("#pizza");
+const burger = document.querySelector("#burger");
 
 let restaurant;
 let foodData;
-let pizza;
-let recommended;
-let burgers;
 
 const fetchData = async () => {
   try {
@@ -30,12 +30,41 @@ const fetchData = async () => {
 };
 
 const addFoodHTML = () => {
-  recommended = foodData.filter((data) => data.category == "Recommended");
-  pizza = foodData.filter((data) => data.category == "Pizzas");
-  burgers = foodData.filter((data) => data.category == "Burgers");
-  console.log(recommended, "recommended");
-  console.log(pizza, "pizza");
-  console.log(burgers, "burgers");
+  const recommendedArray = foodData.filter(
+    (data) => data.category == "Recommended"
+  );
+  const pizzaArray = foodData.filter((data) => data.category == "Pizzas");
+  const burgersArray = foodData.filter((data) => data.category == "Burgers");
+  const others = foodData.filter(
+    (data) =>
+      data.category != "Recommended" &&
+      data.category != "Pizzas" &&
+      data.category != "Burgers"
+  );
+  const recommendedHTML = recommendedArray
+    .map((item) => {
+      return `<div>
+      <span>${item.name}</span>
+    </div>`;
+    })
+    .join("");
+  recommended.insertAdjacentHTML("beforeend", recommendedHTML);
+  const pizzaHTML = pizzaArray
+    .map((item) => {
+      return `<div>
+      <span>${item.name}</span>
+    </div>`;
+    })
+    .join("");
+  pizza.insertAdjacentHTML("beforeend", pizzaHTML);
+  const burgerHTML = burgersArray
+    .map((item) => {
+      return `<div>
+      <span>${item.name}</span>
+    </div>`;
+    })
+    .join("");
+  burger.insertAdjacentHTML("beforeend", burgerHTML);
 };
 
 const fetchFood = async () => {
@@ -44,7 +73,6 @@ const fetchFood = async () => {
       `http://localhost:3000/restaurants/food?${Date.now()}`
     );
     foodData = await response.json();
-    console.log(foodData);
     addFoodHTML();
   } catch (err) {
     console.log(err);
