@@ -30,7 +30,6 @@ const fetchRestaurants = async (url) => {
   }
 };
 
-
 const addHTML = () => {
   const html = restaurants
     .map((restaurant) => {
@@ -47,8 +46,8 @@ const addHTML = () => {
               <span><i class="fas fa-rupee-sign"></i> ${restaurant.average_cost_for_two}</span>
             </div>
             <div class="__detail">
-              <div class="rating">
-                <i class="fas fa-star"></i> <span>5.0</span>
+              <div class="rating" style="background-color: #${restaurant.rating_color}">
+                <i class="fas fa-star"></i> <span>${restaurant.aggregate_rating}</span>
               </div>
               <div class="timing">
                 <i class="far fa-clock"></i> <span>30 m</span>
@@ -92,10 +91,6 @@ window.addEventListener("load", async function () {
   header.classList.remove("none");
   addHTML();
 });
-
-// window.onbeforeunload = function() {
-//   window.localStorage.clear();
-// }
 
 showMoreButton.addEventListener("click", async function () {
   loader.classList.remove("none");

@@ -33,7 +33,7 @@ const addHTML = () => {
       <span>(${restaurant.votes}) reviews</span>
     </div>
   </div>
-  <img style="height: 13rem; border-radius: 2rem; padding: 1rem" src="${restaurant.image}" />`;
+  <img style="height: 13rem; border-radius: 2rem; padding: 1rem; margin-bottom: 2rem" src="${restaurant.image}" />`;
   displayData.insertAdjacentHTML("beforeend", html);
 };
 

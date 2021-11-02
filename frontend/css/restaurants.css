@@ -108,6 +108,7 @@
   z-index: 2;
   background-color: #fff;
   display: flex;
+  border: 1px solid #bcbaba;
   justify-content: space-evenly;
   flex-direction: column;
   height: 10rem;
@@ -157,7 +158,6 @@
 }
 .rating {
   padding: 0.2rem 0.4rem;
-  background-color: rgb(36, 150, 63);
   border-radius: 0.5rem;
   color: white;
 }

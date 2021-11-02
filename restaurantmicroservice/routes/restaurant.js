@@ -67,10 +67,6 @@ router.get("/:id", async (req, res) => {
     await client
       .getRestaurant({ res_id: restaurant.res_id })
       .then((response) => {
-        // timing = response.timings.substring(
-        //   0,
-        //   response.timings.indexOf("(") - 1
-        // );
         number = response.phone_numbers.substring(
           response.phone_numbers.indexOf(" ") + 1,
           14
