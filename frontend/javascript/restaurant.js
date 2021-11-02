@@ -9,8 +9,13 @@ const directionLink = document.querySelectorAll(".link");
 const loader = document.querySelector("#loading");
 const afterLoad = document.querySelector(".afterloading");
 const timing = document.querySelector(".timing");
+const menu = document.querySelector(".menu");
 
 let restaurant;
+let foodData;
+let pizza;
+let recommended;
+let burgers;
 
 const fetchData = async () => {
   try {
@@ -21,6 +26,28 @@ const fetchData = async () => {
     console.log(restaurant);
   } catch (error) {
     console.log(error);
+  }
+};
+
+const addFoodHTML = () => {
+  recommended = foodData.filter((data) => data.category == "Recommended");
+  pizza = foodData.filter((data) => data.category == "Pizzas");
+  burgers = foodData.filter((data) => data.category == "Burgers");
+  console.log(recommended, "recommended");
+  console.log(pizza, "pizza");
+  console.log(burgers, "burgers");
+};
+
+const fetchFood = async () => {
+  try {
+    const response = await fetch(
+      `http://localhost:3000/restaurants/food?${Date.now()}`
+    );
+    foodData = await response.json();
+    console.log(foodData);
+    addFoodHTML();
+  } catch (err) {
+    console.log(err);
   }
 };
 
@@ -71,6 +98,7 @@ window.addEventListener("load", async function () {
   addHTML();
   addRestaurantMap();
   addCuisines();
+  fetchFood();
   for (let link of directionLink) {
     link.href = `https://www.google.com/maps/dir/?api=1&destination=${restaurant.geometry.coordinates[1]},${restaurant.geometry.coordinates[0]}`;
   }

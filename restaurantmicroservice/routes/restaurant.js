@@ -5,6 +5,7 @@ const mbxStatic = require("@mapbox/mapbox-sdk/services/static");
 
 const client = require("../zomatoClient");
 const Restaurants = require("../models/restaurants");
+const FoodData = require("../models/foodData");
 
 const baseClient = mbxClient({
   accessToken:
@@ -58,11 +59,19 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/food", async (req, res) => {
+  try {
+    const foodData = await FoodData.find({});
+    res.send(foodData);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 router.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
     let number = 9811112323;
-    // let timing = "10AM - 11PM";
     const restaurant = await Restaurants.findOne({ _id: id });
     await client
       .getRestaurant({ res_id: restaurant.res_id })
