@@ -105,8 +105,8 @@ h5 {
   width: 100%;
 }
 .food_img > img {
-  height: 8rem;
-  width: 12rem;
+  height: 7rem;
+  width: 10rem;
   border-radius: 1rem;
 }
 .right-panel {
@@ -116,6 +116,9 @@ h5 {
 @media screen and (min-width: 1250px) {
   .right-panel {
     margin-right: 5rem;
+  }
+  .menu {
+    width: 120%;
   }
 }
 .cuisine {
@@ -138,4 +141,84 @@ h5 {
 .dish {
   color: rgb(79, 79, 79);
   font-size: 1.1rem;
+}
+.veg > img {
+  height: 1.2rem;
+  margin-left: 0.5rem;
+}
+.non_veg > img {
+  height: 1.2rem;
+  margin-left: 0.5rem;
+}
+.food_name {
+  margin-left: 1rem;
+}
+.food_name > p {
+  display: flex;
+  align-items: center;
+  margin-top: 0.4rem;
+  opacity: 0.8;
+}
+.food_name > p > img {
+  height: 1rem;
+}
+.best_seller {
+  height: max-content;
+  width: max-content;
+  background: rgb(224, 53, 70);
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  border-radius: 4px;
+  color: rgb(255, 255, 255);
+  font-size: 0.8rem;
+  border: none;
+  opacity: 0.9;
+  padding: 0.2rem 0.3rem;
+}
+.avg_cost > p > img {
+  height: 1.3rem;
+}
+.food_button {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  width: 5rem;
+  height: 2.4rem;
+  border: 0.5px solid rgb(239, 79, 95);
+  border-radius: 0.8rem;
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+  background: rgb(255, 246, 247);
+}
+.add_button {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+}
+.add_text {
+  color: rgb(239, 79, 95);
+  font-size: 1rem;
+  margin: 0px 0.5rem;
+  font-weight: 600;
+}
+.plus_logo {
+  margin-top: 0.2rem;
+  position: absolute;
+  top: 0.3rem;
+  right: 0.3rem;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  cursor: inherit;
 }
