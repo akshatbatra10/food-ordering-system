@@ -17,7 +17,13 @@ async function Register(req, res) {
       password: hiddenPassword,
     });
     await user.save();
-    res.send("Successfully registered new user");
+    const token = jwt.sign({ _id: user._id }, process.env.ACCESS_TOKEN, {
+      expiresIn: "30s",
+    });
+    const refreshToken = await generateRefreshToken(user);
+    res.cookie("jwt", token);
+    res.status(200).json({ token: token, refreshToken: refreshToken });
+    // res.send("Successfully registered new user");
   } catch (e) {
     console.log(e);
   }

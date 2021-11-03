@@ -5,6 +5,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const axios = require("axios");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 
 const routes = require("./routes/user");
 
@@ -13,8 +14,15 @@ const PORT = process.env.PORT || 3001;
 
 const app = express();
 
-app.use(cors());
+const corsOptions = {
+  origin: true, //included origin as true
+  credentials: true, //included credentials as true
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 mongoose.connect(dbUrl, {
   useNewUrlParser: true,
