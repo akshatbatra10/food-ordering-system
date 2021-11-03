@@ -64,6 +64,7 @@ const addHTML = () => {
 
 function handleClick(id) {
   window.localStorage.setItem("restaurantID", id);
+  console.log(search.value);
   window.location = "restaurant.html";
 }
 
@@ -103,7 +104,7 @@ showMoreButton.addEventListener("click", async function () {
 });
 
 search.addEventListener("click", async function () {
-  const base_url = `http://localhost:3000/restaurants/?lat=${lat}&long=${long}&${Date.now()}`;
+  const base_url = `http://localhost:3000/restaurants/?lat=${lat}&long=${long}&page=1&limit=60&${Date.now()}`;
   await fetchRestaurants(base_url);
 });
 

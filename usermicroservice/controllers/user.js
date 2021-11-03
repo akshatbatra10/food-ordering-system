@@ -7,7 +7,10 @@ const redisClient = require("../redis_connect");
 async function Register(req, res) {
   try {
     const salt = await bcrypt.genSalt();
-    const hiddenPassword = await bcrypt.hash(req.body.password, salt);
+    const hiddenPassword = await bcrypt.hash(
+      req.body.password.toString(),
+      salt
+    );
     const user = new Users({
       name: req.body.name,
       email: req.body.email,
