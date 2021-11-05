@@ -21,7 +21,7 @@ async function Register(req, res) {
       expiresIn: "30s",
     });
     const refreshToken = await generateRefreshToken(user);
-    res.cookie("jwt", token);
+    res.cookie("jwt", token, { maxAge: 60 * 60 * 24 * 1000 });
     res.status(200).json({ token: token, refreshToken: refreshToken });
     // res.send("Successfully registered new user");
   } catch (e) {
@@ -40,7 +40,9 @@ async function Login(req, res) {
     expiresIn: "30s",
   });
   const refreshToken = await generateRefreshToken(user);
-  res.status(200).json({ token: token, refreshToken: refreshToken });
+  // res.setHeader("Set-Cookie", token);
+  await res.cookie("jwt", token, { maxAge: 60 * 60 * 24 * 1000 });
+  res.json({ token: token, refreshToken: refreshToken });
 }
 
 async function Token(req, res) {

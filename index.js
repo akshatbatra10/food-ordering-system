@@ -25,7 +25,12 @@ db.once("open", function () {
   console.log("Database connected");
 });
 
-app.use(cors());
+app.use(
+  cors({
+    origin: true, //included origin as true
+    credentials: true,
+  })
+);
 // app.use(helmet());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "frontend")));
