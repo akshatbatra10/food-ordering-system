@@ -1,17 +1,9 @@
 const express = require("express");
 const axios = require("axios");
-const mbxClient = require("@mapbox/mapbox-sdk");
-const mbxStatic = require("@mapbox/mapbox-sdk/services/static");
 
 const client = require("../zomatoClient");
 const Restaurants = require("../models/restaurants");
 const FoodData = require("../models/foodData");
-
-const baseClient = mbxClient({
-  accessToken:
-    "pk.eyJ1IjoiYWtzaGF0LWJhdHJhIiwiYSI6ImNrazB1cWJxajBsNDkycHRnaXVmbTVyNmkifQ.wPpiFWa1zLQYQUnhr-uCGQ",
-});
-const staticService = mbxStatic(baseClient);
 
 const router = express.Router();
 

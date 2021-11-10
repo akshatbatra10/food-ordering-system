@@ -117,9 +117,6 @@ h5 {
   .right-panel {
     margin-right: 5rem;
   }
-  .menu {
-    width: 120%;
-  }
 }
 .cuisine {
   border: 1px solid rgb(207, 207, 207);
@@ -221,4 +218,11 @@ h5 {
   -webkit-box-align: center;
   align-items: center;
   cursor: inherit;
+}
+.menu-cart {
+  display: flex;
+  justify-content: space-between;
+}
+.cart {
+  width: 32%;
 }

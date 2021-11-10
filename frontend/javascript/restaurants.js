@@ -64,7 +64,6 @@ const addHTML = () => {
 
 function handleClick(id) {
   window.localStorage.setItem("restaurantID", id);
-  console.log(search.value);
   window.location = "restaurant.html";
 }
 
