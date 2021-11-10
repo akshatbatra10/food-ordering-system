@@ -81,4 +81,15 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+router.post("/cart", async (req, res) => {
+  const cartItemId = req.body.id;
+  try {
+    const cartItem = await FoodData.find({ _id: cartItemId });
+    res.cookie("cart-item", cartItem, { maxAge: 60 * 60 * 24 * 7 * 1000 });
+    res.status(200).json({ data: { message: success, cartItem: cartItem } });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 module.exports = router;

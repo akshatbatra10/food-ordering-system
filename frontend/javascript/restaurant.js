@@ -13,6 +13,8 @@ const menu = document.querySelector(".menu");
 const recommended = document.querySelector("#recommended");
 const pizza = document.querySelector("#pizza");
 const burger = document.querySelector("#burger");
+const cartBody = document.querySelector(".cart-body");
+const addButton = document.querySelector(".add_button");
 
 let restaurant;
 let foodData;
@@ -65,7 +67,7 @@ const addFoodHTML = () => {
           }</p>
         </div>
         <div class="food_button">
-          <div class="add_button">
+          <div class="add_button" onclick="addItem('${item._id}')">
             <span class="add_text">ADD</span>
             <i
               class="plus_logo"
@@ -117,7 +119,7 @@ const addFoodHTML = () => {
           }</p>
         </div>
         <div class="food_button">
-          <div class="add_button">
+          <div class="add_button" onclick="addItem('${item._id}')">
             <span class="add_text">ADD</span>
             <i
               class="plus_logo"
@@ -169,7 +171,7 @@ const addFoodHTML = () => {
           }</p>
         </div>
         <div class="food_button">
-          <div class="add_button">
+          <div class="add_button" onclick="addItem('${item._id}')">
             <span class="add_text">ADD</span>
             <i
               class="plus_logo"
@@ -268,3 +270,7 @@ window.addEventListener("load", async function () {
   loader.classList.add("none");
   afterLoad.classList.remove("none");
 });
+
+const addItem = (id) => {
+  console.log(id);
+};

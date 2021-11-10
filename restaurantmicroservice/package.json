@@ -13,6 +13,7 @@
   "dependencies": {
     "@mapbox/mapbox-sdk": "^0.13.2",
     "axios": "^0.21.4",
+    "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
     "mongoose": "^6.0.12",
     "zomato": "^1.1.0"

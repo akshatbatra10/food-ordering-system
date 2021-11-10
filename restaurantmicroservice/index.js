@@ -4,6 +4,7 @@ if (process.env.NODE_ENV !== "production") {
 const express = require("express");
 const mongoose = require("mongoose");
 const axios = require("axios");
+const cookieParser = require("cookie-parser");
 // const path = require("path");
 
 const dbUrl = process.env.DB_CONNECTION_URL;
@@ -14,6 +15,7 @@ const routes = require("./routes/restaurant");
 const app = express();
 
 app.use(express.json());
+app.use(cookieParser());
 
 mongoose.connect(dbUrl, {
   useNewUrlParser: true,
