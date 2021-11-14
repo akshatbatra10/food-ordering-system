@@ -81,12 +81,13 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.post("/cart", async (req, res) => {
-  const cartItemId = req.body.id;
+router.post("/cart/:id", async (req, res) => {
+  const { id } = req.params;
   try {
-    const cartItem = await FoodData.find({ _id: cartItemId });
-    res.cookie("cart-item", cartItem, { maxAge: 60 * 60 * 24 * 7 * 1000 });
-    res.status(200).json({ data: { message: success, cartItem: cartItem } });
+    const cartItem = await FoodData.find({ _id: id });
+    // window.localStorage.setItem("cart-item", cartItem);
+    await res.cookie("cart-item", cartItem);
+    res.send({ cartItem: cartItem });
   } catch (error) {
     console.log(error);
   }

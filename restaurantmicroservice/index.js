@@ -4,6 +4,7 @@ if (process.env.NODE_ENV !== "production") {
 const express = require("express");
 const mongoose = require("mongoose");
 const axios = require("axios");
+const cors = require("cors");
 const cookieParser = require("cookie-parser");
 // const path = require("path");
 
@@ -14,6 +15,7 @@ const routes = require("./routes/restaurant");
 
 const app = express();
 
+app.use(cors({ origin: true, credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
 

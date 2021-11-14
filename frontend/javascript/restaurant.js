@@ -271,6 +271,18 @@ window.addEventListener("load", async function () {
   afterLoad.classList.remove("none");
 });
 
-const addItem = (id) => {
-  console.log(id);
+const addItem = async (id) => {
+  try {
+    const response = await fetch(
+      `http://localhost:3000/restaurants/cart/${id}`,
+      {
+        method: "POST",
+        credentials: "include",
+      }
+    );
+    const cartItem = await response.json();
+    console.log(cartItem);
+  } catch (error) {
+    console.log(error);
+  }
 };
