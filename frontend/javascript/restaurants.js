@@ -13,6 +13,7 @@ const limit = 15;
 
 let page = 1;
 let restaurants;
+let searchList;
 
 const fetchRestaurants = async (url) => {
   try {
@@ -104,7 +105,11 @@ showMoreButton.addEventListener("click", async function () {
 
 search.addEventListener("click", async function () {
   const base_url = `http://localhost:3000/restaurants/?lat=${lat}&long=${long}&page=1&limit=60&${Date.now()}`;
-  await fetchRestaurants(base_url);
+  if (searchList == undefined) {
+    const response = await fetch(base_url);
+    restaurantsData = await response.json();
+    searchList = restaurantsData.results;
+  }
 });
 
 search.addEventListener("keyup", async function (e) {
@@ -118,7 +123,7 @@ search.addEventListener("keyup", async function (e) {
   const search_value = e.target.value.toLowerCase();
   if (search_value.length > 2) {
     search_list.classList.remove("none");
-    const tempArray = restaurants.filter((restaurant) => {
+    const tempArray = searchList.filter((restaurant) => {
       if (restaurant.name.toLowerCase().indexOf(search_value) !== -1) {
         return true;
       }
