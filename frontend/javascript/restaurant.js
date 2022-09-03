@@ -271,6 +271,7 @@ window.addEventListener("load", async function () {
   timing.innerText = restaurant.timing;
   loader.classList.add("none");
   afterLoad.classList.remove("none");
+  getCookie();
 });
 
 const addItem = async (id) => {
@@ -278,10 +279,6 @@ const addItem = async (id) => {
     `http://localhost:3000/restaurants/food/${id}?${Date.now()}`
   );
   const cartItem = await response.json();
-  const item = {
-    value: cartItem.cartItem,
-    count: 1,
-  };
   let cart = document.cookie.split("; ");
   cartArray = cart;
   console.log(cartArray);
@@ -294,12 +291,13 @@ const addItem = async (id) => {
   if (filterCart != undefined) {
     let idx = filterCart.indexOf("=");
     let count = parseInt(filterCart.substring(idx + 1));
+    console.log(count + 1);
     setCookie(count + 1, id, 0.01);
   } else {
     cartArray.push(id + "=1");
     setCookie(1, id, 0.01);
   }
-  //getCookie();
+  getCookie();
   console.log(cartArray);
 };
 
