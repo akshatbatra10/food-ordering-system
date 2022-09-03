@@ -18,6 +18,8 @@ const addButton = document.querySelector(".add_button");
 
 let restaurant;
 let foodData;
+let cartArray = [];
+let cart_id;
 
 const fetchData = async () => {
   try {
@@ -272,17 +274,43 @@ window.addEventListener("load", async function () {
 });
 
 const addItem = async (id) => {
-  try {
-    const response = await fetch(
-      `http://localhost:3000/restaurants/cart/${id}`,
-      {
-        method: "POST",
-        credentials: "include",
-      }
-    );
-    const cartItem = await response.json();
-    console.log(cartItem);
-  } catch (error) {
-    console.log(error);
+  const response = await fetch(
+    `http://localhost:3000/restaurants/food/${id}?${Date.now()}`
+  );
+  const cartItem = await response.json();
+  const item = {
+    value: cartItem.cartItem,
+    count: 1,
+  };
+  // const itemArray = cartArray.filter((item) => cartItem.value.id == id);
+  // if (itemArray == undefined) {
+  //   cartArray.push(item);
+  // } else {
+  //   itemArray.count++;
+  // }
+  let filterCart = cartArray.filter((item) => {
+    return item.value._id == id;
+  })[0];
+  if (filterCart != undefined) {
+    filterCart.count++;
+  } else {
+    cartArray.push(item);
   }
+  console.log(cartArray);
+  //setCookie(cartItem.cartItem);
+  //getCookie();
 };
+
+function setCookie(cartItem) {
+  const d = new Date();
+  d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+  let expires = "expires=" + d.toUTCString();
+  console.log(expires);
+  //document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  document.cookie = "cartItem=" + cartItem + "; ";
+}
+
+function getCookie() {
+  cartArray = document.cookie.split(";");
+  console.log(cartArray);
+}

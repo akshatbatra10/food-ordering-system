@@ -5,6 +5,7 @@ const fs = require("fs");
 const router = express.Router();
 
 const registry = require("./registry.json");
+const { request } = require("http");
 
 router.post("/register", async (req, res) => {
   try {
