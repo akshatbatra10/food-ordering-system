@@ -282,35 +282,36 @@ const addItem = async (id) => {
     value: cartItem.cartItem,
     count: 1,
   };
-  // const itemArray = cartArray.filter((item) => cartItem.value.id == id);
-  // if (itemArray == undefined) {
-  //   cartArray.push(item);
-  // } else {
-  //   itemArray.count++;
-  // }
-  let filterCart = cartArray.filter((item) => {
-    return item.value._id == id;
-  })[0];
-  if (filterCart != undefined) {
-    filterCart.count++;
-  } else {
-    cartArray.push(item);
-  }
+  let cart = document.cookie.split("; ");
+  cartArray = cart;
   console.log(cartArray);
-  //setCookie(cartItem.cartItem);
+  let filterCart = cartArray.filter((item) => {
+    let idx = item.indexOf("=");
+    let _id = item.substring(0, idx);
+    return _id == id;
+  })[0];
+  console.log(filterCart);
+  if (filterCart != undefined) {
+    let idx = filterCart.indexOf("=");
+    let count = parseInt(filterCart.substring(idx + 1));
+    setCookie(count + 1, id, 0.01);
+  } else {
+    cartArray.push(id + "=1");
+    setCookie(1, id, 0.01);
+  }
   //getCookie();
+  console.log(cartArray);
 };
 
-function setCookie(cartItem) {
+function setCookie(count, id, days) {
   const d = new Date();
-  d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+  d.setTime(d.getTime() + days * 24 * 60 * 60 * 1000);
   let expires = "expires=" + d.toUTCString();
-  console.log(expires);
   //document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-  document.cookie = "cartItem=" + cartItem + "; ";
+  document.cookie = id + "=" + count + ";" + expires + "; ";
 }
 
 function getCookie() {
-  cartArray = document.cookie.split(";");
-  console.log(cartArray);
+  const cart = document.cookie.split("; ");
+  console.log(cart);
 }
