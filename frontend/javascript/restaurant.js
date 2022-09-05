@@ -394,10 +394,10 @@ function displayItems() {
       <div class='food-quantity'>
         <div class='food-negative'>-</div>
         <div class='food-number'>${item.count}</div>
-        <div class='food-positve'>+</div>
+        <div class='food-positive'>+</div>
       </div>
       <div class='food-price'>
-        <span class='food-total'>${item.count * item.value.price}</span>
+        <span class='food-total'>&#8377 ${item.count * item.value.price}</span>
       </div>
     </div>
   </div>

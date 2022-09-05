@@ -226,3 +226,87 @@ h5 {
 .cart {
   width: 32%;
 }
+.food-item {
+  padding: 10px 0;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.food-body {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  flex-grow: 1;
+}
+.food-title {
+  flex-grow: 1;
+  font-size: 14px;
+  font-weight: 400;
+  margin-left: 10px;
+  margin-right: 14px;
+}
+.add-food {
+  width: 120px;
+}
+.food-details {
+  float: right;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.food-quantity {
+  display: inline-block;
+  height: 30px;
+  width: 83px;
+  border: 1px solid #d4d5d9;
+  color: #60b246;
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 30px;
+  position: relative;
+  text-align: center;
+  background-color: #fff;
+}
+.food-positive {
+  position: absolute;
+  right: 0;
+  top: -2px;
+  width: 33.33333%;
+  display: inline-block;
+  opacity: 1;
+  transform: translateZ(0);
+  cursor: pointer;
+  font-size: 150%;
+  font-weight: 600;
+}
+.food-negative {
+  position: absolute;
+  left: 0;
+  top: -3px;
+  width: 33.33333%;
+  display: inline-block;
+  opacity: 1;
+  transform: translateZ(0);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+.food-number {
+  position: absolute;
+  left: 33.33333%;
+  top: 0;
+  width: 33.33333%;
+  display: inline-block;
+  opacity: 1;
+  transform: translateZ(0);
+  cursor: pointer;
+}
+.food-price {
+  font-size: 15px;
+  color: #535665;
+  text-align: right;
+  width: 60px;
+}
