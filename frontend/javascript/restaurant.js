@@ -367,8 +367,67 @@ async function allCartItems() {
     displayCartItem.classList.remove("none");
     displayCartItem.innerText =
       cartCount == 1 ? "1 Item" : `${cartCount} Items`;
+    displayItems();
   } else {
     displayCartItem.classList.add("none");
   }
   console.log(cartItems);
 }
+
+function displayItems() {
+  const displayCart = cartItems
+    .map((item) => {
+      return `
+    <div class='food-item'>
+  <div class='food-body'>
+  <div class=${item.value.veg ? "veg" : "non_veg"}>${
+        item.value.veg
+          ? `<img src="https://img.icons8.com/color/48/000000/vegetarian-food-symbol.png"/>`
+          : `<img src="https://img.icons8.com/fluency/48/000000/non-vegetarian-food-symbol.png"/>`
+      }</div>
+    <div class='food-title'>
+      ${item.value.name}
+    </div>
+  </div>
+  <div class='add-food'>
+    <div class='food-details'>
+      <div class='food-quantity'>
+        <div class='food-negative'>-</div>
+        <div class='food-number'>${item.count}</div>
+        <div class='food-positve'>+</div>
+      </div>
+      <div class='food-price'>
+        <span class='food-total'>${item.count * item.value.price}</span>
+      </div>
+    </div>
+  </div>
+</div>`;
+    })
+    .join("");
+  cartBody.insertAdjacentHTML("beforeend", displayCart);
+}
+
+// <div class='food-item'>
+//   <div class='food-body'>
+//   <div class=${item.value.veg ? "veg" : "non_veg"}>${
+//     item.veg
+//       ? `<img src="https://img.icons8.com/color/48/000000/vegetarian-food-symbol.png"/>`
+//       : `<img src="https://img.icons8.com/fluency/48/000000/non-vegetarian-food-symbol.png"/>`
+//   }</div>
+//     <div class='food-title'>
+//       ${item.value}
+//     </div>
+//   </div>
+//   <div class='add-food'>
+//     <div class='food-details'>
+//       <div class='food-quantity'>
+//         <div class='food-negative'>-</div>
+//         <div class='food-number'></div>
+//         <div class='food-positve'>+</div>
+//       </div>
+//       <div class='food-price'>
+//         <span class='food-total'>560</span>
+//       </div>
+//     </div>
+//   </div>
+// </div>;
