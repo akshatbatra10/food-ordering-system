@@ -288,14 +288,11 @@ const addItem = async (id) => {
     let _id = item.substring(0, idx);
     return _id == id;
   })[0];
-  //console.log(filterCart);
   if (filterCart != undefined) {
-    let idx = filterCart.indexOf("=");
-    let count = parseInt(filterCart.substring(idx + 1));
-    setCookie(count + 1, id, 0.0006);
-    cartItems.filter((cart) => {
+    let count = (cartItems.filter((cart) => {
       return cart.id == id;
-    })[0].count = count + 1;
+    })[0].count += 1);
+    setCookie(count, id, 0.0006);
   } else {
     const response = await fetch(
       `http://localhost:3000/restaurants/food/${id}?${Date.now()}`
@@ -315,14 +312,43 @@ const addItem = async (id) => {
   displayItems();
   console.log(cartArray);
   console.log(cartItems);
-  //getCookie();
+};
+
+const removeFromCart = (id) => {
+  let count = cartItems.filter((cart) => {
+    return cart.id == id;
+  })[0].count;
+  if (count == 1) {
+    setCookie(count - 1, id, 0.000006);
+    cartArray = cartArray.filter((item) => {
+      let idx = item.indexOf("=");
+      let _id = item.substring(0, idx);
+      return _id != id;
+    });
+    cartItems = cartItems.filter((item) => {
+      return id != item.value._id;
+    });
+  } else {
+    setCookie(count - 1, id, 0.0006);
+    cartItems.filter((item) => {
+      return id == item.value._id;
+    })[0].count -= 1;
+  }
+  cartCount -= 1;
+  if (cartCount == 0) {
+    cartTitle.innerText = "Cart Empty";
+    displayCartItem.classList.add("none");
+  } else {
+    displayCartItem.innerText =
+      cartCount == 1 ? "1 Item" : `${cartCount} Items`;
+  }
+  displayItems();
 };
 
 function setCookie(count, id, days) {
   const d = new Date();
   d.setTime(d.getTime() + days * 24 * 60 * 60 * 1000);
   let expires = "expires=" + d.toUTCString();
-  //document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
   document.cookie = id + "=" + count + ";" + expires + "; ";
 }
 
@@ -333,16 +359,6 @@ function getCookie() {
   }
   console.log(cartArray);
 }
-
-// function totalItems() {
-//   cartItems.map((item) => {
-//     cartCount += item.count;
-//   });
-//   console.log(cartCount);
-//   if (cartCount > 0) {
-//     cartTitle.innerText = "Cart";
-//   }
-// }
 
 async function allCartItems() {
   for (let cart of cartArray) {
@@ -394,7 +410,9 @@ function displayItems() {
   <div class='add-food'>
     <div class='food-details'>
       <div class='food-quantity'>
-        <div class='food-negative'>-</div>
+        <div class='food-negative' onclick="removeFromCart('${
+          item.value._id
+        }')">-</div>
         <div class='food-number'>${item.count}</div>
         <div class='food-positive' onclick="addItem('${
           item.value._id
