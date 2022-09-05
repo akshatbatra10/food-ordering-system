@@ -17,6 +17,7 @@ const cartBody = document.querySelector(".cart-body");
 const addButton = document.querySelector(".add_button");
 const cartTitle = document.querySelector("#cart-title");
 const displayCartItem = document.querySelector("#cart-item");
+const cartPayment = document.querySelector(".cart-payment");
 
 let restaurant;
 let foodData;
@@ -282,6 +283,7 @@ const addItem = async (id) => {
   if (cartCount == 0) {
     cartTitle.innerText = "Cart";
     displayCartItem.classList.remove("none");
+    cartPayment.classList.remove("none");
   }
   let filterCart = cartArray.filter((item) => {
     let idx = item.indexOf("=");
@@ -338,6 +340,7 @@ const removeFromCart = (id) => {
   if (cartCount == 0) {
     cartTitle.innerText = "Cart Empty";
     displayCartItem.classList.add("none");
+    cartPayment.classList.add("none");
   } else {
     displayCartItem.innerText =
       cartCount == 1 ? "1 Item" : `${cartCount} Items`;
@@ -381,12 +384,14 @@ async function allCartItems() {
   }
   if (cartCount > 0) {
     cartTitle.innerText = "Cart";
-    displayCartItem.classList.remove("none");
     displayCartItem.innerText =
       cartCount == 1 ? "1 Item" : `${cartCount} Items`;
     displayItems();
+    displayCartItem.classList.remove("none");
+    cartPayment.classList.remove("none");
   } else {
     displayCartItem.classList.add("none");
+    cartPayment.classList.add("none");
   }
   console.log(cartItems);
 }

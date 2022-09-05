@@ -310,3 +310,27 @@ h5 {
   text-align: right;
   width: 60px;
 }
+.cart-payment {
+  margin-top: 17px;
+  min-height: 115px;
+}
+.cart-price {
+  color: #3d4152;
+  font-size: 15px;
+  font-weight: 600;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.cart-subtotal {
+  font-size: 17px;
+  -ms-flex: 1;
+  flex: 1;
+}
+.total-text {
+  font-size: 13px;
+  font-weight: 300;
+  color: #7e808c;
+  margin-top: 2px;
+}
