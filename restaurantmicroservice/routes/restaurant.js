@@ -63,18 +63,18 @@ router.get("/food", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    let number = 9811112323;
     const restaurant = await Restaurants.findOne({ _id: id });
-    await client
-      .getRestaurant({ res_id: restaurant.res_id })
-      .then((response) => {
-        number = response.phone_numbers.substring(
-          response.phone_numbers.indexOf(" ") + 1,
-          14
-        );
-        restaurant.timing = response.timings;
-        restaurant.phone_numbers = number;
-      });
+    // await client
+    //   .getRestaurant({ res_id: restaurant.res_id })
+    //   .then((response) => {
+    //     console.log(response);
+    //     number = response.phone_numbers.substring(
+    //       response.phone_numbers.indexOf(" ") + 1,
+    //       14
+    //     );
+    //   });
+    restaurant.timing = "12PM - 1AM";
+    restaurant.phone_numbers = 9811112323;
     res.send(restaurant);
   } catch (error) {
     console.log(error);

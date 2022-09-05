@@ -15,11 +15,13 @@ const pizza = document.querySelector("#pizza");
 const burger = document.querySelector("#burger");
 const cartBody = document.querySelector(".cart-body");
 const addButton = document.querySelector(".add_button");
+const cartTitle = document.querySelector(".cart-title");
+const cartItem = document.querySelector(".cart-title");
 
 let restaurant;
 let foodData;
 let cartArray = [];
-let cart_id;
+let cartItems = [];
 
 const fetchData = async () => {
   try {
@@ -272,33 +274,42 @@ window.addEventListener("load", async function () {
   loader.classList.add("none");
   afterLoad.classList.remove("none");
   getCookie();
+  allCartItems();
+  totalItems();
 });
 
 const addItem = async (id) => {
-  const response = await fetch(
-    `http://localhost:3000/restaurants/food/${id}?${Date.now()}`
-  );
-  const cartItem = await response.json();
-  let cart = document.cookie.split("; ");
-  cartArray = cart;
-  console.log(cartArray);
   let filterCart = cartArray.filter((item) => {
     let idx = item.indexOf("=");
     let _id = item.substring(0, idx);
     return _id == id;
   })[0];
-  console.log(filterCart);
+  //console.log(filterCart);
   if (filterCart != undefined) {
     let idx = filterCart.indexOf("=");
     let count = parseInt(filterCart.substring(idx + 1));
-    console.log(count + 1);
-    setCookie(count + 1, id, 0.01);
+    setCookie(count + 1, id, 0.0006);
+    cartItems.filter((cart) => {
+      return cart.id == id;
+    })[0].count = count + 1;
   } else {
+    const response = await fetch(
+      `http://localhost:3000/restaurants/food/${id}?${Date.now()}`
+    );
+    const cartItem = await response.json();
+    const item = {
+      id: cartItem.cartItem._id,
+      value: cartItem.cartItem,
+      count: 1,
+    };
     cartArray.push(id + "=1");
-    setCookie(1, id, 0.01);
+    setCookie(1, id, 0.0006);
+    cartItems.push(item);
   }
-  getCookie();
   console.log(cartArray);
+  console.log(cartItems);
+  //getCookie();
+  totalItems();
 };
 
 function setCookie(count, id, days) {
@@ -310,6 +321,39 @@ function setCookie(count, id, days) {
 }
 
 function getCookie() {
-  const cart = document.cookie.split("; ");
-  console.log(cart);
+  let cart = document.cookie.split("; ");
+  if (cart[0] != "") {
+    cartArray = cart;
+  }
+  console.log(cartArray);
+}
+
+function totalItems() {
+  let count = 0;
+  cartItems.map((item) => {
+    console.log(item.count);
+    count += item.count;
+  });
+  console.log(count);
+}
+
+async function allCartItems() {
+  for (let cart of cartArray) {
+    if (cart == "") {
+      continue;
+    }
+    let idx = cart.indexOf("=");
+    let id = cart.substring(0, idx);
+    const response = await fetch(
+      `http://localhost:3000/restaurants/food/${id}?${Date.now()}`
+    );
+    const cartItem = await response.json();
+    const item = {
+      id: id,
+      value: cartItem.cartItem,
+      count: parseInt(cart.substring(idx + 1)),
+    };
+    cartItems.push(item);
+  }
+  console.log(cartItems);
 }
