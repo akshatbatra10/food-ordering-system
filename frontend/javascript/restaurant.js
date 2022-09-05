@@ -309,9 +309,10 @@ const addItem = async (id) => {
     cartArray.push(id + "=1");
     setCookie(1, id, 0.0006);
     cartItems.push(item);
-    cartCount += 1;
   }
+  cartCount += 1;
   displayCartItem.innerText = cartCount == 1 ? "1 Item" : `${cartCount} Items`;
+  displayItems();
   console.log(cartArray);
   console.log(cartItems);
   //getCookie();
@@ -375,6 +376,7 @@ async function allCartItems() {
 }
 
 function displayItems() {
+  cartBody.innerHTML = "";
   const displayCart = cartItems
     .map((item) => {
       return `
@@ -394,7 +396,9 @@ function displayItems() {
       <div class='food-quantity'>
         <div class='food-negative'>-</div>
         <div class='food-number'>${item.count}</div>
-        <div class='food-positive'>+</div>
+        <div class='food-positive' onclick="addItem('${
+          item.value._id
+        }')">+</div>
       </div>
       <div class='food-price'>
         <span class='food-total'>&#8377 ${item.count * item.value.price}</span>
@@ -406,28 +410,3 @@ function displayItems() {
     .join("");
   cartBody.insertAdjacentHTML("beforeend", displayCart);
 }
-
-// <div class='food-item'>
-//   <div class='food-body'>
-//   <div class=${item.value.veg ? "veg" : "non_veg"}>${
-//     item.veg
-//       ? `<img src="https://img.icons8.com/color/48/000000/vegetarian-food-symbol.png"/>`
-//       : `<img src="https://img.icons8.com/fluency/48/000000/non-vegetarian-food-symbol.png"/>`
-//   }</div>
-//     <div class='food-title'>
-//       ${item.value}
-//     </div>
-//   </div>
-//   <div class='add-food'>
-//     <div class='food-details'>
-//       <div class='food-quantity'>
-//         <div class='food-negative'>-</div>
-//         <div class='food-number'></div>
-//         <div class='food-positve'>+</div>
-//       </div>
-//       <div class='food-price'>
-//         <span class='food-total'>560</span>
-//       </div>
-//     </div>
-//   </div>
-// </div>;
