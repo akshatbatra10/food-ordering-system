@@ -85,19 +85,10 @@ router.get("/food/:id", async (req, res) => {
   const { id } = req.params;
   try {
     const cartItem = await FoodData.find({ _id: id });
-    // window.localStorage.setItem("cart-item", cartItem);
     res.send({ cartItem: cartItem[0] });
   } catch (error) {
     console.log(error);
   }
 });
-
-function setCookie(cname, cvalue, exdays) {
-  const d = new Date();
-  d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
-  let expires = "expires=" + d.toUTCString();
-  console.log(expires);
-  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-}
 
 module.exports = router;

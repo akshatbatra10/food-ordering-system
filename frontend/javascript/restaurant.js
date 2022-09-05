@@ -18,12 +18,14 @@ const addButton = document.querySelector(".add_button");
 const cartTitle = document.querySelector("#cart-title");
 const displayCartItem = document.querySelector("#cart-item");
 const cartPayment = document.querySelector(".cart-payment");
+const cartPrice = document.querySelector("#price");
 
 let restaurant;
 let foodData;
 let cartArray = [];
 let cartItems = [];
 let cartCount = 0;
+let totalPrice = 0;
 
 const fetchData = async () => {
   try {
@@ -398,8 +400,10 @@ async function allCartItems() {
 
 function displayItems() {
   cartBody.innerHTML = "";
+  totalPrice = 0;
   const displayCart = cartItems
     .map((item) => {
+      totalPrice += item.value.price * item.count;
       return `
     <div class='food-item'>
   <div class='food-body'>
@@ -432,4 +436,5 @@ function displayItems() {
     })
     .join("");
   cartBody.insertAdjacentHTML("beforeend", displayCart);
+  cartPrice.innerText = totalPrice;
 }

@@ -225,6 +225,7 @@ h5 {
 }
 .cart {
   width: 32%;
+  padding-left: 1rem;
 }
 .food-item {
   padding: 10px 0;
@@ -333,4 +334,23 @@ h5 {
   font-weight: 300;
   color: #7e808c;
   margin-top: 2px;
+}
+.cart-checkout-button {
+  height: 50px;
+  background-color: #60b246;
+  outline: 0;
+  cursor: pointer;
+  border: 0;
+  color: #fff;
+  margin-top: 28px;
+  text-transform: uppercase;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 600;
+  width: 100%;
 }
