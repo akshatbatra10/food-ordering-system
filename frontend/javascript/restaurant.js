@@ -15,13 +15,14 @@ const pizza = document.querySelector("#pizza");
 const burger = document.querySelector("#burger");
 const cartBody = document.querySelector(".cart-body");
 const addButton = document.querySelector(".add_button");
-const cartTitle = document.querySelector(".cart-title");
-const cartItem = document.querySelector(".cart-title");
+const cartTitle = document.querySelector("#cart-title");
+const displayCartItem = document.querySelector("#cart-item");
 
 let restaurant;
 let foodData;
 let cartArray = [];
 let cartItems = [];
+let cartCount = 0;
 
 const fetchData = async () => {
   try {
@@ -275,10 +276,13 @@ window.addEventListener("load", async function () {
   afterLoad.classList.remove("none");
   getCookie();
   allCartItems();
-  totalItems();
 });
 
 const addItem = async (id) => {
+  if (cartCount == 0) {
+    cartTitle.innerText = "Cart";
+    displayCartItem.classList.remove("none");
+  }
   let filterCart = cartArray.filter((item) => {
     let idx = item.indexOf("=");
     let _id = item.substring(0, idx);
@@ -305,11 +309,12 @@ const addItem = async (id) => {
     cartArray.push(id + "=1");
     setCookie(1, id, 0.0006);
     cartItems.push(item);
+    cartCount += 1;
   }
+  displayCartItem.innerText = cartCount == 1 ? "1 Item" : `${cartCount} Items`;
   console.log(cartArray);
   console.log(cartItems);
   //getCookie();
-  totalItems();
 };
 
 function setCookie(count, id, days) {
@@ -328,14 +333,15 @@ function getCookie() {
   console.log(cartArray);
 }
 
-function totalItems() {
-  let count = 0;
-  cartItems.map((item) => {
-    console.log(item.count);
-    count += item.count;
-  });
-  console.log(count);
-}
+// function totalItems() {
+//   cartItems.map((item) => {
+//     cartCount += item.count;
+//   });
+//   console.log(cartCount);
+//   if (cartCount > 0) {
+//     cartTitle.innerText = "Cart";
+//   }
+// }
 
 async function allCartItems() {
   for (let cart of cartArray) {
@@ -353,7 +359,16 @@ async function allCartItems() {
       value: cartItem.cartItem,
       count: parseInt(cart.substring(idx + 1)),
     };
+    cartCount += item.count;
     cartItems.push(item);
+  }
+  if (cartCount > 0) {
+    cartTitle.innerText = "Cart";
+    displayCartItem.classList.remove("none");
+    displayCartItem.innerText =
+      cartCount == 1 ? "1 Item" : `${cartCount} Items`;
+  } else {
+    displayCartItem.classList.add("none");
   }
   console.log(cartItems);
 }
