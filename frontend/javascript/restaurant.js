@@ -19,6 +19,7 @@ const cartTitle = document.querySelector("#cart-title");
 const displayCartItem = document.querySelector("#cart-item");
 const cartPayment = document.querySelector(".cart-payment");
 const cartPrice = document.querySelector("#price");
+const checkoutButton = document.querySelector(".cart-checkout-button");
 
 let restaurant;
 let foodData;
@@ -269,6 +270,7 @@ window.addEventListener("load", async function () {
   addRestaurantMap();
   addCuisines();
   fetchFood();
+  //http://maps.google.com/maps?q=${restaurant.geometry.coordinates[1]},${restaurant.geometry.coordinates[0]}
   for (let link of directionLink) {
     link.href = `https://www.google.com/maps/dir/?api=1&destination=${restaurant.geometry.coordinates[1]},${restaurant.geometry.coordinates[0]}`;
   }
@@ -279,6 +281,10 @@ window.addEventListener("load", async function () {
   afterLoad.classList.remove("none");
   getCookie();
   allCartItems();
+});
+
+checkoutButton.addEventListener("click", function () {
+  window.location.href = "/checkout_page.html";
 });
 
 const addItem = async (id) => {
