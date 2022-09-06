@@ -114,6 +114,13 @@ i {
 }
 
 .card {
+  contain: content;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  overflow: hidden;
+  /* height: 100%; */
   background: #f2f2f2;
   border-radius: 12px;
   width: 80%;
@@ -142,19 +149,6 @@ i {
   padding: 0 0 20px 0;
   font-size: 1.5rem;
 }
-
-.price {
-  color: #f2994a;
-  font-size: 20px;
-}
-
-.price span {
-  color: #4e5150;
-  font-size: 12px;
-  text-decoration: line-through;
-  padding: 0 20px;
-}
-
 .pur {
   border-radius: 12px;
   display: flex;
@@ -185,6 +179,44 @@ i {
 
 .end {
   padding: 20px 20px 50px;
+}
+
+.bill-details {
+  font-weight: 500;
+  font-size: 13px;
+  margin-bottom: 10px;
+  color: #282c3f;
+}
+
+.cart-total {
+  font-size: 13px;
+  color: #686b78;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.total {
+  flex: 1;
+}
+.total-price {
+  text-align: right;
+  align-self: flex-start;
+}
+
+.space {
+  border-bottom: 1px solid #e9e9eb;
+  margin: 17px 0 15px;
+}
+
+.delivery {
+  margin-top: 10px;
+  font-size: 13px;
+  color: #686b78;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 hr {
@@ -239,10 +271,6 @@ hr {
   margin: 30px 0 0 400px;
 }
 
-/* end */
-
-/* responsive  */
-
 @media screen and (max-width: 1700px) {
   .box2 {
     width: 50%;
@@ -261,10 +289,6 @@ hr {
 
   .item .count {
     padding-left: 30px;
-  }
-
-  .price span {
-    padding: 0 0 0 10px;
   }
 }
 
@@ -341,9 +365,6 @@ hr {
 @media screen and (max-width: 350px) {
   .item .count {
     padding-left: 10px;
-  }
-  .price span {
-    padding: 0;
   }
   .pur {
     width: 100px;
