@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Montserrat Alternates", sans-serif;
+  font-family: sans-serif;
 }
 
 .con {
@@ -191,8 +191,46 @@ hr {
   margin: 20px 0;
 }
 
+.restaurant-button {
+  cursor: pointer;
+  padding: 20px 30px;
+  display: -ms-flexbox;
+  display: flex;
+  min-height: 90px;
+  border: none;
+}
+
+.image {
+  width: 50px;
+  height: 50px;
+  position: relative;
+}
+
+.restaurant-details {
+  margin-left: 14px;
+  -ms-flex: 1;
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  min-height: 50px;
+}
+
+.restaurant-name {
+  font-size: 17px;
+  color: #282c3f;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.restaurant-address {
+  font-size: 13px;
+  color: #686b78;
+}
+
 .btn {
-  background-color: #f2994a;
+  background-color: #60b246;
   color: #fff;
   cursor: pointer;
   padding: 15px 30px;
