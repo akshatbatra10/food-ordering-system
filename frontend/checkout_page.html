@@ -5,8 +5,128 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Checkout</title>
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
+    <!-- google fonts -->
+    <link rel="stylesheet" href="css/checkout_page.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- font awesome icon kit -->
+    <script
+      src="https://kit.fontawesome.com/9f5c644af7.js"
+      crossorigin="anonymous"></script>
+    <!-- fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap"
+      rel="stylesheet" />
+    <script src="javascript/checkout_page.js" defer></script>
   </head>
   <body>
-    <h1>Checkout</h1>
+    <div class="con">
+      <div class="box1">
+        <h2 class="title">Checkout</h2>
+
+        <!-- shipping  -->
+        <div class="shipping">
+          <h3>Delivery address</h3>
+
+          <p class="label">Full name</p>
+
+          <div class="input-box">
+            <input
+              type="text"
+              name="name"
+              placeholder="Enter Your Fullname .. " />
+            <i class="fa-solid fa-user"></i>
+          </div>
+
+          <p class="label">Address</p>
+
+          <div class="input-box">
+            <input type="text" name="address" placeholder="Your Address .. " />
+            <i class="fa-solid fa-house"></i>
+          </div>
+
+          <div class="last">
+            <div class="separate s1">
+              <p class="label">Phone Number</p>
+              <div class="input-box">
+                <input
+                  type="text"
+                  name="phone number"
+                  placeholder="Phone Number .. " />
+                <i class="fa-solid fa-earth-americas"></i>
+              </div>
+            </div>
+
+            <div class="separate">
+              <p class="label">Postal code</p>
+
+              <div class="input-box">
+                <input
+                  type="text"
+                  name="code"
+                  placeholder="Your Postal Code .. " />
+                <i class="fa-solid fa-envelopes-bulk"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="box2">
+        <div class="card">
+          <!-- <div class="item">
+            <img src="" alt="" />
+            <div class="count">
+              <p class="item-name">Levi Shoes</p>
+              <h6 class="price">$54.99 <span>$94.99</span></h6>
+              <div class="pur">
+                <button id="Debtn2">-</button>
+                <div id="num2"></div>
+                <button id="Inbtn2">+</button>
+              </div>
+            </div>
+          </div> -->
+          <div class="end">
+            <div class="bill-details">Bill Details</div>
+            <div class="_3rlIu">
+              <div class="_2VV4a"><span>Item Total</span></div>
+              <div class="_1I8bA">
+                <span class=""
+                  ><span></span><span class="ZH2UW">998</span></span
+                >
+              </div>
+            </div>
+            <div class="_3rlIu">
+              <div class="_2VV4a">
+                <div>
+                  Delivery Fee | 0.3 kms
+                  <div class="_3sNvC"><span class="icon-info"></span></div>
+                </div>
+              </div>
+              <div class="_1I8bA">
+                <span class=""><span></span><span class="ZH2UW">38</span></span>
+              </div>
+            </div>
+            <div class="_1Accg"></div>
+            <div class="_3rlIu">
+              <div class="_2VV4a">
+                <div>
+                  Taxes and Charges
+                  <div class="_3sNvC"><span class="icon-info"></span></div>
+                </div>
+              </div>
+              <div class="_1I8bA">
+                <span class=""
+                  ><span></span><span class="ZH2UW">88.75</span></span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="btn">Continue</button>
+      </div>
+      <!-- end of box-2 -->
+    </div>
   </body>
 </html>
