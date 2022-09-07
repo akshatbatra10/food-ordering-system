@@ -21,7 +21,7 @@
     <script src="javascript/checkout_page.js" defer></script>
   </head>
   <body>
-    <div class="con">
+    <div class="con none">
       <div class="box1">
         <h2 class="title">Checkout</h2>
 
@@ -143,8 +143,11 @@
         </div>
         <button class="btn">Continue</button>
       </div>
-      <!-- end of box-2 -->
     </div>
-    <div class="empty-cart none"></div>
+    <div class="empty-cart">
+      <div class="empty-404"><div class="empty-image"></div><div class="empty-text">Your cart is empty</div>
+      <div class="empty-para">You can go to home page to view more restaurants</div>
+      <div id="redirect" class="empty-restaurant">See restaurants near you</div></div>
+    </div>
   </body>
 </html>

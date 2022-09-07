@@ -13,9 +13,55 @@
   padding-left: 150px;
   justify-content: center;
 }
-
-/* box-1 styling  */
-
+.empty-404 {
+  height: calc(100vh - 80px);
+  width: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin: 0 auto;
+  text-align: center;
+  background: #fff;
+}
+.empty-image {
+  width: 271px;
+  height: 256px;
+  background-image: url(https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/2xempty_cart_yfxml0);
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0 auto;
+}
+.empty-text {
+  margin-top: 24px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #535665;
+}
+.empty-para {
+  margin-top: 8px;
+  color: #7e808c;
+}
+.empty-restaurant {
+  margin-top: 30px;
+  padding: 11px 20px;
+  text-transform: uppercase;
+  background-color: rgb(239, 79, 95);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  border: 0;
+  outline: 0;
+  font-size: 15px;
+  text-align: center;
+  -ms-transform: translateY(0);
+  transform: translateY(0);
+  transition: transform 0.8s cubic-bezier(0.2, 1, 0.2, 1);
+}
 .box1 {
   width: 60%;
   display: flex;

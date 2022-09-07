@@ -7,6 +7,7 @@ const cartTitle = document.querySelector("#cart-title");
 const disPlayTotalPrice = document.querySelector(".to-pay-price");
 const tax = document.querySelector("#tax");
 const cartPrice = document.querySelector("#cart-price");
+const redirect = document.querySelector("#redirect");
 
 let cartItems = [];
 let cartArray = [];

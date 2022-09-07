@@ -39,7 +39,7 @@ async function Login(req, res) {
   const token = jwt.sign({ _id: user._id }, process.env.ACCESS_TOKEN, {
     expiresIn: "30s",
   });
-  const refreshToken = await generateRefreshToken(user);
+  const refreshToken = generateRefreshToken(user);
   // res.setHeader("Set-Cookie", token);
   await res.cookie("jwt", token, { maxAge: 60 * 60 * 24 * 1000 });
   res.json({ token: token, refreshToken: refreshToken });
@@ -50,7 +50,7 @@ async function Token(req, res) {
   const accessToken = jwt.sign({ _id: user._id }, process.env.ACCESS_TOKEN, {
     expiresIn: "30s",
   });
-  const refreshToken = await generateRefreshToken(user);
+  const refreshToken = generateRefreshToken(user);
   console.log(refreshToken);
   return res.json({
     message: "success",
