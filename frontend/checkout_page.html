@@ -95,25 +95,22 @@
               <div class="restaurant-address"></div
             ></span>
           </button>
-          <!-- <div class="item">
-            <img src="" alt="" />
-            <div class="count">
-              <p class="item-name">Levi Shoes</p>
-              <h6 class="price">$54.99 <span>$94.99</span></h6>
-              <div class="pur">
-                <button id="Debtn2">-</button>
-                <div id="num2"></div>
-                <button id="Inbtn2">+</button>
-              </div>
-            </div>
-          </div> -->
+          <div class="cart">
+            <h4
+                id="cart-title"
+                class="text-muted"
+                style="font-weight: 600 !important">
+                Cart Empty
+              </h4>
+          <div class="cart-body"></div>
+          </div>
           <div class="end">
             <div class="bill-details">Bill Details</div>
             <div class="cart-total">
               <div class="total"><span>Item Total</span></div>
               <div class="total-price">
                 <span class=""
-                  ><span>&#8377</span><span class="price">998</span></span
+                  ><span>&#8377</span><span id="cart-price" class="price">998</span></span
                 >
               </div>
             </div>
@@ -136,15 +133,18 @@
               </div>
               <div class="total-price">
                 <span class=""
-                  ><span>&#8377</span><span class="price">88.75</span></span
+                  ><span>&#8377</span><span id="tax" class="price">88.75</span></span
                 >
               </div>
             </div>
           </div>
+          <div class="break"></div>
+          <div class="to-pay"><div>TO PAY</div><div class="to-pay-price">314</div></div>
         </div>
         <button class="btn">Continue</button>
       </div>
       <!-- end of box-2 -->
     </div>
+    <div class="empty-cart none"></div>
   </body>
 </html>

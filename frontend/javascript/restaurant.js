@@ -302,7 +302,7 @@ const addItem = async (id) => {
     let count = (cartItems.filter((cart) => {
       return cart.id == id;
     })[0].count += 1);
-    setCookie(count, id, 0.0006);
+    setCookie(count, id, 0.006);
   } else {
     const response = await fetch(
       `http://localhost:3000/restaurants/food/${id}?${Date.now()}`
@@ -314,7 +314,7 @@ const addItem = async (id) => {
       count: 1,
     };
     cartArray.push(id + "=1");
-    setCookie(1, id, 0.0006);
+    setCookie(1, id, 0.006);
     cartItems.push(item);
   }
   cartCount += 1;
@@ -339,7 +339,7 @@ const removeFromCart = (id) => {
       return id != item.value._id;
     });
   } else {
-    setCookie(count - 1, id, 0.0006);
+    setCookie(count - 1, id, 0.006);
     cartItems.filter((item) => {
       return id == item.value._id;
     })[0].count -= 1;
