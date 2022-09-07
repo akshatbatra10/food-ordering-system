@@ -3,11 +3,12 @@ const restaurantImage = document.querySelector(".restaurant-image");
 const restaurantName = document.querySelector(".restaurant-name");
 const restaurantAdd = document.querySelector(".restaurant-address");
 const cartBody = document.querySelector(".cart-body");
-const cartTitle = document.querySelector("#cart-title");
 const disPlayTotalPrice = document.querySelector(".to-pay-price");
 const tax = document.querySelector("#tax");
 const cartPrice = document.querySelector("#cart-price");
 const redirect = document.querySelector("#redirect");
+const cartCheckout = document.querySelector(".con");
+const cartEmpty = document.querySelector(".empty-cart");
 
 let cartItems = [];
 let cartArray = [];
@@ -74,7 +75,8 @@ const removeFromCart = (id) => {
   }
   cartCount -= 1;
   if (cartCount == 0) {
-    cartTitle.innerText = "Cart Empty";
+    cartCheckout.classList.add("none");
+    cartEmpty.classList.remove("none");
     //window.location.href = "/restaurant.html";
   }
   displayItems();
@@ -107,10 +109,11 @@ async function allCartItems() {
     cartItems.push(item);
   }
   if (cartCount > 0) {
-    cartTitle.innerText = "Cart";
+    cartCheckout.classList.remove("none");
+    cartEmpty.classList.add("none");
   } else {
-    cartTitle.innerText = "Cart Empty";
-    //window.location.href = "/restaurant.html";
+    cartCheckout.classList.add("none");
+    cartEmpty.classList.remove("none");
   }
   displayItems();
   console.log(cartItems);
@@ -160,6 +163,10 @@ function displayItems() {
   let total = totalPrice + 48 + parseFloat(taxAmt);
   disPlayTotalPrice.innerHTML = `<span>&#8377</span>${total}`;
 }
+
+redirect.addEventListener("click", function () {
+  window.location.href = "/restaurants.html";
+});
 
 window.addEventListener("load", async function () {
   await fetchData();
