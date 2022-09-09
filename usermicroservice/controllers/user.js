@@ -51,7 +51,6 @@ async function Token(req, res) {
     expiresIn: "30s",
   });
   const refreshToken = generateRefreshToken(user);
-  console.log(refreshToken);
   return res.json({
     message: "success",
     data: { accessToken, refreshToken },
@@ -71,7 +70,7 @@ function generateRefreshToken(user) {
     { _id: user._id },
     process.env.REFRESH_ACCESS_TOKEN,
     {
-      expiresIn: "7d",
+      expiresIn: "1d",
     }
   );
   redisClient.get(user._id.toString(), (err, data) => {

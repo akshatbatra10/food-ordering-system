@@ -33,6 +33,7 @@ document
       // const user = response.json();
 
       if (response.ok) {
+        setCookie(user.token, 0.006);
         window.location = "http://localhost:3000/home.html";
       }
     } catch (err) {
@@ -55,13 +56,20 @@ signInForm.addEventListener("submit", async function (e) {
     });
 
     const user = await response.json();
-    window.localStorage.setItem('accesstoken', user.token);
-    window.localStorage.setItem('refreshtoken', user.refreshToken);
-
+    //window.localStorage.removeItem("accesstoken", user.token);
+    //window.localStorage.removeItem("refreshtoken", user.refreshToken);
     if (response.ok) {
+      setCookie(user.token, 0.006);
       window.location = "http://localhost:3000/home.html";
     }
   } catch (err) {
     console.log(err);
   }
 });
+
+function setCookie(token, days) {
+  const d = new Date();
+  d.setTime(d.getTime() + days * 24 * 60 * 60 * 1000);
+  let expires = "expires=" + d.toUTCString();
+  document.cookie = "token=" + token + ";" + expires + "; ";
+}
