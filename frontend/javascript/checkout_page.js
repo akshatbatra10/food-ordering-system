@@ -77,7 +77,6 @@ const removeFromCart = (id) => {
   if (cartCount == 0) {
     cartCheckout.classList.add("none");
     cartEmpty.classList.remove("none");
-    //window.location.href = "/restaurant.html";
   }
   displayItems();
 };
