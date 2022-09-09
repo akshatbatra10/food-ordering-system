@@ -3,10 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      const token = window.localStorage.getItem("accesstoken");
+
+      if (token != null) {
+        window.location = "http://localhost:3000/home.html";
+      }
+    </script>
     <script
       src="https://kit.fontawesome.com/64d58efce2.js"
-      crossorigin="anonymous"
-    ></script>
+      crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/signIn-signUp.css" />
     <title>Sign in & Sign up Form</title>
   </head>
@@ -57,8 +63,7 @@
               type="submit"
               class="btn"
               id="sign-up-button"
-              value="Sign up"
-            />
+              value="Sign up" />
             <p class="social-text">Or Sign up with social platforms</p>
             <div class="social-media">
               <a href="#" class="social-icon">
