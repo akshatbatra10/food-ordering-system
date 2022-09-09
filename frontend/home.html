@@ -36,6 +36,7 @@
     <script
       src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.74.0/dist/L.Control.Locate.min.js"
       charset="utf-8"></script>
+    <script src="javascript/util.js" defer></script>
   </head>
 
   <body class="d-flex text-center text-white bg-dark">
@@ -48,10 +49,13 @@
               <h3 class="float-md-left mb-0 nav-header">FoodMania</h3>
               <nav class="nav nav-masthead float-md-right">
                 <a class="nav-link active" aria-current="page" href="#">Home</a>
-                <a class="nav-link" href="./signIn-signUp.html"
+                <a
+                  id="login_signup"
+                  class="nav-link"
+                  href="./signIn-signUp.html"
                   >Login/Register</a
                 >
-                <a class="nav-link" href="/logout">Logout</a>
+                <a id="logout" class="nav-link none" href="#">Logout</a>
               </nav>
             </div>
           </header>

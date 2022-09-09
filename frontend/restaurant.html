@@ -26,6 +26,7 @@
     <link
       href="https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.css"
       rel="stylesheet" />
+      <script src="javascript/util.js" defer></script>
   </head>
   <body>
     <div id="loading"></div>
@@ -37,8 +38,12 @@
           <h3 class="col-md-3">FoodMania</h3>
           <div class="col-md-6"></div>
           <nav class="col-md-3 d-flex">
-            <a class="nav-link" href="./signIn-signUp.html">Login/Register</a>
-            <a class="nav-link" href="/logout">Logout</a>
+            <a
+              id="login_signup"
+              class="nav-link"
+              href="./signIn-signUp.html"
+            >Login/Register</a>
+            <a id="logout" class="nav-link none" href="#">Logout</a>
           </nav>
         </div>
       </div>

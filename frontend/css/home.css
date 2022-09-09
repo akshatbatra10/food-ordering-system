@@ -11,6 +11,9 @@
 .locate-img {
   height: 1.2rem;
 }
+.none {
+  display: none;
+}
 main {
   height: 100vh;
   display: flex;

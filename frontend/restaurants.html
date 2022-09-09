@@ -10,21 +10,18 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
-      crossorigin="anonymous"
-    />
+      crossorigin="anonymous" />
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
-      crossorigin="anonymous"
-    ></script>
+      crossorigin="anonymous"></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Cairo&display=swap"
-      rel="stylesheet"
-    />
+      rel="stylesheet" />
     <script
       src="https://kit.fontawesome.com/64d58efce2.js"
-      crossorigin="anonymous"
-    ></script>
+      crossorigin="anonymous"></script>
+    <script src="javascript/util.js" defer></script>
   </head>
   <body>
     <div id="loading">
@@ -50,9 +47,8 @@
       <div class="container">
         <div
           class="row height d-flex align-items-baseline"
-          style="justify-content: space-between"
-        >
-          <h3 class="col-md-3"><a  href="./home.html">FoodMania</a></h3>
+          style="justify-content: space-between">
+          <h3 class="col-md-3"><a href="./home.html">FoodMania</a></h3>
           <div class="col-md-6">
             <div class="form">
               <i class="fa fa-search"></i>
@@ -60,14 +56,15 @@
                 id="search"
                 type="search"
                 class="form-control form-input"
-                placeholder="Search for restaurants"
-              />
+                placeholder="Search for restaurants" />
               <div id="search-list" class="none"></div>
             </div>
           </div>
           <nav class="col-md-3 d-flex">
-            <a class="nav-link" href="./signIn-signUp.html">Login/Register</a>
-            <a class="nav-link" href="/logout">Logout</a>
+            <a id="login_signup" class="nav-link" href="./signIn-signUp.html"
+              >Login/Register</a
+            >
+            <a id="logout" class="nav-link none" href="#">Logout</a>
           </nav>
         </div>
         <div class="row" id="restaurantCard"></div>
