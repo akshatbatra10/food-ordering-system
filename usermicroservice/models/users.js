@@ -16,6 +16,8 @@ const userSchema = new Schema({
     unique: true,
   },
   address: String,
+  wishlist: [String],
+  bookmarks: [String],
 });
 
 module.exports = mongoose.model("Users", userSchema);

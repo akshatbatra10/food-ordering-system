@@ -9,6 +9,8 @@ router.get("/dashboard", userMiddleware.verifyAccessToken, (req, res) => {
   res.send("hello from dashboard");
 });
 
+router.get("/:id", userController.Details);
+
 router.post("/registeruser", userController.Register);
 
 router.post("/login", userController.Login);

@@ -4,6 +4,16 @@ const jwt = require("jsonwebtoken");
 
 const redisClient = require("../redis_connect");
 
+async function Details(req, res) {
+  try {
+    const { id } = req.params;
+    const user = await Users.findOne({ _id: id });
+    res.send(user);
+  } catch (e) {
+    console.log(e);
+  }
+}
+
 async function Register(req, res) {
   try {
     const salt = await bcrypt.genSalt();
@@ -89,4 +99,5 @@ module.exports = {
   Login,
   Token,
   Logout,
+  Details,
 };
