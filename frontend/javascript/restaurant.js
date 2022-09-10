@@ -20,6 +20,7 @@ const displayCartItem = document.querySelector("#cart-item");
 const cartPayment = document.querySelector(".cart-payment");
 const cartPrice = document.querySelector("#price");
 const checkoutButton = document.querySelector(".cart-checkout-button");
+const bookmark = document.querySelector("#bookmark");
 
 let restaurant;
 let foodData;
@@ -270,6 +271,10 @@ window.addEventListener("load", async function () {
   addRestaurantMap();
   addCuisines();
   fetchFood();
+  if (wishlist.has(restaurant._id)) {
+    bookmark.classList.remove("far");
+    bookmark.classList.add("fa");
+  }
   //http://maps.google.com/maps?q=${restaurant.geometry.coordinates[1]},${restaurant.geometry.coordinates[0]}
   for (let link of directionLink) {
     link.href = `https://www.google.com/maps/dir/?api=1&destination=${restaurant.geometry.coordinates[1]},${restaurant.geometry.coordinates[0]}`;

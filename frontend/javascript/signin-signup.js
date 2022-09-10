@@ -34,6 +34,7 @@ document
 
       if (response.ok) {
         window.localStorage.setItem("accesstoken", user.token);
+        window.localStorage.setItem("id", user.id);
         window.location = "http://localhost:3000/home.html";
       }
     } catch (err) {
@@ -60,6 +61,7 @@ signInForm.addEventListener("submit", async function (e) {
     //window.localStorage.removeItem("refreshtoken", user.refreshToken);
     if (response.ok) {
       window.localStorage.setItem("accesstoken", user.token);
+      window.localStorage.setItem("id", user.id);
       window.location = "http://localhost:3000/home.html";
     }
   } catch (err) {

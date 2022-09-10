@@ -9,6 +9,7 @@ const loader = document.querySelector(".loader");
 const header = document.querySelector("#header");
 const search = document.querySelector("#search");
 const search_list = document.querySelector("#search-list");
+//const heart = document.querySelector(".heart");
 const limit = 15;
 
 let page = 1;
@@ -18,7 +19,7 @@ let searchList;
 const fetchRestaurants = async (url) => {
   try {
     const response = await fetch(url);
-    restaurantsData = await response.json();
+    const restaurantsData = await response.json();
     restaurants = restaurantsData.results;
     console.log(restaurants);
     if (restaurantsData.next === undefined) {
@@ -107,7 +108,7 @@ search.addEventListener("click", async function () {
   const base_url = `http://localhost:3000/restaurants/?lat=${lat}&long=${long}&page=1&limit=60&${Date.now()}`;
   if (searchList == undefined) {
     const response = await fetch(base_url);
-    restaurantsData = await response.json();
+    const restaurantsData = await response.json();
     searchList = restaurantsData.results;
   }
 });
