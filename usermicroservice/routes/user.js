@@ -11,6 +11,10 @@ router.get("/dashboard", userMiddleware.verifyAccessToken, (req, res) => {
 
 router.get("/:id", userController.Details);
 
+router.post("/bookmark", userController.AddToWishList);
+
+router.post("/removebookmark", userController.RemoveFromWishList);
+
 router.post("/registeruser", userController.Register);
 
 router.post("/login", userController.Login);

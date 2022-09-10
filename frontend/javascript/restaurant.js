@@ -36,6 +36,10 @@ const fetchData = async () => {
     );
     restaurant = await response.json();
     console.log(restaurant);
+    if (bookmarks.has(restaurant._id)) {
+      bookmark.classList.remove("far");
+      bookmark.classList.add("fa");
+    }
   } catch (error) {
     console.log(error);
   }
@@ -211,6 +215,19 @@ const addFoodHTML = () => {
   burger.insertAdjacentHTML("beforeend", burgerHTML);
 };
 
+bookmark.addEventListener("click", async function () {
+  const response = await fetch(
+    `http://localhost:3000/users/bookmark?${Date.now()}`,
+    {
+      method: "POST",
+      body: JSON.stringify({ id, userId }),
+      credentials: "include",
+      withCredentials: true,
+      headers: { "Content-Type": "application/json" },
+    }
+  );
+});
+
 const fetchFood = async () => {
   try {
     const response = await fetch(
@@ -271,10 +288,6 @@ window.addEventListener("load", async function () {
   addRestaurantMap();
   addCuisines();
   fetchFood();
-  if (wishlist.has(restaurant._id)) {
-    bookmark.classList.remove("far");
-    bookmark.classList.add("fa");
-  }
   //http://maps.google.com/maps?q=${restaurant.geometry.coordinates[1]},${restaurant.geometry.coordinates[0]}
   for (let link of directionLink) {
     link.href = `https://www.google.com/maps/dir/?api=1&destination=${restaurant.geometry.coordinates[1]},${restaurant.geometry.coordinates[0]}`;

@@ -3,13 +3,13 @@ const userId = window.localStorage.getItem("id");
 const login = document.querySelector("#login_signup");
 const logout = document.querySelector("#logout");
 
-const wishlist = new Set();
+const bookmarks = new Set();
 
 if (token != null) {
   login.classList.add("none");
   logout.classList.remove("none");
   getWishList();
-  console.log(wishlist);
+  console.log(bookmarks);
 } else {
   logout.classList.add("none");
   login.classList.remove("none");
@@ -27,7 +27,7 @@ async function getWishList() {
     `http://localhost:3000/users/${userId}?${Date.now()}`
   );
   const user = await response.json();
-  user.wishlist.map((data) => {
-    wishlist.add(data);
+  user.bookmarks.map((data) => {
+    bookmarks.add(data);
   });
 }

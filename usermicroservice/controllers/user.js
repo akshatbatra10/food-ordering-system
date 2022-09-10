@@ -14,6 +14,34 @@ async function Details(req, res) {
   }
 }
 
+async function AddToWishList(req, res) {
+  try {
+    const id = req.body.userId;
+    const resID = req.body.id;
+    const user = await Users.updateOne({
+      _id: id,
+      $push: { bookmarks: resID },
+    });
+    res.send("Success");
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+async function RemoveFromWishList(req, res) {
+  try {
+    const id = req.body.userId;
+    const resID = req.body.id;
+    const user = await Users.updateOne({
+      _id: id,
+      $pull: { bookmarks: resID },
+    });
+    res.send("Success");
+  } catch (e) {
+    console.log(e);
+  }
+}
+
 async function Register(req, res) {
   try {
     const salt = await bcrypt.genSalt();
@@ -102,4 +130,6 @@ module.exports = {
   Token,
   Logout,
   Details,
+  AddToWishList,
+  RemoveFromWishList,
 };
