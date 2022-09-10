@@ -37,8 +37,9 @@ const fetchData = async () => {
     restaurant = await response.json();
     console.log(restaurant);
     if (bookmarks.has(restaurant._id)) {
-      bookmark.classList.remove("far");
-      bookmark.classList.add("fa");
+      const book = bookmark.childNodes[0].childNodes[1];
+      book.classList.remove("far");
+      book.classList.add("fa");
     }
   } catch (error) {
     console.log(error);
@@ -216,16 +217,34 @@ const addFoodHTML = () => {
 };
 
 bookmark.addEventListener("click", async function () {
-  const response = await fetch(
-    `http://localhost:3000/users/bookmark?${Date.now()}`,
-    {
-      method: "POST",
-      body: JSON.stringify({ id, userId }),
-      credentials: "include",
-      withCredentials: true,
-      headers: { "Content-Type": "application/json" },
-    }
-  );
+  const book = bookmark.childNodes[0].childNodes[1];
+  if (book.classList[0] == "far" || book.classList[1] == "far") {
+    const response = await fetch(
+      `http://localhost:3000/users/bookmark?${Date.now()}`,
+      {
+        method: "POST",
+        body: JSON.stringify({ id, userId }),
+        credentials: "include",
+        withCredentials: true,
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+    book.classList.remove("far");
+    book.classList.add("fa");
+  } else {
+    const response = await fetch(
+      `http://localhost:3000/users/removebookmark?${Date.now()}`,
+      {
+        method: "POST",
+        body: JSON.stringify({ id, userId }),
+        credentials: "include",
+        withCredentials: true,
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+    book.classList.add("far");
+    book.classList.remove("fa");
+  }
 });
 
 const fetchFood = async () => {

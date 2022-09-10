@@ -9,7 +9,7 @@ router.get("/dashboard", userMiddleware.verifyAccessToken, (req, res) => {
   res.send("hello from dashboard");
 });
 
-router.get("/:id", userController.Details);
+router.get("/info/:id", userController.Details);
 
 router.post("/bookmark", userController.AddToWishList);
 

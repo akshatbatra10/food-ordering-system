@@ -24,7 +24,7 @@ logout.addEventListener("click", function () {
 
 async function getWishList() {
   const response = await fetch(
-    `http://localhost:3000/users/${userId}?${Date.now()}`
+    `http://localhost:3000/users/info/${userId}?${Date.now()}`
   );
   const user = await response.json();
   user.bookmarks.map((data) => {
