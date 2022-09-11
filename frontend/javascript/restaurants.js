@@ -33,8 +33,6 @@ const fetchRestaurants = async (url) => {
 };
 
 const addHTML = () => {
-  const heart = ["far", "fa-heart"];
-  const filledHeart = ["fa", "fa-heart"];
   const html = restaurants
     .map((restaurant) => {
       return `<div class="col-lg-4 col-md-6 col-sm-12">

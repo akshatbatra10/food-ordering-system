@@ -217,33 +217,37 @@ const addFoodHTML = () => {
 };
 
 bookmark.addEventListener("click", async function () {
-  const book = bookmark.childNodes[0].childNodes[1];
-  if (book.classList[0] == "far" || book.classList[1] == "far") {
-    const response = await fetch(
-      `http://localhost:3000/users/bookmark?${Date.now()}`,
-      {
-        method: "POST",
-        body: JSON.stringify({ id, userId }),
-        credentials: "include",
-        withCredentials: true,
-        headers: { "Content-Type": "application/json" },
-      }
-    );
-    book.classList.remove("far");
-    book.classList.add("fa");
+  if (userId === null || token === null) {
+    window.location = "http://localhost:3000/signIn-signUp.html";
   } else {
-    const response = await fetch(
-      `http://localhost:3000/users/removebookmark?${Date.now()}`,
-      {
-        method: "POST",
-        body: JSON.stringify({ id, userId }),
-        credentials: "include",
-        withCredentials: true,
-        headers: { "Content-Type": "application/json" },
-      }
-    );
-    book.classList.add("far");
-    book.classList.remove("fa");
+    const book = bookmark.childNodes[0].childNodes[1];
+    if (book.classList[0] == "far" || book.classList[1] == "far") {
+      const response = await fetch(
+        `http://localhost:3000/users/bookmark?${Date.now()}`,
+        {
+          method: "POST",
+          body: JSON.stringify({ id, userId }),
+          credentials: "include",
+          withCredentials: true,
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+      book.classList.remove("far");
+      book.classList.add("fa");
+    } else {
+      const response = await fetch(
+        `http://localhost:3000/users/removebookmark?${Date.now()}`,
+        {
+          method: "POST",
+          body: JSON.stringify({ id, userId }),
+          credentials: "include",
+          withCredentials: true,
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+      book.classList.add("far");
+      book.classList.remove("fa");
+    }
   }
 });
 
