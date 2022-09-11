@@ -13,6 +13,13 @@
       "host": "localhost",
       "port": 3004,
       "url": "http://localhost:3004"
+    },
+    "reviews": {
+      "apiName": "reviews",
+      "protocol": "http",
+      "host": "localhost",
+      "port": 3003,
+      "url": "http://localhost:3003"
     }
   }
 }

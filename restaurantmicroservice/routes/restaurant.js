@@ -1,7 +1,7 @@
 const express = require("express");
 const axios = require("axios");
 
-const client = require("../zomatoClient");
+//const client = require("../zomatoClient");
 const Restaurants = require("../models/restaurants");
 const FoodData = require("../models/foodData");
 
