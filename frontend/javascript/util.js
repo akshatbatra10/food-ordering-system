@@ -9,7 +9,6 @@ if (token != null) {
   login.classList.add("none");
   logout.classList.remove("none");
   getWishList();
-  console.log(bookmarks);
 } else {
   logout.classList.add("none");
   login.classList.remove("none");
@@ -30,4 +29,5 @@ async function getWishList() {
   user.bookmarks.map((data) => {
     bookmarks.add(data);
   });
+  console.log(bookmarks);
 }

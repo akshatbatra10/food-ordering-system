@@ -33,23 +33,33 @@ const fetchRestaurants = async (url) => {
 };
 
 const addHTML = () => {
+  const heart = ["far", "fa-heart"];
+  const filledHeart = ["fa", "fa-heart"];
   const html = restaurants
     .map((restaurant) => {
       return `<div class="col-lg-4 col-md-6 col-sm-12">
       <div class="__area">
         <div class="__card" onclick="handleClick('${restaurant._id}')">
-          <button class="__favorit"><i class="far fa-heart"></i></button>
+          <button class="__favorit"><i class=${
+            bookmarks.has(restaurant._id) ? "fa" : "far"
+          }></i></button>
           <img src="${restaurant.image}" class="img-fluid __img" />
           <div class="__card_detail text-left">
             <h4>${restaurant.name}</h4>
             <p>${restaurant.address}</p>
             <div class="__type">
               Average cost for two -
-              <span><i class="fas fa-rupee-sign"></i> ${restaurant.average_cost_for_two}</span>
+              <span><i class="fas fa-rupee-sign"></i> ${
+                restaurant.average_cost_for_two
+              }</span>
             </div>
             <div class="__detail">
-              <div class="rating" style="background-color: #${restaurant.rating_color}">
-                <i class="fas fa-star"></i> <span>${restaurant.aggregate_rating}</span>
+              <div class="rating" style="background-color: #${
+                restaurant.rating_color
+              }">
+                <i class="fas fa-star"></i> <span>${
+                  restaurant.aggregate_rating
+                }</span>
               </div>
               <div class="timing">
                 <i class="far fa-clock"></i> <span>30 m</span>
@@ -92,6 +102,8 @@ window.addEventListener("load", async function () {
   loading.classList.add("none");
   header.classList.remove("none");
   addHTML();
+  const icon = this.document.querySelectorAll(".__favorit");
+  icon.forEach((button) => button.childNodes[0].classList.add("fa-heart"));
 });
 
 showMoreButton.addEventListener("click", async function () {
